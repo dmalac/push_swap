@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   main.h                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/05/03 16:41:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/03 18:10:03 by dmalacov      ########   odam.nl         */
+/*   Created: 2022/05/03 17:12:12 by dmalacov      #+#    #+#                 */
+/*   Updated: 2022/05/03 18:52:28 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <unistd.h>
-#include <stdlib.h>
-#include "main.h"
-#include "libft/libft.h"
+#ifndef MAIN_H
+# define MAIN_H
 
-void	call_error(void)
+typedef struct s_list
 {
-	ft_printf("Error\n");
-	exit(0);
-}
+	int				x;
+	struct s_list	*prev;
+	struct s_list	*nxt;
+}				t_list;
 
-int	main(int argc, char **argv)
-{
-	t_list	*a;
+/* main.c */
+void	call_error(void);
+/* input_processing.c */
+void	process_input(char **arg, t_list **a);
+int		no_doubles(t_list *a);
 
-	if (argc < 2)
-		exit(0);
-	a = NULL;
-	process_input(argv, &a);
-	if (no_doubles(a) == 0)
-		call_error();
-
-	ft_printf("All good\n");
-	return (0);
-}
+#endif

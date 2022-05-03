@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_power.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/05/03 16:41:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/03 18:10:03 by dmalacov      ########   odam.nl         */
+/*   Created: 2022/02/08 14:32:32 by dmalacov      #+#    #+#                 */
+/*   Updated: 2022/02/15 10:59:51 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <unistd.h>
-#include <stdlib.h>
-#include "main.h"
-#include "libft/libft.h"
-
-void	call_error(void)
+unsigned long	ft_power(unsigned long a, int exp)
 {
-	ft_printf("Error\n");
-	exit(0);
-}
+	unsigned long	result;
 
-int	main(int argc, char **argv)
-{
-	t_list	*a;
-
-	if (argc < 2)
-		exit(0);
-	a = NULL;
-	process_input(argv, &a);
-	if (no_doubles(a) == 0)
-		call_error();
-
-	ft_printf("All good\n");
-	return (0);
+	if (exp == 0)
+		return (1);
+	result = a;
+	while (exp-- > 1)
+		result *= a;
+	return (result);
 }
