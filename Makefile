@@ -2,11 +2,9 @@ NAME = push_swap
 
 CC = gcc
 
-CCFLAGS = -Wall -Wextra -Werror
+CCFLAGS = -Wall -Wextra -Werror -g -fsanitize=address	#delete before submitting
 
-CCFLAGS_DEBUG = -Wall -Wextra -Werror -g -fsanitize=address		#delete
-
-SRC = main.c input_processing.c
+SRC = main.c input_processing.c list_operations.c
 
 OBJDIR = obj
 
@@ -14,15 +12,14 @@ OBJ = $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 
 LIBFT = libft/libft.a
 
+
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(CCFLAGS_DEBUG) $^ -o $(NAME)
+	$(CC) $(CCFLAGS) $^ -o $(NAME)
 
 $(LIBFT):
 	make -C libft
-
-# include dependencies for .o files (like .h files) ?
 
 $(OBJ): | $(OBJDIR)
 
@@ -30,14 +27,10 @@ $(OBJDIR):
 	mkdir $(OBJDIR)
 
 $(OBJDIR)/%.o: %.c
-	$(CC) $(CCFLAGS_DEBUG) -c $< -o $@
-
-$(OBJDIR)/main.o: main.c main.h libft/libft.h
-
-$(OBJDIR)/input_processing.o: input_processing.c main.h
+	$(CC) $(CCFLAGS) -c $< -o $@
 
 clean:
-	rm -R $(OBJDIR)
+	rm -Rf $(OBJDIR)
 	make clean -C libft
 
 fclean: clean
@@ -46,3 +39,11 @@ fclean: clean
 re: fclean all
 
 .PHONY: clean fclean re all
+
+# individual dependencies:
+
+$(OBJDIR)/main.o: main.c main.h libft/libft.h
+
+$(OBJDIR)/input_processing.o: input_processing.c main.h
+
+$(OBJDIR)/list_operations.o: list_operations.c main.h

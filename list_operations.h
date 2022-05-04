@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.h                                             :+:    :+:            */
+/*   list_operations.h                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/05/03 17:12:12 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/04 18:20:26 by dmalacov      ########   odam.nl         */
+/*   Created: 2022/05/04 11:54:25 by dmalacov      #+#    #+#                 */
+/*   Updated: 2022/05/04 18:07:56 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#ifndef LIST_OPERATIONS_H
+# define LIST_OPERATIONS_H
 
-# include "list_operations.h"
+typedef struct s_list
+{
+	int				x;
+	int				last;
+	struct s_list	*prev;
+	struct s_list	*nxt;
+}				t_list;
 
-/* main.c */
-void	call_error(void);
-/* input_processing.c */
-void	process_input(int *input, int num, t_list **a);
-int		no_doubles(int *input);
-int		*check_input(char **arg, int num);
+/* list_operations.c */
+t_list	*lst_new(int num);
+void	lst_erase(t_list **lst);
+void	lst_add_back(t_list **lst, t_list *new);
+void	lst_add_front(t_list **lst, t_list *new);
+void	lst_print(t_list *top);
 
 #endif

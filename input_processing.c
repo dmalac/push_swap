@@ -6,12 +6,13 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:37:05 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/03 18:50:39 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/04 18:41:57 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "main.h"
+#include "libft/libft.h"
 
 int	only_digits(char *str)
 {
@@ -27,29 +28,56 @@ int	only_digits(char *str)
 	return (1);
 }
 
-int	no_doubles(t_list *a)
+int	no_doubles(int *input) // will get an array as input
 {
-	if (a == NULL)		// this is nonsense
+	int	i;
+
+	i = 0;
+	if (input == NULL)		// this is nonsense
 		return (1);
 	return (1);
 }
 
-void	process_input(char **arg, t_list **a)
-{
-	int		i;
+int	*check_input(char **arg, int num)
+{	// 1. isdigit, 2. ints, 3. make array&atoi, 4. doubles
+	int	*input;	// ARRAY IS NOT WORKING
+	int	i;
 
-	i = 1;
-	while (arg[i] != NULL)
+	i = 0;
+	while (i < num)
 	{
-		if (only_digits(arg[i]) == 0)
+		if (only_digits(arg[i + 1]) == 0)
 			call_error();
-		/* 
-		2. is_int
-		3. atoi arg[i]
-		4. create new node
-		 */
+		// here also check whether min/max int - with strcmp perhaps
 		i++;
 	}
-	if (a != NULL)
-		i = 0;
+	input = malloc(sizeof(int) * num);
+	if (!input)
+		call_error();
+	ft_bzero(input, num);
+	i = 1;
+	while (i < num)
+	{
+		*(input + i) = ft_atoi(arg[i]);
+		i++;
+	}
+	if (no_doubles(input) == 0)
+		call_error();
+	return (input);
+}
+
+void	process_input(int *input, int num, t_list **a)
+{
+	int		i;
+	t_list	*new;
+
+	i = 1;
+	while (i < num)
+	{
+		new = lst_new(input[i]);
+		if (!new)
+			lst_erase(a);
+		lst_add_back(a, new);
+		i++;
+	}
 }
