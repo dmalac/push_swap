@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:37:05 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/04 18:41:57 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/05 18:18:20 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	only_digits(char *str)
 	int	i;
 
 	i = 0;
+	if (str[i] == '-')
+		i++;
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
@@ -28,45 +30,50 @@ int	only_digits(char *str)
 	return (1);
 }
 
-int	no_doubles(int *input) // will get an array as input
+int	no_doubles()
 {
-	int	i;
-
-	i = 0;
-	if (input == NULL)		// this is nonsense
-		return (1);
 	return (1);
 }
 
-int	*check_input(char **arg, int num)
-{	// 1. isdigit, 2. ints, 3. make array&atoi, 4. doubles
-	int	*input;	// ARRAY IS NOT WORKING
+int	is_int(char *num)
+{
+	size_t	n;
+
+	n = ft_strlen(num);
+	if (num[0] == '-')
+		n--;
+	if (n > 10)
+		return (0);
+	else if (ft_strncmp(INT_MAX_CHAR, num, n) < 0 && num[0] != '-')
+		return (0);
+	else if (ft_strncmp(INT_MIN_CHAR, num, n) < 0 && num[0] == '-')
+		return (0);
+	else
+		return (1);
+}
+
+void	check_input(char **input, int num)
+{
 	int	i;
 
-	i = 0;
-	while (i < num)
-	{
-		if (only_digits(arg[i + 1]) == 0)
-			call_error();
-		// here also check whether min/max int - with strcmp perhaps
-		i++;
-	}
-	input = malloc(sizeof(int) * num);
-	if (!input)
-		call_error();
-	ft_bzero(input, num);
 	i = 1;
 	while (i < num)
 	{
-		*(input + i) = ft_atoi(arg[i]);
+		if (only_digits(input[i]) == 0)
+			call_error();
+		if ((input[i][0] == '-' && ft_strlen(input[i]) >= 11) || \
+		(input[i][0] != '-' && ft_strlen(input[i]) >= 10))
+		{
+			if (is_int(input[i]) == 0)
+				call_error();
+		}
 		i++;
 	}
-	if (no_doubles(input) == 0)
-		call_error();
-	return (input);
+	// if (no_doubles() == 0)		-> include AFTER creating linked list
+	// 	call_error();
 }
 
-void	process_input(int *input, int num, t_list **a)
+void	process_input(char **input, int num, t_list **a)
 {
 	int		i;
 	t_list	*new;

@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:21:23 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/04 18:09:36 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/05 16:58:44 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 #include "libft/libft.h"
 #include <stdlib.h>
 
-t_list	*lst_new(int num)
+t_list	*lst_new(char *num)
 {
 	t_list	*new;
 
 	new = malloc(sizeof(t_list));
 	if (new)
 	{
-		new->x = num;
+		new->x = ft_atoi(num);
 		new->prev = NULL;
 		new->nxt = NULL;
 		new->last = 0;

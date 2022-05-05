@@ -36,7 +36,11 @@ clean:
 fclean: clean
 	rm -f $(NAME) $(LIBFT)
 
-re: fclean all
+re: fclean
+	make
+
+norm:
+	norminette -R CheckForbiddenSourceHeader
 
 .PHONY: clean fclean re all
 
