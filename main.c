@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 16:41:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/05 18:15:40 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/06 13:11:23 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ void	call_error(void)
 	exit(0);
 }
 
+void	process_input(char **input, int num_args, t_list **lst)
+{
+	check_input(input, num_args);
+	create_lnkd_lst(input, num_args, lst);
+	if (doubles(*lst, num_args - 1) == 1)
+		call_error();
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*a;
@@ -28,7 +36,6 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		exit(0);
 	a = NULL;
-	check_input(argv, argc);
 	process_input(argv, argc, &a);
 	lst_print(a);	// to be removed before submitting
 	return (0);

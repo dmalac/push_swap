@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:21:23 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/05 16:58:44 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/06 13:09:38 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ void	lst_print(t_list *top)
 	current = top;
 	while (current->last != 1)
 	{
-		ft_printf("%d\n", current->x);
+		ft_printf("%d, %d\n", current->x, current->last);
 		current = current->nxt;
 	}
-	ft_printf("%d\n", current->x);
+	ft_printf("%d, %d\n", current->x, current->last);
 }

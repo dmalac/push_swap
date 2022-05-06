@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:37:05 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/05 18:18:20 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/06 13:12:39 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,33 @@ int	only_digits(char *str)
 	return (1);
 }
 
-int	no_doubles()
+int	doubles(t_list *lst, int n)
 {
-	return (1);
+	int		i;
+	int		counter;
+	t_list	*val_1;
+	t_list	*val_2;
+
+	i = 0;
+	while (i < n)
+	{
+	counter = 0;
+	val_1 = lst;
+		while (counter < i)
+		{
+			val_1 = val_1->nxt;
+			counter++;
+		}
+		val_2 = val_1->nxt;
+		while (val_2->prev->last != 1)
+		{
+			if (val_1->x == val_2->x)
+				return (1);
+			val_2 = val_2->nxt;
+		}
+	i++;
+	}
+	return (0);
 }
 
 int	is_int(char *num)
@@ -52,12 +76,12 @@ int	is_int(char *num)
 		return (1);
 }
 
-void	check_input(char **input, int num)
+void	check_input(char **input, int n)
 {
 	int	i;
 
 	i = 1;
-	while (i < num)
+	while (i < n)
 	{
 		if (only_digits(input[i]) == 0)
 			call_error();
@@ -69,17 +93,15 @@ void	check_input(char **input, int num)
 		}
 		i++;
 	}
-	// if (no_doubles() == 0)		-> include AFTER creating linked list
-	// 	call_error();
 }
 
-void	process_input(char **input, int num, t_list **a)
+void	create_lnkd_lst(char **input, int n, t_list **a)
 {
 	int		i;
 	t_list	*new;
 
 	i = 1;
-	while (i < num)
+	while (i < n)
 	{
 		new = lst_new(input[i]);
 		if (!new)
