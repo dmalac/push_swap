@@ -1,0 +1,12 @@
+small_stack
+
+[- if 1 --> nothing]
+- if 2 --> either nothing or swap
+- if 3 --> sort_three
+- if 4 --> move 1 to b (first one or lowest one?); sort_three, move 1 back to a
+- if 5 --> move 2 to b (first two or lowest two?); sort_three, if needed swap 2, move back to a
+- if 6 --> move 3 to b (first three or lowest?); sort_three on both stacks, merge
+	(then again, if only 3 and 5 get tested...)
+
+
+large_stack

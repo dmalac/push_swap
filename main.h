@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:12:12 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/06 13:06:24 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/11 12:20:30 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ void	call_error(void);
 void	create_lnkd_lst(char **input, int num, t_list **a);
 int		doubles(t_list *lst, int n);
 void	check_input(char **input, int num);
+int		is_sorted(t_list *lst);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:37:05 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/06 13:12:39 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/11 13:00:19 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	doubles(t_list *lst, int n)
 			counter++;
 		}
 		val_2 = val_1->nxt;
-		while (val_2->prev->last != 1)
+		while (val_2->prev->is_last != 1)
 		{
 			if (val_1->x == val_2->x)
 				return (1);
@@ -59,7 +59,7 @@ int	doubles(t_list *lst, int n)
 	return (0);
 }
 
-int	is_int(char *num)
+int	is_int(char *num)	// DEAL WITH 0000000000000000000000000001
 {
 	size_t	n;
 
@@ -74,6 +74,26 @@ int	is_int(char *num)
 		return (0);
 	else
 		return (1);
+}
+
+int	is_sorted(t_list *lst)
+{
+	int		sorted;
+	t_list	*current;
+
+	current = lst;	
+	if (current->x > current->nxt->x)
+		sorted = -1;
+	else
+		sorted = 1;
+	while (current->is_last != 1)
+	{
+		if ((current->x > current->nxt->x && sorted == 1) || \
+		(current->x < current->nxt->x && sorted == -1))
+			return (0);
+		current = current->nxt;
+	}
+	return (sorted);
 }
 
 void	check_input(char **input, int n)
@@ -91,22 +111,6 @@ void	check_input(char **input, int n)
 			if (is_int(input[i]) == 0)
 				call_error();
 		}
-		i++;
-	}
-}
-
-void	create_lnkd_lst(char **input, int n, t_list **a)
-{
-	int		i;
-	t_list	*new;
-
-	i = 1;
-	while (i < n)
-	{
-		new = lst_new(input[i]);
-		if (!new)
-			lst_erase(a);
-		lst_add_back(a, new);
 		i++;
 	}
 }

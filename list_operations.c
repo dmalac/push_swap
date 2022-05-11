@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:21:23 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/06 13:09:38 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/11 12:46:05 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_list	*lst_new(char *num)
 		new->x = ft_atoi(num);
 		new->prev = NULL;
 		new->nxt = NULL;
-		new->last = 0;
+		new->is_last = 0;
 	}
 	return (new);
 }
@@ -49,18 +49,18 @@ void	lst_add_back(t_list **lst, t_list *new)
 		*lst = new;
 		new->nxt = new;
 		new->prev = new;
-		new->last = 1;
+		new->is_last = 1;
 	}
 	else
 	{
 		top = *lst;
-		top->prev->last = 0;
+		top->prev->is_last = 0;
 		temp = top->prev;
 		top->prev = new;
 		new->nxt = top;
 		temp->nxt = new;
 		new->prev = temp;
-		new->last = 1;
+		new->is_last = 1;
 	}
 }
 
@@ -78,16 +78,32 @@ void	lst_add_front(t_list **lst, t_list *new)
 	top = new;
 }
 
+void	create_lnkd_lst(char **input, int n, t_list **a)
+{
+	int		i;
+	t_list	*new;
+
+	i = 1;
+	while (i < n)
+	{
+		new = lst_new(input[i]);
+		if (!new)
+			lst_erase(a);
+		lst_add_back(a, new);
+		i++;
+	}
+}
+
 /* for testing purposes; to be removed at some point */
 void	lst_print(t_list *top)
 {
 	t_list	*current;
 
 	current = top;
-	while (current->last != 1)
+	while (current->is_last != 1)
 	{
-		ft_printf("%d, %d\n", current->x, current->last);
+		ft_printf("%d, %d\n", current->x, current->is_last);
 		current = current->nxt;
 	}
-	ft_printf("%d, %d\n", current->x, current->last);
+	ft_printf("%d, %d\n", current->x, current->is_last);
 }
