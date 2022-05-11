@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.h                                             :+:    :+:            */
+/*   actions.h                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/05/03 17:12:12 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/11 15:07:44 by dmalacov      ########   odam.nl         */
+/*   Created: 2022/05/11 18:11:01 by dmalacov      #+#    #+#                 */
+/*   Updated: 2022/05/11 18:44:14 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#ifndef ACTIONS_H
+# define ACTIONS_H
 
 # include "list_operations.h"
 
-# define INT_MAX_CHAR "2147483647"
-# define INT_MIN_CHAR "-2147483648"
-
-/* main.c */
-void	call_error(void);
-/* input_processing.c */
-int		doubles(t_list *lst, int n);
-void	check_input(char **input, int num);
-int		is_sorted(t_list *lst);
+t_list	*swap(t_list **lst);
+t_list	*push(t_list **to, t_list **from);
+t_list	*rotate(t_list *lst);
+t_list	*rev_rotate(t_list *lst);
 
 #endif

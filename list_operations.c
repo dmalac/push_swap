@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:21:23 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/11 12:46:05 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/11 18:35:43 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,18 @@ t_list	*lst_new(char *num)
 
 void	lst_erase(t_list **lst)
 {
-	// to be coded
-	if (*lst)
-		ft_printf("sth went wrong with mallocing the linked list\n");
-	else
-		ft_printf("sth went wrong with mallocing the linked list\n");
+	t_list	*current;
+
+	current = *lst;
+	if (current)
+	{
+		while (current->is_last == 0)
+		{
+			current = current->nxt;
+			free(current->prev);
+		}
+		free(current);
+	}
 	exit (0);
 }
 
@@ -64,18 +71,28 @@ void	lst_add_back(t_list **lst, t_list *new)
 	}
 }
 
-void	lst_add_front(t_list **lst, t_list *new)
+t_list	*lst_add_front(t_list **lst, t_list *new)
 {
-	t_list	*temp;
 	t_list	*top;
 
-	top = *lst;
-	temp = top->prev;
-	top->prev = new;
-	new->nxt = top;
-	temp->nxt = new;
-	new->prev = temp;
-	top = new;
+	if (*lst == NULL)
+	{
+		*lst = new;
+		new->nxt = new;
+		new->prev = new;
+		new->is_last = 1;
+	}
+	else
+	{
+		top = *lst;
+		new->prev = top->prev;
+		top->prev = new;
+		new->nxt = top;
+		new->prev->nxt = new;
+		if (new->is_last == 1)
+			new->is_last = 0;
+	}
+	return (new);
 }
 
 void	create_lnkd_lst(char **input, int n, t_list **a)
@@ -94,16 +111,36 @@ void	create_lnkd_lst(char **input, int n, t_list **a)
 	}
 }
 
+int		lst_size(t_list *lst)
+{
+	int		size;
+	t_list	*current;
+
+	size = 0;
+	if (lst == NULL)
+		return (0);
+	current = lst;
+	while (current->is_last == 0)
+	{
+		size++;
+		current = current->nxt;
+	}
+	return (size + 1);
+}
+
 /* for testing purposes; to be removed at some point */
 void	lst_print(t_list *top)
 {
 	t_list	*current;
 
-	current = top;
-	while (current->is_last != 1)
+	if (top)
 	{
+		current = top;
+		while (current->is_last != 1)
+		{
+			ft_printf("%d, %d\n", current->x, current->is_last);
+			current = current->nxt;
+		}
 		ft_printf("%d, %d\n", current->x, current->is_last);
-		current = current->nxt;
 	}
-	ft_printf("%d, %d\n", current->x, current->is_last);
 }

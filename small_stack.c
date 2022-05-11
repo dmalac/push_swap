@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.h                                             :+:    :+:            */
+/*   small_stack.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/05/03 17:12:12 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/11 15:07:44 by dmalacov      ########   odam.nl         */
+/*   Created: 2022/05/11 14:26:52 by dmalacov      #+#    #+#                 */
+/*   Updated: 2022/05/11 16:53:23 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#include "list_operations.h"
+#include "sorting.h"
+#include "libft/ft_printf.h"	// delete
 
-# include "list_operations.h"
+void	sort_small_stack(t_list *a, t_list *b)
+{
+	int	size_a;
+	int	size_b;
 
-# define INT_MAX_CHAR "2147483647"
-# define INT_MIN_CHAR "-2147483648"
-
-/* main.c */
-void	call_error(void);
-/* input_processing.c */
-int		doubles(t_list *lst, int n);
-void	check_input(char **input, int num);
-int		is_sorted(t_list *lst);
-
-#endif
+	size_a = lst_size(a);	// doesn't work (1 instead of 3)
+	// if (size_a <= 3)
+	// 	sort_two_three(a);
+	size_b = lst_size(b);
+	ft_printf("List a has %d items and list b has %d items.\n", size_a, size_b);
+}

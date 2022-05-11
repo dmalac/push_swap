@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:37:05 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/11 13:00:19 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/11 13:06:11 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int	doubles(t_list *lst, int n)
 	return (0);
 }
 
-int	is_int(char *num)	// DEAL WITH 0000000000000000000000000001
+/* this function could be replaced by ATOL & check whether < INT_MAX or > INT_MIN */
+int	is_int(char *num)	// DEAL WITH 000000000000000000000000000999999999999999
 {
 	size_t	n;
 

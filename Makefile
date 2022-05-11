@@ -4,7 +4,8 @@ CC = gcc
 
 CCFLAGS = -Wall -Wextra -Werror -g -fsanitize=address	#delete before submitting
 
-SRC = main.c input_processing.c list_operations.c
+SRC = main.c input_processing.c list_operations.c small_stack.c \
+sorting.c actions.c
 
 OBJDIR = obj
 
@@ -44,10 +45,16 @@ norm:
 
 .PHONY: clean fclean re all
 
-# individual dependencies:
+# individual dependencies:		TO BE CHECKED BEFORE SUBMISSION
 
 $(OBJDIR)/main.o: main.c main.h libft/libft.h
 
 $(OBJDIR)/input_processing.o: input_processing.c main.h
 
 $(OBJDIR)/list_operations.o: list_operations.c main.h
+
+$(OBJDIR)/small_stack.o: small_stack.c list_operations.h sorting.h
+
+$(OBJDIR)/sorting.o: sorting.c list_operations.h sorting.h
+
+$(OBJDIR)/actions.o: actions.c list_operations.h
