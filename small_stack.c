@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 14:26:52 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/11 16:53:23 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/12 18:28:51 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,34 @@
 #include "sorting.h"
 #include "libft/ft_printf.h"	// delete
 
-void	sort_small_stack(t_list *a, t_list *b)
+t_list	*offload(t_list **to, t_list **from, int n)
+{
+	while (n > 0)
+	{
+		*from = push(to, from);
+		n--;
+	}
+	return (*from);
+}
+
+void	sort_small_stack(t_list **a, t_list **b)
 {
 	int	size_a;
 	int	size_b;
 
-	size_a = lst_size(a);	// doesn't work (1 instead of 3)
-	// if (size_a <= 3)
-	// 	sort_two_three(a);
-	size_b = lst_size(b);
-	ft_printf("List a has %d items and list b has %d items.\n", size_a, size_b);
+	size_a = lst_size(*a);
+	if (size_a == 2)
+		sort_two(a);
+	if (size_a == 3)
+		sort_three(a);
+	
+	if (size_a > 3)
+	{
+		*a = offload(b, a, size_a - 3);
+		size_b = lst_size(*b);
+	}
+	// size_a
+	// offload if necessary
+	// perform_fc(a, array[size_a])
+	// if b, perform_fc(b, array[size_b])
 }

@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:54:25 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/11 18:28:14 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/12 16:34:07 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ void	lst_add_back(t_list **lst, t_list *new);
 t_list	*lst_add_front(t_list **lst, t_list *new);
 void	create_lnkd_lst(char **input, int n, t_list **a);
 int		lst_size(t_list *lst);
+int		lst_max(t_list *lst);
+int		lst_min(t_list *lst);
 void	lst_print(t_list *top); // will be deleted
 /* small_stack.c */
-void	sort_small_stack(t_list *a, t_list *b);
+void	sort_small_stack(t_list **a, t_list **b);
 
 #endif

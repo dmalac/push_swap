@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 15:14:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/11 18:43:43 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/12 11:59:17 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 #include "actions.h"
 #include <stdlib.h>
 
-t_list	*swap(t_list **lst)
+t_list	*swap(t_list *lst)
 {
 	t_list	*first;
 	t_list	*second;
 	int		size;
 
-	size = lst_size(*lst);
+	size = lst_size(lst);
 	if (size <= 1)
-		return (*lst);
-	first = *lst;
+		return (lst);
+	first = lst;
 	second = first->nxt;
 	if (second->is_last == 1)
 	{
@@ -48,6 +48,8 @@ t_list	*push(t_list **to, t_list **from)
 	int		size;
 
 	size = lst_size(*from);
+	if (size == 0)
+		return (*from);
 	to_move = *from;
 	new_top = to_move->nxt;
 	new_top->prev = to_move->prev;

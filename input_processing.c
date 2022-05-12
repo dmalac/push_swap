@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:37:05 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/12 11:31:45 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/12 17:08:58 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "main.h"
 #include "libft/libft.h"
 
-int	only_digits(char *str)
+static int	only_digits(char *str)
 {
 	int	i;
 
@@ -59,7 +59,7 @@ int	doubles(t_list *lst, int n)
 	return (0);
 }
 
-int	is_int(char *num)
+static int	is_int(char *num)
 {
 	long long	number;
 	

@@ -6,12 +6,13 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:21:23 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/11 18:35:43 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/12 16:33:36 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list_operations.h"
 #include "libft/libft.h"
+#include "main.h"
 #include <stdlib.h>
 
 t_list	*lst_new(char *num)
@@ -126,6 +127,38 @@ int		lst_size(t_list *lst)
 		current = current->nxt;
 	}
 	return (size + 1);
+}
+
+int	lst_max(t_list *lst)
+{
+	int	max;
+
+	max = INT_MIN;
+	while (lst->is_last == 0)
+	{
+		if (lst->x > max)
+			max = lst->x;
+		lst = lst->nxt;
+	}
+	if (lst->x > max)
+		max = lst->x;
+	return (max);
+}
+
+int	lst_min(t_list *lst)
+{
+	int	min;
+
+	min = INT_MAX;
+	while (lst->is_last == 0)
+	{
+		if (lst->x < min)
+			min = lst->x;
+		lst = lst->nxt;
+	}
+	if (lst->x < min)
+		min = lst->x;
+	return (min);
 }
 
 /* for testing purposes; to be removed at some point */

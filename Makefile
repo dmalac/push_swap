@@ -55,6 +55,6 @@ $(OBJDIR)/list_operations.o: list_operations.c main.h
 
 $(OBJDIR)/small_stack.o: small_stack.c list_operations.h sorting.h
 
-$(OBJDIR)/sorting.o: sorting.c list_operations.h sorting.h
+$(OBJDIR)/sorting.o: sorting.c list_operations.h sorting.h actions.h
 
 $(OBJDIR)/actions.o: actions.c list_operations.h

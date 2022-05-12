@@ -6,7 +6,7 @@
 /*   By: dmalacov <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/05 15:12:33 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/05 17:23:08 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/12 11:55:07 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 size_t			ft_strlen(const char *str);
 int				ft_atoi(const char *str);
+long long		ft_atol(const char *str);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_itoa(int n);
 int				ft_putchar_int(char c);
