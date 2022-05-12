@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:37:05 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/11 13:06:11 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/12 11:31:45 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,15 @@ int	doubles(t_list *lst, int n)
 	return (0);
 }
 
-/* this function could be replaced by ATOL & check whether < INT_MAX or > INT_MIN */
-int	is_int(char *num)	// DEAL WITH 000000000000000000000000000999999999999999
+int	is_int(char *num)
 {
-	size_t	n;
-
-	n = ft_strlen(num);
-	if (num[0] == '-')
-		n--;
-	if (n > 10)
-		return (0);
-	else if (ft_strncmp(INT_MAX_CHAR, num, n) < 0 && num[0] != '-')
-		return (0);
-	else if (ft_strncmp(INT_MIN_CHAR, num, n) < 0 && num[0] == '-')
-		return (0);
-	else
+	long long	number;
+	
+	number = ft_atol(num);
+	if (number <= INT_MAX && number >= INT_MIN)
 		return (1);
+	else
+		return (0);
 }
 
 int	is_sorted(t_list *lst)
@@ -106,8 +99,7 @@ void	check_input(char **input, int n)
 	{
 		if (only_digits(input[i]) == 0)
 			call_error();
-		if ((input[i][0] == '-' && ft_strlen(input[i]) >= 11) || \
-		(input[i][0] != '-' && ft_strlen(input[i]) >= 10))
+		if (ft_strlen(input[i]) >= 10)
 		{
 			if (is_int(input[i]) == 0)
 				call_error();
