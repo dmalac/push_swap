@@ -1,5 +1,10 @@
 to-do
-- replace is_int & ft_atoi by ft_atol
+- streamline sorting instructions immediately or when printing? 
+	(--> printing sounds more doable)
+- how to process the instructions in the best way?
+	--> for large_stack testing multiple methods, so output only text
+- how to optimize reversing the 3-item list (two ways) (maybe not necessary, as it 
+	only matters when 6 elements)
 
 small_stack
 
@@ -13,5 +18,14 @@ small_stack
 
 
 large_stack
+- measure ways of tranches and choose the shortest one
+- make sure B is always sorted
+
+
+for optimization
+- small stack: create program that runs all combinations of 5 numbers 
+(and of 6 numbers), counts moves in each
+	- then runs most costly scenarios, prints moves into a file, 
+	identifies moves for optimization
 
 

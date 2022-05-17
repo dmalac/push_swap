@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 16:41:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/12 18:31:17 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/17 12:28:53 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ int	main(int argc, char **argv)
 	// a = push(&b, &a);
 	// a = push(&b, &a);
 	// a = push(&b, &a);
-	// ft_printf("After pushing:\nA (%d items)\n", lst_size(a));
+	ft_printf("A (%d items)\n", lst_size(a));
 	lst_print(a);	// to be removed before submitting
 	// ft_printf("B (%d items)\n", lst_size(b));
 	// lst_print(b);	// to be removed before submitting
 	// b = rev_rotate(b);
-	// ft_printf("B after rev-rotating (%d items)\n", lst_size(b));
-	// lst_print(b);	// to be removed before submitting
+	ft_printf("B (%d items)\n", lst_size(b));
+	lst_print(b);	// to be removed before submitting
 	lst_erase(&a);
 	lst_erase(&b);
 	return (0);
