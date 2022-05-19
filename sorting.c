@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 15:02:19 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/17 12:32:49 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/19 21:18:51 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "libft/ft_printf.h"	// delete
 
 /* these should all return a char* with instructions probably */
+/* or maybe not - as we'll only test with 5 but optimisation is only for 6 */
 
 void	sort_two(t_list **lst, char list)
 {
@@ -27,6 +28,14 @@ void	sort_two(t_list **lst, char list)
 	}
 }
 
+void	reverse_three(t_list **lst, char list)
+{
+	ft_printf("s%c\n", list, list);	// OR *lst = rotate(*lst)
+	*lst = swap(*lst);
+	ft_printf("rr%c\n", list, list);	// OR *lst = swap(*lst)
+	*lst = rev_rotate(*lst);
+}
+
 void	sort_three(t_list **lst, char list)
 {
 	int	max;
@@ -35,38 +44,23 @@ void	sort_three(t_list **lst, char list)
 
 	max = lst_max(*lst);
 	min = lst_min(*lst);
-	sorted = is_sorted(*lst);	
-	// ft_printf("[sort_3] max is %d, min is %d\n", max, min);
+	sorted = is_sorted(*lst);
 	if (sorted == -1)
-	{
-		// EITHER:
-		ft_printf("s%c\n", list);
-		*lst = swap(*lst);
-		ft_printf("rr%c\n", list);
-		*lst = rev_rotate(*lst);
-		// lst_print(*lst);
-		// OR:
-		// *lst = rotate(*lst);
-		// *lst = swap(*lst);
-	}
+		reverse_three(lst, list);
 	if (sorted == 0 && max == (*lst)->x)
 	{
 		ft_printf("r%c\n", list);
 		*lst = rotate(*lst);
-		// lst_print(*lst);
 	}
 	else if (sorted == 0 && (min == (*lst)->x || min == (*lst)->prev->x))
 	{
-		// ft_printf("lst->x %d, lst->prev->x %d\n", (*lst)->x, (*lst)->prev->x);
 		ft_printf("rr%c\n", list);
 		*lst = rev_rotate(*lst);
-		// lst_print(*lst);
 	}
 	if (sorted == 0 && min != (*lst)->x)
 	{
 		ft_printf("s%c\n", list);
 		*lst = swap(*lst);
-		// lst_print(*lst);
 	}
 }
 
@@ -79,17 +73,6 @@ void	rev_sort_three(t_list **lst, char list)
 	max = lst_max(*lst);
 	min = lst_min(*lst);
 	sorted = is_sorted(*lst);
-	if (sorted == 1)
-	{
-		// EITHER:
-		ft_printf("s%c\n", list);
-		*lst = swap(*lst);
-		ft_printf("rr%c\n", list);
-		*lst = rev_rotate(*lst);
-		// OR:
-		// *lst = rotate(*lst);
-		// *lst = swap(*lst);
-	}
 	if (sorted == 0 && min == (*lst)->x)
 	{
 		ft_printf("r%c\n", list);

@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:21:23 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/12 16:33:36 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/19 20:12:31 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	create_lnkd_lst(char **input, int n, t_list **a)
 	int		i;
 	t_list	*new;
 
-	i = 1;
+	i = 0;
 	while (i < n)
 	{
 		new = lst_new(input[i]);
@@ -112,7 +112,7 @@ void	create_lnkd_lst(char **input, int n, t_list **a)
 	}
 }
 
-int		lst_size(t_list *lst)
+int	lst_size(t_list *lst)
 {
 	int		size;
 	t_list	*current;
@@ -162,18 +162,23 @@ int	lst_min(t_list *lst)
 }
 
 /* for testing purposes; to be removed at some point */
-void	lst_print(t_list *top)
+void	lst_print(t_list *top, char list)
 {
 	t_list	*current;
 
 	if (top)
 	{
 		current = top;
+		ft_putchar_fd(list, 2);
+		ft_putchar_fd(':', 2);
+		ft_putchar_fd(' ', 2);
 		while (current->is_last != 1)
 		{
-			ft_printf("%d, %d\n", current->x, current->is_last);
+			ft_putnbr_fd(current->x, 2);
+			ft_putchar_fd(' ', 2);
 			current = current->nxt;
 		}
-		ft_printf("%d, %d\n", current->x, current->is_last);
+		ft_putnbr_fd(current->x, 2);
+		ft_putchar_fd('\n', 2);
 	}
 }

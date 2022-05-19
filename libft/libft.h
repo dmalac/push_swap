@@ -6,7 +6,7 @@
 /*   By: dmalacov <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/05 15:12:33 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/12 11:55:07 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/19 16:28:01 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,9 @@ int				ft_printf(const char *format, ...);
 char			*ft_uitoa(unsigned int n);
 void			ft_bzero(void *s, size_t n);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
+char			**ft_split(char const *s, char c);
+char			*ft_strtrim(char const *s1, char const *set);
+void			ft_putchar_fd(char c, int fd);
+void			ft_putnbr_fd(int n, int fd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:37:05 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/12 17:08:58 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/19 20:12:12 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	doubles(t_list *lst, int n)
 static int	is_int(char *num)
 {
 	long long	number;
-	
+
 	number = ft_atol(num);
 	if (number <= INT_MAX && number >= INT_MIN)
 		return (1);
@@ -75,7 +75,7 @@ int	is_sorted(t_list *lst)
 	int		sorted;
 	t_list	*current;
 
-	current = lst;	
+	current = lst;
 	if (current->x > current->nxt->x)
 		sorted = -1;
 	else
@@ -94,7 +94,7 @@ void	check_input(char **input, int n)
 {
 	int	i;
 
-	i = 1;
+	i = 0;
 	while (i < n)
 	{
 		if (only_digits(input[i]) == 0)

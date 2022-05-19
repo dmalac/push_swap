@@ -6,91 +6,117 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 14:26:52 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/17 14:42:09 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/19 21:16:43 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list_operations.h"
 #include "sorting.h"
 #include "actions.h"
+#include "main.h"
 #include "libft/ft_printf.h"	// delete
 
 static t_list	*offload(t_list **to, t_list **from, int n, char dest)
 {
-	while (n > 0)
+	while (n > 0 && is_sorted(*from) != 1)
 	{
 		ft_printf("p%c\n", dest);
 		*from = push(to, from);
 		n--;
 	}
+	lst_print(*from, 'A');
+	lst_print(*to, 'B');
 	return (*from);
 }
 
-static int	belongs_to(t_list *a, t_list*b)	// TO BE CODED
+int	find_top(t_list *lst)
 {
-	int	position;
+	int	count;
 
-	position = 0;
-	// compare with current and previous, then rotate until it fits between them
-	return (position);
-}
-
-t_list	*get_to_the_place(t_list *(*f)(t_list*), t_list **a, int moves)
-{
-	t_list *current;
-
-	current = *a;
-	while (moves > 0)
+	count = 0;
+	while (lst->prev->x < lst->x)
 	{
-		ft_printf("rotation - specs to be added\n");
-		current = f(current);
-		moves--;
+		lst = lst->nxt;
+		count++;
 	}
-	return (current);
+	return (count);
 }
 
-t_list	*get_to_top(t_list **a)
+static int	belongs_to(t_list *a, t_list *b)
 {
-	int		from_top;
-	int		size_a;
-	t_list	*current;
+	int	right_place;
+	int	max;
+	int	min;
 
-	from_top = 0;
-	size_a = lst_size(*a);
-	current = *a;
-	while (current->x > current->prev->x && current->x < current->nxt->x)
+	right_place = 0;
+	max = lst_max(a);
+	min = lst_min(a);
+	if (b->x > max || b->x < min)
+		return (find_top(a));
+	else
 	{
-		from_top++;
-		current = current->prev;
+		while (!(b->x < a->x && b->x > a->prev->x))
+		{
+			a = a->nxt;
+			right_place++;
+		}
+		return (right_place);
 	}
-	if (from_top > 0 && from_top <= size_a / 2)
-		current = get_to_the_place(rev_rotate, a, from_top);
-	else if (from_top > 0 && from_top > size_a / 2)
-		current = get_to_the_place(rotate, a, size_a - from_top);
-	return (current);
 }
 
-static void	merge_b_into_a(t_list **a, t_list **b)
+t_list	*get_to_the_place(t_list **lst, int moves, char list)
+{
+	int	size_lst;
+
+	size_lst = lst_size(*lst);
+	if (moves > 0 && moves <= size_lst / 2)
+	{
+		while (moves > 0)
+		{
+			ft_printf("r%c\n", list);
+			*lst = rotate(*lst);
+			moves--;
+		}
+	}
+	else if (moves > 0)
+	{
+		while (size_lst - moves > 0)
+		{
+			ft_printf("rr%c\n", list);
+			*lst = rev_rotate(*lst);
+			moves++;
+		}
+	}
+	return (*lst);
+}
+
+static t_list	*merge_b_into_a(t_list **a, t_list **b)
 {
 	int	size_a;
 	int	size_b;
 	int	right_place;
-	
+
 	size_b = lst_size(*b);
 	while (size_b > 0)
 	{
 		size_a = lst_size(*a);
 		right_place = belongs_to(*a, *b);
-		if (right_place > 0 && right_place <= size_a / 2)
-			*a = get_to_the_place(rotate, a, right_place);
-		if (right_place < size_a && right_place > size_a / 2)	// maybe not < size_a
-			*a = get_to_the_place(rev_rotate, a, size_a - right_place);
+		*a = get_to_the_place(a, right_place, 'a');
 		ft_printf("pa\n");
-		*a = push(a, b);
-		size_b -= 1;		// or use lstsize?
+		*b = push(a, b);
+		if ((*a)->x > (*a)->nxt->x && (*b == NULL || (*a)->x < (*b)->x))
+		{
+			ft_printf("ra\n");
+			*a = rotate(*a);
+		}
+		// lst_print(*a, 'A');
+		// lst_print(*b, 'B');
+		size_b = lst_size(*b);
 	}
-	
-		// get to the top of a again
+	size_a = lst_size(*a);
+	right_place = find_top(*a);
+	*a = get_to_the_place(a, right_place, 'a');
+	return (*a);
 }
 
 void	sort_small_stack(t_list **a, t_list **b)
@@ -103,18 +129,16 @@ void	sort_small_stack(t_list **a, t_list **b)
 		sort_two(a, 'a');
 	if (size_a == 3)
 		sort_three(a, 'a');
-	
 	if (size_a > 3)
 	{
 		*a = offload(b, a, size_a - 3, 'b');
-		sort_three(a, 'a');
+		// lst_print(*a, 'A');
+		// lst_print(*b, 'B');
+		if (is_sorted(*a) < 1)
+			sort_three(a, 'a');
 		size_b = lst_size(*b);
 		if (size_b == 3)
 			rev_sort_three(b, 'b');
-		merge_b_into_a(a, b);
+		*a = merge_b_into_a(a, b);
 	}
-	// size_a
-	// offload if necessary
-	// perform_functionc(a, array[size_a])
-	// if b, perform_function(b, array[size_b])
 }
