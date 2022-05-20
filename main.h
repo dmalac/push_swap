@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:12:12 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/12 17:10:17 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/20 15:02:44 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,15 @@
 
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
+
+# define PX 0
+# define SX 1
+# define SS 2
+# define RX 3
+# define RR 4
+# define RRX 5
+# define RRR 6
+
 
 /* main.c */
 void	call_error(void);

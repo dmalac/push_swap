@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:54:25 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/18 11:12:25 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/20 17:01:46 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ typedef struct s_list
 	struct s_list	*nxt;
 }				t_list;
 
+typedef struct s_tools
+{
+	void	(*action[7])(t_list **);
+	char	**instruction;
+	t_list	**a;
+	t_list	**b;
+}		t_tools;
+
 /* list_operations.c */
 t_list	*lst_new(char *num);
 void	lst_erase(t_list **lst);
@@ -32,6 +40,5 @@ int		lst_max(t_list *lst);
 int		lst_min(t_list *lst);
 void	lst_print(t_list *top, char list); // will be deleted
 /* small_stack.c */
-void	sort_small_stack(t_list **a, t_list **b);
-
+void	sort_small_stack(t_tools tools);
 #endif

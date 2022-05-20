@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 18:11:01 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/12 11:52:15 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/20 16:42:46 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 # include "list_operations.h"
 
-t_list	*swap(t_list *lst);
-t_list	*push(t_list **to, t_list **from);
-t_list	*rotate(t_list *lst);
-t_list	*rev_rotate(t_list *lst);
+void	swap(t_list **lst);
+void	push(t_list **to, t_list **from);
+void	rotate(t_list **lst);
+void	rev_rotate(t_list **lst);
+void	make_a_move(t_tools tools, int action_code, char stack);
 
 #endif

@@ -1,10 +1,19 @@
 to-do
+
+- make all action functions void
+- create make_a_move function
+
 - streamline sorting instructions immediately or when printing? 
 	(--> printing sounds more doable)
 - how to process the instructions in the best way?
 	--> for large_stack testing multiple methods, so output only text
 - how to optimize reversing the 3-item list (two ways) (maybe not necessary, as it 
 	only matters when 6 elements) <-- THIS
+
+
+- create fc "make_a_move" that will do the action and print the instruction 
+	(params: action code (macro?) and stack indication) 
+	array of function pointers & array of instructions with corresponding codes
 
 small_stack
 
