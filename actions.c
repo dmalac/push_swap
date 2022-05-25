@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 15:14:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/20 17:16:59 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/25 17:56:51 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,21 @@ void	swap(t_list **lst)
 void	push(t_list **to, t_list **from)
 {
 	int		size;
+	t_list	*to_move;
+	t_list	*new_top;
 
 	size = lst_size(*from);
 	if (size > 0)
 	{
-		*to = lst_add_front(to, *from);
+		to_move = *from;
+		new_top = (*from)->nxt;
+		new_top->prev = (*from)->prev;
+		new_top->prev->nxt = new_top;
+		*to = lst_add_front(to, to_move);
 		if (size == 1)
-			*from = NULL;
+			*from = (NULL);
 		else
-		{
-			*from = (*from)->nxt;
-			(*from)->prev = (*from)->prev;
-			(*from)->prev->nxt = *from;
-		}
+			*from = new_top;
 	}
 }
 
@@ -79,28 +81,30 @@ void	rev_rotate(t_list **lst)
 	*lst = (*lst)->prev;
 }
 
-void	make_a_move(t_tools tools, int action_code, char stack)
+void	make_a_move(t_tools *tools, int action_code, char stack)
 {
-	t_list	*lst;
+	t_list	**lst;
 
 	lst = get_list(tools, stack);
 	if (action_code == PX)
 	{
-		ft_printf("%s%c\n", tools.instruction[action_code], stack);
+		ft_printf("%s%c\n", tools->instruction[action_code], stack);
 		if (stack == 'a')
-			push(tools.a, tools.b);
+			push(&tools->a, &tools->b);
 		else
-			push(tools.b, tools.a);
+			push(&tools->b, &tools->a);
 	}
-	if (action_code > 0 && action_code % 2 > 0)
+	else if (action_code > 0 && action_code % 2 > 0)
 	{
-		ft_printf("%s%c\n", tools.instruction[action_code], stack);
-		tools.action[action_code](&lst);
+		ft_printf("%s%c\n", tools->instruction[action_code], stack);
+		tools->action[action_code](lst);
 	}
-	if (action_code > 0 && action_code % 2 == 0)
+	else if (action_code > 0 && action_code % 2 == 0)
 	{
-		ft_printf("%s%c\n", tools.instruction[action_code], stack);
-		tools.action[action_code](tools.a);
-		tools.action[action_code](tools.b);
+		ft_printf("%s%c\n", tools->instruction[action_code], stack);
+		tools->action[action_code](&tools->a);
+		tools->action[action_code](&tools->b);
 	}
+	lst_print(tools->a, 'A');
+	lst_print(tools->b, 'B');
 }

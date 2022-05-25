@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 14:26:52 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/20 16:47:48 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/25 17:57:24 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,15 @@
 #include "main.h"
 #include "libft/ft_printf.h"	// delete
 
-static void	offload(t_tools tools, int n, char dest)
+static void	offload(t_tools *tools, int n, char dest)
 {
-	t_list	*to;
-	t_list	*from;
+	t_list	**from;
 
 	if (dest == 'a')
-	{
-		to = *tools.a;
-		from = *tools.b;
-	}
+		from = &tools->b;
 	else
-	{
-		to = *tools.b;
-		from = *tools.a;
-	}
-	while (n > 0 && is_sorted(from) != 1)
+		from = &tools->a;
+	while (n > 0 && is_sorted(*from) != 1)
 	{
 		make_a_move(tools, PX, dest);
 		// ft_printf("p%c\n", dest);
@@ -77,13 +70,13 @@ static int	belongs_to(t_list *a, t_list *b)
 	}
 }
 
-void	get_to_the_place(t_tools tools, int moves, char list)
+void	get_to_the_place(t_tools *tools, int moves, char list)
 {
-	t_list *lst;
-	int	size_lst;
+	t_list	**lst;
+	int		size_lst;
 
 	lst = get_list(tools, list);
-	size_lst = lst_size(lst);
+	size_lst = lst_size(*lst);
 	if (moves > 0 && moves <= size_lst / 2)
 	{
 		while (moves > 0)
@@ -106,23 +99,23 @@ void	get_to_the_place(t_tools tools, int moves, char list)
 	}
 }
 
-void	merge_b_into_a(t_tools tools)
+void	merge_b_into_a(t_tools *tools)
 {
 	int	size_a;
 	int	size_b;
 	int	right_place;
 
-	size_b = lst_size(*tools.b);
+	size_b = lst_size(tools->b);
 	while (size_b > 0)
 	{
-		size_a = lst_size(*tools.a);
-		right_place = belongs_to(*tools.a, *tools.b);
+		size_a = lst_size(tools->a);
+		right_place = belongs_to(tools->a, tools->b);
 		get_to_the_place(tools, right_place, 'a');
 		make_a_move(tools, PX, 'a');
 		// ft_printf("pa\n");
 		// *b = push(a, b);
-		if ((*tools.a)->x > (*tools.a)->nxt->x && (*tools.b == NULL || \
-		(*tools.a)->x < (*tools.b)->x))
+		if ((tools->a)->x > (tools->a)->nxt->x && (tools->b == NULL || \
+		(tools->a)->x < (tools->b)->x))
 		{
 			make_a_move(tools, RX, 'a');
 			// ft_printf("ra\n");
@@ -130,19 +123,19 @@ void	merge_b_into_a(t_tools tools)
 		}
 		// lst_print(*a, 'A');
 		// lst_print(*b, 'B');
-		size_b = lst_size(*tools.b);
+		size_b = lst_size(tools->b);
 	}
-	size_a = lst_size(*tools.a);
-	right_place = find_top(*tools.a);
+	size_a = lst_size(tools->a);
+	right_place = find_top(tools->a);
 	get_to_the_place(tools, right_place, 'a');
 }
 
-void	sort_small_stack(t_tools tools)
+void	sort_small_stack(t_tools *tools)
 {
 	int	size_a;
 	int	size_b;
 
-	size_a = lst_size(*tools.a);
+	size_a = lst_size(tools->a);
 	if (size_a == 2)
 		sort_two(tools, 'a');
 	if (size_a == 3)
@@ -152,9 +145,9 @@ void	sort_small_stack(t_tools tools)
 		offload(tools, size_a - 3, 'b');
 		// lst_print(*a, 'A');
 		// lst_print(*b, 'B');
-		if (is_sorted(*tools.a) < 1)
+		if (is_sorted(tools->a) < 1)
 			sort_three(tools, 'a');
-		size_b = lst_size(*tools.b);
+		size_b = lst_size(tools->b);
 		if (size_b == 3)
 			rev_sort_three(tools, 'b');
 		merge_b_into_a(tools);

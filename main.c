@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 16:41:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/20 17:21:50 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/25 17:26:22 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,20 +74,20 @@ int	process_input(char **input, int num_args, t_list **lst)
 
 t_tools	*initialize(void)
 {
-	// HERE MALLOC SIZEOF(T_TOOLS)
 	t_tools	*tools;
 
 	tools = malloc(sizeof(t_tools));
 	if (!tools)
 		call_error();
-	*tools->a = NULL;
-	*tools->b = NULL;
+	tools->a = NULL;
+	tools->b = NULL;
 	tools->action[SX] = swap;
 	tools->action[SS] = swap;
 	tools->action[RX] = rotate;
 	tools->action[RR] = rotate;
 	tools->action[RRX] = rev_rotate;
 	tools->action[RRR] = rev_rotate;
+	tools->instruction = malloc(sizeof(char *) * 8);
 	tools->instruction[PX] = malloc(sizeof(char) * 16);
 	if (!tools->instruction)
 		call_error();
@@ -109,20 +109,22 @@ int	main(int argc, char **argv)
 	
 	// prnt_array(argv);
 	tools = initialize();
-	ft_printf("test: %s\n", tools->instruction[RRX]);
 	if (argc < 2)
 		exit(0);
-	sorted = process_input(argv, argc, tools->a); // 0: not, -1: reverse sorted
-	lst_print(*tools->a, 'A');	// to be removed before submitting
+	sorted = process_input(argv, argc, &tools->a); // 0: not, -1: reverse sorted
+	lst_print(tools->a, 'A');	// to be removed before submitting
 	// if (sorted < 0)
 	// 	POSSIBLY MAKE STH FOR REVERSING
 	if (argc <= 7)
-		sort_small_stack(*tools);	// SEE IF THIS DOESN'T CAUSE PROBLEMS
+		sort_small_stack(tools);	// SEE IF THIS DOESN'T CAUSE PROBLEMS
 	// else
 	// 	sort_large_stack(a, b);
-	lst_print(*tools->a, 'A');	// to be removed before submitting
-	lst_print(*tools->b, 'B');	// to be removed before submitting
-	lst_erase(tools->a);
-	lst_erase(tools->b);
+	lst_print(tools->a, 'A');	// to be removed before submitting
+	lst_print(tools->b, 'B');	// to be removed before submitting
+	lst_erase(&tools->a);
+	lst_erase(&tools->b);
+	free(tools->instruction[PX]);
+	free(tools->instruction);
+	free(tools);
 	return (0);
 }
