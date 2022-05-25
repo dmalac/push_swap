@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 15:04:01 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/25 17:57:55 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/25 18:10:30 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 # include "list_operations.h"
 
 /* sorting.c */
-// void	sort_two(t_list **lst, char list);
-// void	sort_three(t_list **lst, char list);
-// void	rev_sort_three(t_list **lst, char list);
 void	sort_two(t_tools *tools, char list);
 void	sort_three(t_tools *tools, char list);
 void	rev_sort_three(t_tools *tools, char list);

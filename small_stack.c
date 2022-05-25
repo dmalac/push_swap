@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 14:26:52 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/25 17:57:24 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/25 18:09:39 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,8 @@ static void	offload(t_tools *tools, int n, char dest)
 	while (n > 0 && is_sorted(*from) != 1)
 	{
 		make_a_move(tools, PX, dest);
-		// ft_printf("p%c\n", dest);
-		// *from = push(to, from);
 		n--;
 	}
-	// lst_print(*from, 'A');
-	// lst_print(*to, 'B');
 }
 
 int	find_top(t_list *lst)
@@ -82,8 +78,6 @@ void	get_to_the_place(t_tools *tools, int moves, char list)
 		while (moves > 0)
 		{
 			make_a_move(tools, RX, list);
-			// ft_printf("r%c\n", list);
-			// *lst = rotate(*lst);
 			moves--;
 		}
 	}
@@ -92,8 +86,6 @@ void	get_to_the_place(t_tools *tools, int moves, char list)
 		while (size_lst - moves > 0)
 		{
 			make_a_move(tools, RRX, list);
-			// ft_printf("rr%c\n", list);
-			// *lst = rev_rotate(*lst);
 			moves++;
 		}
 	}
@@ -112,17 +104,9 @@ void	merge_b_into_a(t_tools *tools)
 		right_place = belongs_to(tools->a, tools->b);
 		get_to_the_place(tools, right_place, 'a');
 		make_a_move(tools, PX, 'a');
-		// ft_printf("pa\n");
-		// *b = push(a, b);
 		if ((tools->a)->x > (tools->a)->nxt->x && (tools->b == NULL || \
 		(tools->a)->x < (tools->b)->x))
-		{
 			make_a_move(tools, RX, 'a');
-			// ft_printf("ra\n");
-			// *a = rotate(*a);
-		}
-		// lst_print(*a, 'A');
-		// lst_print(*b, 'B');
 		size_b = lst_size(tools->b);
 	}
 	size_a = lst_size(tools->a);
@@ -143,8 +127,6 @@ void	sort_small_stack(t_tools *tools)
 	if (size_a > 3)
 	{
 		offload(tools, size_a - 3, 'b');
-		// lst_print(*a, 'A');
-		// lst_print(*b, 'B');
 		if (is_sorted(tools->a) < 1)
 			sort_three(tools, 'a');
 		size_b = lst_size(tools->b);

@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:12:12 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/20 15:02:44 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/25 18:14:31 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # define RR 4
 # define RRX 5
 # define RRR 6
-
 
 /* main.c */
 void	call_error(void);

@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:21:23 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/25 15:48:31 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/25 18:08:42 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	lst_erase(t_list **lst)
 
 void	lst_add_back(t_list **lst, t_list *new)
 {
-	// t_list	*temp;
 	t_list	*top;
 
 	if (*lst == NULL)

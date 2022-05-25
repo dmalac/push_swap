@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:54:25 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/25 17:18:46 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/25 18:09:00 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_tools
 	char	**instruction;
 	t_list	*a;
 	t_list	*b;
-}		t_tools;
+}				t_tools;
 
 /* list_operations.c */
 t_list	*lst_new(char *num);

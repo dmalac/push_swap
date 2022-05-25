@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 16:41:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/25 17:26:22 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/25 18:14:05 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,8 @@ int	process_input(char **input, int num_args, t_list **lst)
 	}
 	else
 		input = input + 1;
-	// prnt_array(input);
 	check_input(input, num_args - 1);
 	create_lnkd_lst(input, num_args - 1, lst);
-	// lst_print(*lst, 'A');
 	if (allocated == 1)
 		free(input);
 	if (doubles(*lst, num_args - 1) == 1)
@@ -72,7 +70,7 @@ int	process_input(char **input, int num_args, t_list **lst)
 	return (sorted);
 }
 
-t_tools	*initialize(void)
+t_tools	*initialize(void)	// FUNCTION TOO LONG!
 {
 	t_tools	*tools;
 
@@ -106,8 +104,7 @@ int	main(int argc, char **argv)
 {
 	t_tools	*tools;
 	int		sorted;
-	
-	// prnt_array(argv);
+
 	tools = initialize();
 	if (argc < 2)
 		exit(0);
@@ -116,7 +113,7 @@ int	main(int argc, char **argv)
 	// if (sorted < 0)
 	// 	POSSIBLY MAKE STH FOR REVERSING
 	if (argc <= 7)
-		sort_small_stack(tools);	// SEE IF THIS DOESN'T CAUSE PROBLEMS
+		sort_small_stack(tools);
 	// else
 	// 	sort_large_stack(a, b);
 	lst_print(tools->a, 'A');	// to be removed before submitting
