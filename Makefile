@@ -5,7 +5,7 @@ CC = gcc
 CCFLAGS = -Wall -Wextra -Werror -g -fsanitize=address	#delete before submitting
 
 SRC = main.c input_processing.c list_operations.c small_stack.c \
-sorting.c actions.c
+sorting.c actions.c large_stack.c
 
 OBJDIR = obj
 
@@ -40,7 +40,7 @@ fclean: clean
 re: fclean
 	make
 
-norm:
+norm:		# remove
 	norminette -R CheckForbiddenSourceHeader
 
 .PHONY: clean fclean re all

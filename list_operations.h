@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:54:25 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/25 18:09:00 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/31 17:00:52 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,6 @@ int		lst_min(t_list *lst);
 void	lst_print(t_list *top, char list); // will be deleted
 /* small_stack.c */
 void	sort_small_stack(t_tools *tools);
+/* large_stack.c */
+void	sort_large_stack(t_tools *tools);
 #endif

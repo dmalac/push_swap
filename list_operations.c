@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:21:23 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/25 18:08:42 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/05/31 17:59:16 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,13 @@ int	lst_size(t_list *lst)
 		size++;
 		current = current->nxt;
 	}
-	return (size + 1);
+	current = lst;
+	while (current->is_last == 0)
+	{
+		size++;
+		current = current->prev;
+	}
+	return (size);
 }
 
 int	lst_max(t_list *lst)

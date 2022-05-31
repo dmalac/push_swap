@@ -1,5 +1,8 @@
 to-do
 
+- CALCULATION OF MOVES FOR TRANCHES NEEDS TO BE DONE DIFFERENTLY. NOT REWRITING THE LIST
+	(OR FIND A WAY HOW NOT TO REWRITE THE WHOLE LIST)
+
 - make all action functions void
 - create make_a_move function
 
@@ -29,6 +32,15 @@ small_stack
 large_stack
 - measure ways of tranches and choose the shortest one
 - make sure B is always sorted
+
+	1. x tranches; all < n / x * t
+	2. each tranche (index * (n/x) [incl] -> (index + 1) * n/x [excl]
+	3. measure total rotation necessary to get all of the elements,
+		what kind of rotation (rr/r) and how many elements
+		(shortest connecting path + distance from the start)
+		all distances = n; n - largest distance = smallest connecting path
+		top to elem1 + (n - dist[elem1, elem-1])
+
 
 
 for optimization
