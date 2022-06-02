@@ -6,15 +6,14 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 11:56:55 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/31 18:16:00 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/02 20:38:47 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list_operations.h"
 #include "main.h"
+#include "sorting.h"
 #include "libft/ft_printf.h"	// delete
-
-// TO BE REWORKED SO THAT COUNTING THE MOVES WORKS
 
 int	is_in_tranche(int x, int tr_min, int tr_max)
 {
@@ -24,102 +23,93 @@ int	is_in_tranche(int x, int tr_min, int tr_max)
 		return (0);
 }
 
-int	get_tr_min(t_list lst, int i)
+void	sort_list(int *list, int size)
 {
-	int	tr_min;
-	int	max;
-	int	min;
+	int	i;
+	int	j;
 
-	max = lst_max(&lst);
-	min = lst_min(&lst);
-	tr_min = min + i * (max - min) / 3;	// what if floats?
-	return (tr_min);
+	i = 0;
+	while (i < size - 1)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (list[j] < list[i])
+			{
+				list[j] += list[i];
+				list[i] = list[j] - list[i];
+				list[j] -= list[i];
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
-int	get_tr_max(t_list lst, int i)
+int	*clone_list(t_list *lst)
 {
-	int	tr_max;
-	int	max;
-	int	min;
-
-	max = lst_max(&lst);
-	min = lst_min(&lst);
-	tr_max = min + (i + 1) * (max - min) / 3 - 1;
-	if (i == TRANCHES)
-		tr_max++;
-	return (tr_max);
-}
-
-int	moves_to_next(t_list *lst, int tr_min, int tr_max, int beyond_tranche)
-{
-	t_list	*current_r;
-	t_list	*current_rr;
-	int		next;
-	int		i;
+	int		*list;
 	int		n;
+	t_list	*current;
+	int		i;
 
-	n = lst_size(lst);	// doesn't work
-	i = -1;
-	current_r = lst;
-	while (++i < n && is_in_tranche(current_r->x, tr_min, tr_max) == 0)
-		current_r = current_r->nxt;
-	if (i == n)
-		return (-1);
-	next = i;
-	i = -1;
-	current_rr = lst;
-	while (++i < n && is_in_tranche(current_rr->x, tr_min, tr_max) == 0)
-		current_rr = current_rr->prev;
-	if (i < next)
+	current = lst;
+	i = 0;
+	n = lst_size(lst);
+	list = malloc (sizeof(int) * n);
+	if (!list)
+		return (NULL);
+	while (current->is_last != 1)
 	{
-		next = i;
-		lst = current_rr;
+		list[i++] = current->x;
+		current = current->nxt;
 	}
-	else
-		lst = current_r;
-	lst->x = beyond_tranche;
-	return (next);
+	list[i] = current->x;
+	sort_list(list, n);
+	return (list);
 }
 
-int	count_moves(t_list lst, int tr_min, int tr_max)
+int	*get_limits(t_list *lst)
 {
-	int	moves;
-	int	next;
-	int beyond_tranche;
+	int	*tr_limits;
+	int	*list;
+	int	i;
+	int	n;
+	int	tr_size;
 
-	next = 0;
-	moves = 0;
-	if (tr_min > INT_MIN)
-		beyond_tranche = tr_min - 1;
-	else
-		beyond_tranche = tr_max + 1;
-	while (next >= 0)
-	{
-		moves += next;
-		next = moves_to_next(&lst, tr_min, tr_max, beyond_tranche);
-	}
-	return (moves);
+	n = lst_size(lst);
+	list = clone_list(lst);	// protected below
+	i = 0;
+	ft_printf("List array: ");
+	while (i < n)
+		ft_printf("%d, ", list[i++]);
+	ft_printf("\n");
+	tr_limits = malloc(sizeof(int) * (TRANCHES + 1));
+	if (!tr_limits || !list)
+		return (NULL);
+	tr_size = n / TRANCHES;
+	i = -1;
+	while (++i < TRANCHES)
+		tr_limits[i] = list[i * tr_size];
+	tr_limits[i] = list[n - 1];
+	ft_printf("Tranche limits are: ");
+	while (i >= 0)
+		ft_printf("%d | ", tr_limits[TRANCHES - i--]);
+	ft_printf("\n");
+	free(list);
+	return (tr_limits);
 }
 
 void	sort_large_stack(t_tools *tools)
 {
-	int	moves_per_tranche[10];
+	int	*tr_limits;
 	int	i;
-	int	tr_min;
-	int tr_max;
 
 	i = 0;
+	tr_limits = get_limits(tools->a);	// could be NULL
+	if (!tr_limits)
+		call_error();	// do I need to free malloc'ed stuff?
 	while (i < TRANCHES)
-	{
-		tr_min = get_tr_min(*tools->a, i);
-		tr_max = get_tr_max(*tools->a, i);
-		moves_per_tranche[i] = count_moves(*tools->a, tr_min, tr_max);
-		i++;
-	}
-	i = 0;
-	while (i < TRANCHES)
-	{
-		ft_printf("tranche %d: %d moves\n", i + 1, moves_per_tranche[i]);
-		i++;
-	}
+		move_tranche_to_b(tools, tr_limits, i++);
+	free(tr_limits);
 }

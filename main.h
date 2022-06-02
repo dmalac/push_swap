@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:12:12 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/31 12:00:43 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/02 20:39:43 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define RRX 5
 # define RRR 6
 
-#define TRANCHES 3
+# define TRANCHES 3
 
 /* main.c */
 void	call_error(void);

@@ -1,22 +1,16 @@
 to-do
 
-- CALCULATION OF MOVES FOR TRANCHES NEEDS TO BE DONE DIFFERENTLY. NOT REWRITING THE LIST
-	(OR FIND A WAY HOW NOT TO REWRITE THE WHOLE LIST)
-
-- make all action functions void
-- create make_a_move function
-
-- streamline sorting instructions immediately or when printing? 
-	(--> printing sounds more doable)
-- how to process the instructions in the best way?
-	--> for large_stack testing multiple methods, so output only text
-- how to optimize reversing the 3-item list (two ways) (maybe not necessary, as it 
-	only matters when 6 elements) <-- THIS
-
-
-- create fc "make_a_move" that will do the action and print the instruction 
-	(params: action code (macro?) and stack indication) 
-	array of function pointers & array of instructions with corresponding codes
+- while pushing the last one to B, it stays on A
+	A: 12308889 10000
+	B: 788 104 94 14 70 41 17 1 -96 8 -29 3 -55
+	pb
+	A: 10000
+	B: 12308889 788 104 94 14 70 41 17 1 -96 8 -29 3 -55
+-->	pb <-- THIS ONE DIDN'T WORK
+	A: 10000
+	B: 12308889 788 104 94 14 70 41 17 1 -96 8 -29 3 -55
+	A: 10000
+	B: 12308889 788 104 94 14 70 41 17 1 -96 8 -29 3 -55
 
 small_stack
 
