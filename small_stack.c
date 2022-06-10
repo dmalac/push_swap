@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 14:26:52 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/25 18:09:39 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/08 13:37:49 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,26 @@
 #include "main.h"
 #include "libft/ft_printf.h"	// delete
 
-static void	offload(t_tools *tools, int n, char dest)
+void	offload(t_tools *tools, int n, char dest)
 {
 	t_list	**from;
 
 	if (dest == 'a')
-		from = &tools->b;
-	else
-		from = &tools->a;
-	while (n > 0 && is_sorted(*from) != 1)
 	{
-		make_a_move(tools, PX, dest);
-		n--;
+		from = &tools->b;
+		while (n-- > 0)
+			make_a_move(tools, PX, dest);
+		
+	}
+	else
+	{
+		from = &tools->a;
+		while (n-- > 0 && is_sorted(*from) != 1)
+			make_a_move(tools, PX, dest);
 	}
 }
 
-int	find_top(t_list *lst)
+static int	find_top_a(t_list *lst)
 {
 	int	count;
 
@@ -44,7 +48,7 @@ int	find_top(t_list *lst)
 	return (count);
 }
 
-static int	belongs_to(t_list *a, t_list *b)
+static int	belongs_to(t_list *a, t_list *b)	//HANDLE EMPTY LIST & 1 ITEM
 {
 	int	right_place;
 	int	max;
@@ -54,7 +58,7 @@ static int	belongs_to(t_list *a, t_list *b)
 	max = lst_max(a);
 	min = lst_min(a);
 	if (b->x > max || b->x < min)
-		return (find_top(a));
+		return (find_top_a(a));
 	else
 	{
 		while (!(b->x < a->x && b->x > a->prev->x))
@@ -110,7 +114,7 @@ void	merge_b_into_a(t_tools *tools)
 		size_b = lst_size(tools->b);
 	}
 	size_a = lst_size(tools->a);
-	right_place = find_top(tools->a);
+	right_place = find_top_a(tools->a);
 	get_to_the_place(tools, right_place, 'a');
 }
 

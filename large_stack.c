@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 11:56:55 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/02 20:38:47 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/08 13:48:53 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,90 +14,90 @@
 #include "main.h"
 #include "sorting.h"
 #include "libft/ft_printf.h"	// delete
+#include "actions.h"
 
-int	is_in_tranche(int x, int tr_min, int tr_max)
+static int	find_top_b(t_list *lst)
 {
-	if (x >= tr_min && x <= tr_max)
-		return (1);
+	int	count;
+
+	count = 0;
+	while (lst->prev->x > lst->x)
+	{
+		lst = lst->nxt;
+		count++;
+	}
+	return (count);
+}
+
+static int	belongs_to(t_list *b, t_list *a) //HANDLE 1 ITEM
+{
+	int	right_place;
+	int	max;
+	int	min;
+
+	right_place = 0;
+	max = lst_max(b);
+	min = lst_min(b);
+	if (a->x > max || a->x < min)
+		return (find_top_b(b));
 	else
-		return (0);
-}
-
-void	sort_list(int *list, int size)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < size - 1)
 	{
-		j = i + 1;
-		while (j < size)
+		while (!(a->x > b->x && a->x < b->prev->x))
 		{
-			if (list[j] < list[i])
-			{
-				list[j] += list[i];
-				list[i] = list[j] - list[i];
-				list[j] -= list[i];
-			}
-			j++;
+			b = b->nxt;
+			right_place++;
 		}
-		i++;
+		return (right_place);
 	}
 }
 
-int	*clone_list(t_list *lst)
+void	move_tranche_to_b(t_tools *tools, int *tr_limits, int tr)
 {
-	int		*list;
+	int		count;
 	int		n;
-	t_list	*current;
-	int		i;
+	t_list	*fwd;
+	t_list	*rev;
+	int		right_place;
 
-	current = lst;
-	i = 0;
-	n = lst_size(lst);
-	list = malloc (sizeof(int) * n);
-	if (!list)
-		return (NULL);
-	while (current->is_last != 1)
+	n = lst_size(tools->a);
+	count = 0;
+	fwd = tools->a;
+	rev = tools->a;
+	while (count < n)	// && is_sorted(tools->a < 1 (or != 0 and rev sort if -1))
 	{
-		list[i++] = current->x;
-		current = current->nxt;
+		if (is_in_tranche(fwd->x, tr_limits[tr], tr_limits[tr + 1]) == 1 || \
+		is_in_tranche(rev->x, tr_limits[tr], tr_limits[tr + 1]) == 1)
+		{
+			/* maybe first adjust count (no get_to_place)
+			   then check where it fits in b 
+			   first do x RR / RRR
+			   and send the [number - x] to get_to_the_place */
+			if (is_in_tranche(fwd->x, tr_limits[tr], tr_limits[tr + 1]) == 1)
+				get_to_the_place(tools, count, 'a');
+			else
+				get_to_the_place(tools, n - count, 'a');
+			// prepare b for reception
+			if (tools->b)
+			{
+				right_place = belongs_to(tools->b, tools->a);
+				get_to_the_place(tools, right_place, 'b');
+			}
+			make_a_move(tools, PX, 'b');
+			// HERE INCLUDE check if b is sorted
+			if (lst_size(tools->b) == 2 && tools->b->x < tools->b->nxt->x)
+				make_a_move(tools, SX, 'b');
+			rev = tools->a;
+			fwd = tools->a;
+			count = 0;
+			n--;		// or n = lst_size(tools->a) ??
+		}
+		else
+		{
+			fwd = fwd->nxt;
+			rev = rev->prev;
+			count++;
+		}
 	}
-	list[i] = current->x;
-	sort_list(list, n);
-	return (list);
-}
-
-int	*get_limits(t_list *lst)
-{
-	int	*tr_limits;
-	int	*list;
-	int	i;
-	int	n;
-	int	tr_size;
-
-	n = lst_size(lst);
-	list = clone_list(lst);	// protected below
-	i = 0;
-	ft_printf("List array: ");
-	while (i < n)
-		ft_printf("%d, ", list[i++]);
-	ft_printf("\n");
-	tr_limits = malloc(sizeof(int) * (TRANCHES + 1));
-	if (!tr_limits || !list)
-		return (NULL);
-	tr_size = n / TRANCHES;
-	i = -1;
-	while (++i < TRANCHES)
-		tr_limits[i] = list[i * tr_size];
-	tr_limits[i] = list[n - 1];
-	ft_printf("Tranche limits are: ");
-	while (i >= 0)
-		ft_printf("%d | ", tr_limits[TRANCHES - i--]);
-	ft_printf("\n");
-	free(list);
-	return (tr_limits);
 }
 
 void	sort_large_stack(t_tools *tools)
@@ -111,5 +111,7 @@ void	sort_large_stack(t_tools *tools)
 		call_error();	// do I need to free malloc'ed stuff?
 	while (i < TRANCHES)
 		move_tranche_to_b(tools, tr_limits, i++);
+	get_to_the_place(tools, find_top_b(tools->b), 'b');
+	offload(tools, lst_size(tools->b), 'a');
 	free(tr_limits);
 }

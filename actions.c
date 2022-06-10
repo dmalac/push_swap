@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 15:14:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/25 18:12:34 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/10 16:16:13 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,12 @@ void	push(t_list **to, t_list **from)
 		if (size == 1)
 			*from = (NULL);
 		else
+		{	
 			*from = new_top;
+			if (size == 2)
+				(*from)->is_last = 1;
+		}
+			
 	}
 }
 
@@ -105,6 +110,6 @@ void	make_a_move(t_tools *tools, int action_code, char stack)
 		tools->action[action_code](&tools->a);
 		tools->action[action_code](&tools->b);
 	}
-	lst_print(tools->a, 'A');
-	lst_print(tools->b, 'B');
+	// lst_print(tools->a, 'A');
+	// lst_print(tools->b, 'B');
 }

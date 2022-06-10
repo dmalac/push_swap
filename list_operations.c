@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:21:23 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/31 17:59:16 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/08 13:19:51 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int	lst_size(t_list *lst)
 	int		size;
 	t_list	*current;
 
-	size = 0;
+	size = 1;
 	if (lst == NULL)
 		return (0);
 	current = lst;
@@ -124,7 +124,7 @@ int	lst_size(t_list *lst)
 		size++;
 		current = current->nxt;
 	}
-	current = lst;
+	current = lst->prev;
 	while (current->is_last == 0)
 	{
 		size++;
@@ -170,12 +170,13 @@ void	lst_print(t_list *top, char list)
 {
 	t_list	*current;
 
+	ft_putchar_fd('\t', 2);
+	ft_putchar_fd(list, 2);
+	ft_putchar_fd(':', 2);
+	ft_putchar_fd(' ', 2);
 	if (top)
 	{
 		current = top;
-		ft_putchar_fd(list, 2);
-		ft_putchar_fd(':', 2);
-		ft_putchar_fd(' ', 2);
 		while (current->is_last != 1)
 		{
 			ft_putnbr_fd(current->x, 2);
@@ -183,6 +184,6 @@ void	lst_print(t_list *top, char list)
 			current = current->nxt;
 		}
 		ft_putnbr_fd(current->x, 2);
-		ft_putchar_fd('\n', 2);
 	}
+	ft_putchar_fd('\n', 2);
 }
