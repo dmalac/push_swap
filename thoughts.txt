@@ -1,8 +1,18 @@
 to-do
+- winner is not chosing the real winner
+- tranches seem to be mixed up
 
 OPTIMIZATION
 Large stack
 - first calc moves in b (both R and RR), then moves in a; 
 
+1. find nearest element from the relevant tranche (x steps, RX/RRX)
+2. calc where that element would fit in B (y steps RX, z steps RRX)
+3. compare the totals for both elements
+4. compare the winning total of both elements;
+5. overlap is RR/RRR, remainder is RX/RRX 
 
-REVERSAL FUNCTION - not needed
+
+HOW MANY TRANCHES?
+--> 100 items: 7 tranches (then 6, then 8)
+--> 500 items: 14 tranches

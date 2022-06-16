@@ -1,0 +1,66 @@
+
+#include "list_operations.h"
+#include "sorting.h"
+
+/* actions.c */
+void	swap(t_list **lst);
+void	push(t_list **to, t_list **from);
+void	rotate(t_list **lst);
+void	rev_rotate(t_list **lst);
+void	make_a_move(t_tools *tools, int action_code, char stack);
+/* input_processing.c */
+static int	only_digits(char *str);
+int		doubles(t_list *lst, int n);
+static int	is_int(char *num);
+int		is_sorted(t_list *lst);
+void	check_input(char **input, int n);
+/* large_stack.c */
+static int	find_top_b(t_list *lst);
+int		right_place(t_list *b, int x);
+void	move_tranche_to_b(t_tools *tools, int *tr_limits, int tr);
+void	sort_large_stack(t_tools *tools);
+/* list_operations.c */
+t_list	*lst_new(char *num);
+void	lst_erase(t_list **lst);
+void	lst_add_back(t_list **lst, t_list *new);
+t_list	*lst_add_front(t_list **lst, t_list *new);
+void	create_lnkd_lst(char **input, int n, t_list **a);
+int		lst_size(t_list *lst);
+int		lst_max(t_list *lst);
+int		lst_min(t_list *lst);
+/* main.c */
+void	call_error(void);
+int		count_input(char **array);
+int		process_input(char **input, int *num_args, t_list **lst);
+static void	fill_instructions(t_tools *tools);
+t_tools	*initialize(void);
+int		main(int argc, char **argv);
+/* small_stack.c */
+void	offload(t_tools *tools, int n, char dest);
+static int	find_top_a(t_list *lst);
+static int	belongs_to(t_list *a, t_list *b);
+void	get_to_the_place(t_tools *tools, int moves, char list);
+void	merge_b_into_a(t_tools *tools);
+void	sort_small_stack(t_tools *tools);
+/* sorting_large.c */
+
+/* sorting_small.c */
+t_list	**get_list(t_tools *tools, char list);
+void	sort_two(t_tools *tools, char list);
+static void	reverse_three(t_tools *tools, char list);
+void	sort_three(t_tools *tools, char list);
+void	rev_sort_three(t_tools *tools, char list);
+/* tranche_limits.c */
+int		is_in_tranche(int x, int tr_min, int tr_max);
+void	sort_list(int *list, int size);
+int		*clone_list(t_list *lst);
+int		*get_limits(t_list *lst);
+/* tranche_operations.c */
+void	find_nxt_elem(t_list *lst, int *tr_limits, int tr, t_nxt_step *nxt);
+void	add_b_stack_moves(t_tools *tools, t_nxt_step *nxt, int size_b);
+int		larger_of_two(int a, int b);
+t_nxt_step	*most_efficient_move(t_tools *tools, t_nxt_step *nxt_r, t_nxt_step *nxt_rr);
+void	go_to(t_tools *tools, int moves, int direction, char list);
+void	perform(t_tools *tools, t_nxt_step *nxt);
+/*  */
+/*  */

@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:12:12 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/08 14:18:45 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/16 14:28:41 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define RRR 6
 
 # ifndef TRANCHES
-#  define TRANCHES 10
+#  define TRANCHES 7
 # endif
 
 /* main.c */

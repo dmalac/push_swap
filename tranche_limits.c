@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   tranches.c                                         :+:    :+:            */
+/*   tranche_limits.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/08 13:21:51 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/08 13:30:43 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/16 14:53:27 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "main.h"
 #include <stdlib.h>
 // #include "sorting.h"
-// #include "libft/ft_printf.h"	// delete
+#include "libft/ft_printf.h"	// delete
 
 int	is_in_tranche(int x, int tr_min, int tr_max)
 {

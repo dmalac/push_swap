@@ -5,7 +5,8 @@ CC = gcc
 CCFLAGS = -Wall -Wextra -Werror -g -fsanitize=address	#delete before submitting
 
 SRC = main.c input_processing.c list_operations.c small_stack.c \
-sorting_small.c sorting_large.c actions.c large_stack.c tranches.c
+sorting_small.c sorting_large.c actions.c large_stack.c tranche_limits.c \
+tranche_operations.c
 
 OBJDIR = obj
 
@@ -47,7 +48,7 @@ $(OBJDIR)/actions.o: actions.c list_operations.h actions.h sorting.h main.h
 
 $(OBJDIR)/input_processing.o: input_processing.c main.h
 
-$(OBJDIR)/list_operations.o: list_operations.c main.h list_operations.h
+$(OBJDIR)/list_operations.o: list_operations.c main.h list_operations.h libft/libft.h
 
 $(OBJDIR)/large_stack.o: large_stack.c list_operations.h sorting.h main.h actions.h
 
@@ -57,5 +58,7 @@ $(OBJDIR)/small_stack.o: small_stack.c list_operations.h sorting.h actions.h mai
 
 $(OBJDIR)/sorting_small.o: sorting_small.c list_operations.h actions.h main.h
 
-$(OBJDIR)/tranches.o: tranches.c list_operations.h main.h
+$(OBJDIR)/tranche_limits.o: tranche_limits.c list_operations.h main.h
+
+$(OBJDIR)/tranche_operations.o: #tranche_operations.c list_operations.h main.h
 

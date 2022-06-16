@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 14:26:52 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/08 13:37:49 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/16 14:52:17 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	offload(t_tools *tools, int n, char dest)
 		from = &tools->b;
 		while (n-- > 0)
 			make_a_move(tools, PX, dest);
-		
 	}
 	else
 	{
@@ -70,11 +69,12 @@ static int	belongs_to(t_list *a, t_list *b)	//HANDLE EMPTY LIST & 1 ITEM
 	}
 }
 
-void	get_to_the_place(t_tools *tools, int moves, char list)
+void	get_to_the_place(t_tools *tools, int moves, char list)	// REPLACE BY FC go_to
 {
 	t_list	**lst;
 	int		size_lst;
 
+	// to be simplified: while moves > 0, make_a_move(tools, dir, list)
 	lst = get_list(tools, list);
 	size_lst = lst_size(*lst);
 	if (moves > 0 && moves <= size_lst / 2)
@@ -115,7 +115,8 @@ void	merge_b_into_a(t_tools *tools)
 	}
 	size_a = lst_size(tools->a);
 	right_place = find_top_a(tools->a);
-	get_to_the_place(tools, right_place, 'a');
+	// if right_place > n / 2 --> get_to_the_place(tools, n - right_place, RR, 'a');
+	get_to_the_place(tools, right_place, 'a'); // R
 }
 
 void	sort_small_stack(t_tools *tools)

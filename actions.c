@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 15:14:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/10 16:16:13 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/16 14:49:44 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	push(t_list **to, t_list **from)
 			if (size == 2)
 				(*from)->is_last = 1;
 		}
-			
 	}
 }
 

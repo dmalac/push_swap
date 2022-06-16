@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 16:41:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/02 20:20:48 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/16 14:29:42 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,19 @@ int	process_input(char **input, int *num_args, t_list **lst)
 	return (sorted);
 }
 
-t_tools	*initialize(void)	// FUNCTION TOO LONG!
+static void	fill_instructions(t_tools *tools)
+{
+	tools->instruction[PX] = "p\0s\0s\0r\0r\0rr\0rr\0";
+	tools->instruction[SX] = tools->instruction[PX] + 2;
+	tools->instruction[SS] = tools->instruction[SX] + 2;
+	tools->instruction[RX] = tools->instruction[SS] + 2;
+	tools->instruction[RR] = tools->instruction[RX] + 2;
+	tools->instruction[RRX] = tools->instruction[RR] + 2;
+	tools->instruction[RRR] = tools->instruction[RRX] + 3;
+	tools->instruction[7] = NULL;
+}
+
+t_tools	*initialize(void)
 {
 	t_tools	*tools;
 
@@ -89,14 +101,7 @@ t_tools	*initialize(void)	// FUNCTION TOO LONG!
 	tools->instruction[PX] = malloc(sizeof(char) * 16);
 	if (!tools->instruction)
 		call_error();
-	tools->instruction[PX] = "p\0s\0s\0r\0r\0rr\0rr\0";
-	tools->instruction[SX] = tools->instruction[PX] + 2;
-	tools->instruction[SS] = tools->instruction[SX] + 2;
-	tools->instruction[RX] = tools->instruction[SS] + 2;
-	tools->instruction[RR] = tools->instruction[RX] + 2;
-	tools->instruction[RRX] = tools->instruction[RR] + 2;
-	tools->instruction[RRR] = tools->instruction[RRX] + 3;
-	tools->instruction[7] = NULL;
+	fill_instructions(tools);
 	return (tools);
 }
 
@@ -108,16 +113,14 @@ int	main(int argc, char **argv)
 	tools = initialize();
 	if (argc < 2)
 		exit(0);
-	sorted = process_input(argv, &argc, &tools->a); // 0: not, -1: reverse sorted
-	lst_print(tools->a, 'A');	// to be removed before submitting
-	// if (sorted < 0)
-	// 	POSSIBLY MAKE STH FOR REVERSING
-	if (argc <= 7)
+	sorted = process_input(argv, &argc, &tools->a);
+	// lst_print(tools->a, 'A');	// to be removed before submitting
+	if (sorted < 1 && argc <= 7)
 		sort_small_stack(tools);
-	else
+	else if (sorted < 1 && argc > 7)
 		sort_large_stack(tools);
-	lst_print(tools->a, 'A');	// to be removed before submitting
-	lst_print(tools->b, 'B');	// to be removed before submitting
+	// lst_print(tools->a, 'A');	// to be removed before submitting
+	// lst_print(tools->b, 'B');	// to be removed before submitting
 	lst_erase(&tools->a);
 	lst_erase(&tools->b);
 	free(tools->instruction[PX]);

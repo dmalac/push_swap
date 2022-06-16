@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:21:23 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/08 13:19:51 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/16 12:52:09 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,5 +185,7 @@ void	lst_print(t_list *top, char list)
 		}
 		ft_putnbr_fd(current->x, 2);
 	}
+	else
+		ft_putstr_fd("<empty>", 2);
 	ft_putchar_fd('\n', 2);
 }

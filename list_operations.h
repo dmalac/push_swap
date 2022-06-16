@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:54:25 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/08 13:25:20 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/15 17:24:16 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void	lst_print(t_list *top, char list); // will be deleted
 void	sort_small_stack(t_tools *tools);
 /* large_stack.c */
 void	sort_large_stack(t_tools *tools);
-/* tranches.c */
+/* tranche_limits.c */
 int		*get_limits(t_list *lst);
 #endif

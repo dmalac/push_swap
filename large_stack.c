@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 11:56:55 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/08 13:48:53 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/16 14:58:56 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	find_top_b(t_list *lst)
 	int	count;
 
 	count = 0;
-	while (lst->prev->x > lst->x)
+	while (lst && lst->prev->x > lst->x)
 	{
 		lst = lst->nxt;
 		count++;
@@ -29,73 +29,51 @@ static int	find_top_b(t_list *lst)
 	return (count);
 }
 
-static int	belongs_to(t_list *b, t_list *a) //HANDLE 1 ITEM
+int	right_place(t_list *b, int x)
 {
-	int	right_place;
-	int	max;
-	int	min;
+	t_list	*current;
+	int		steps;
+	int		max;
+	int		min;
 
-	right_place = 0;
+	if (!b)
+		return (0);
+	current = b;
 	max = lst_max(b);
 	min = lst_min(b);
-	if (a->x > max || a->x < min)
+	steps = 0;
+	if (x > max || x < min)
 		return (find_top_b(b));
-	else
+	while (!(x > current->x && x < current->prev->x))
 	{
-		while (!(a->x > b->x && a->x < b->prev->x))
-		{
-			b = b->nxt;
-			right_place++;
-		}
-		return (right_place);
+		current = current->nxt;
+		steps++;
 	}
+	return (steps);
 }
 
 void	move_tranche_to_b(t_tools *tools, int *tr_limits, int tr)
 {
-	int		count;
-	int		n;
-	t_list	*fwd;
-	t_list	*rev;
-	int		right_place;
+	t_nxt_step	nxt_r;
+	t_nxt_step	nxt_rr;
+	t_nxt_step	*winner;
 
-	n = lst_size(tools->a);
-	count = 0;
-	fwd = tools->a;
-	rev = tools->a;
-	while (count < n)	// && is_sorted(tools->a < 1 (or != 0 and rev sort if -1))
-	{
-		if (is_in_tranche(fwd->x, tr_limits[tr], tr_limits[tr + 1]) == 1 || \
-		is_in_tranche(rev->x, tr_limits[tr], tr_limits[tr + 1]) == 1)
+	nxt_r.a_dir = RX;
+	nxt_r.a_steps = 0;
+	nxt_rr.a_dir = RRX;
+	while (tools->a && (nxt_r.a_steps >= 0 || nxt_rr.a_steps >= 0))
+	{		
+		find_nxt_elem(tools->a, tr_limits, tr, &nxt_r);
+		// ft_printf("Closest element in the R direction: no. %d, %d steps away\n", nxt_r.a_value, nxt_r.a_steps);
+		find_nxt_elem(tools->a, tr_limits, tr, &nxt_rr);
+		// ft_printf("Closest element in the RR direction: no. %d, %d steps away\n", nxt_rr.a_value, nxt_rr.a_steps);
+		if (nxt_r.a_steps >= 0)
 		{
-			/* maybe first adjust count (no get_to_place)
-			   then check where it fits in b 
-			   first do x RR / RRR
-			   and send the [number - x] to get_to_the_place */
-			if (is_in_tranche(fwd->x, tr_limits[tr], tr_limits[tr + 1]) == 1)
-				get_to_the_place(tools, count, 'a');
-			else
-				get_to_the_place(tools, n - count, 'a');
-			// prepare b for reception
-			if (tools->b)
-			{
-				right_place = belongs_to(tools->b, tools->a);
-				get_to_the_place(tools, right_place, 'b');
-			}
-			make_a_move(tools, PX, 'b');
-			// HERE INCLUDE check if b is sorted
+			winner = most_efficient_move(tools, &nxt_r, &nxt_rr);
+			// ft_printf("winner is moving a %d steps in %d dir and moving b %d steps in %d dir\n", winner->a_steps, winner->a_dir, winner->b_steps, winner->b_dir);
+			perform(tools, winner);
 			if (lst_size(tools->b) == 2 && tools->b->x < tools->b->nxt->x)
 				make_a_move(tools, SX, 'b');
-			rev = tools->a;
-			fwd = tools->a;
-			count = 0;
-			n--;		// or n = lst_size(tools->a) ??
-		}
-		else
-		{
-			fwd = fwd->nxt;
-			rev = rev->prev;
-			count++;
 		}
 	}
 }
@@ -109,8 +87,11 @@ void	sort_large_stack(t_tools *tools)
 	tr_limits = get_limits(tools->a);	// could be NULL
 	if (!tr_limits)
 		call_error();	// do I need to free malloc'ed stuff?
-	while (i < TRANCHES)
+	while (i < TRANCHES && tools->a)
+	{
+		// ft_printf("\n***** NEW TRANCHE *****\nlimits: %d, %d\n", tr_limits[i], tr_limits[i + 1]);
 		move_tranche_to_b(tools, tr_limits, i++);
+	}
 	get_to_the_place(tools, find_top_b(tools->b), 'b');
 	offload(tools, lst_size(tools->b), 'a');
 	free(tr_limits);
