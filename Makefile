@@ -14,32 +14,34 @@ OBJ = $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 
 LIBFT = libft/libft.a
 
+TRANCHE_MODIFICATION = 
+
 
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(CCFLAGS) $^ -o $(NAME)
+	$(CC) $(CCFLAGS) $(TRANCHE_MODIFICATION) $^ -o $(NAME)
 
 $(LIBFT):
-	make -C libft
+	@make -C libft
 
 $(OBJ): | $(OBJDIR)
 
 $(OBJDIR):
-	mkdir $(OBJDIR)
+	@mkdir $(OBJDIR)
 
 $(OBJDIR)/%.o: %.c
-	$(CC) $(CCFLAGS) -c $< -o $@
+	$(CC) $(CCFLAGS) $(TRANCHE_MODIFICATION) -c $< -o $@
 
 clean:
-	rm -Rf $(OBJDIR)
-	make clean -C libft
+	@rm -Rf $(OBJDIR)
+	@make clean -C libft
 
 fclean: clean
-	rm -f $(NAME) $(LIBFT)
+	@rm -f $(NAME) $(LIBFT)
 
 re: fclean
-	make
+	@make
 
 .PHONY: clean fclean re all
 
