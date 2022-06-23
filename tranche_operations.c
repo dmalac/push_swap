@@ -84,7 +84,6 @@ t_nxt_step	*most_efficient_move(t_tools *tools, t_nxt_step *nxt_r, t_nxt_step *n
 	int	size_b;
 
 	size_b = lst_size(tools->b);
-	// ft_printf("size_b = %d\n", size_b);
 	add_b_stack_moves(tools, nxt_r, size_b);
 	add_b_stack_moves(tools, nxt_rr, size_b);
 	if (nxt_r->a_dir == nxt_r->b_dir)
@@ -111,7 +110,7 @@ void	perform(t_tools *tools, t_nxt_step *nxt)
 {
 	if (nxt->a_dir == nxt->b_dir)
 	{
-		if (nxt->a_steps > nxt->b_steps)
+		if (nxt->a_steps >= nxt->b_steps)
 		{
 			go_to(tools, nxt->b_steps, nxt->a_dir + 1, 'r');
 			go_to(tools, nxt->a_steps - nxt->b_steps, nxt->a_dir, 'a');
@@ -128,6 +127,4 @@ void	perform(t_tools *tools, t_nxt_step *nxt)
 		go_to(tools, nxt->b_steps, nxt->b_dir, 'b');
 	}
 	make_a_move(tools, PX, 'b');
-	// lst_print(tools->a, 'A');
-	// lst_print(tools->b, 'B');
 }

@@ -47,7 +47,7 @@ static int	find_top_a(t_list *lst)
 	return (count);
 }
 
-static int	belongs_to(t_list *a, t_list *b)	//HANDLE EMPTY LIST & 1 ITEM
+static int	belongs_to(t_list *a, t_list *b)
 {
 	int	right_place;
 	int	max;
@@ -69,31 +69,32 @@ static int	belongs_to(t_list *a, t_list *b)	//HANDLE EMPTY LIST & 1 ITEM
 	}
 }
 
-void	get_to_the_place(t_tools *tools, int moves, char list)	// REPLACE BY FC go_to
-{
-	t_list	**lst;
-	int		size_lst;
+// void	get_to_the_place(t_tools *tools, int moves, char list)	// REPLACE BY FC go_to
+// 								//	t_tools *tools, int moves, int direction, char list
+// {
+// 	t_list	**lst;
+// 	int		size_lst;
 
-	// to be simplified: while moves > 0, make_a_move(tools, dir, list)
-	lst = get_list(tools, list);
-	size_lst = lst_size(*lst);
-	if (moves > 0 && moves <= size_lst / 2)
-	{
-		while (moves > 0)
-		{
-			make_a_move(tools, RX, list);
-			moves--;
-		}
-	}
-	else if (moves > 0)
-	{
-		while (size_lst - moves > 0)
-		{
-			make_a_move(tools, RRX, list);
-			moves++;
-		}
-	}
-}
+// 	// to be simplified: while moves > 0, make_a_move(tools, dir, list)
+// 	lst = get_list(tools, list);
+// 	size_lst = lst_size(*lst);
+// 	if (moves > 0 && moves <= size_lst / 2)
+// 	{
+// 		while (moves > 0)
+// 		{
+// 			make_a_move(tools, RX, list);
+// 			moves--;
+// 		}
+// 	}
+// 	else if (moves > 0)
+// 	{
+// 		while (size_lst - moves > 0)
+// 		{
+// 			make_a_move(tools, RRX, list);
+// 			moves++;
+// 		}
+// 	}
+// }
 
 void	merge_b_into_a(t_tools *tools)
 {
@@ -106,7 +107,11 @@ void	merge_b_into_a(t_tools *tools)
 	{
 		size_a = lst_size(tools->a);
 		right_place = belongs_to(tools->a, tools->b);
-		get_to_the_place(tools, right_place, 'a');
+		if (right_place <= size_a / 2)
+			go_to(tools, right_place, RX, 'a');
+		else
+			go_to(tools, size_a - right_place, RRX, 'a');
+		// get_to_the_place(tools, right_place, 'a');
 		make_a_move(tools, PX, 'a');
 		if ((tools->a)->x > (tools->a)->nxt->x && (tools->b == NULL || \
 		(tools->a)->x < (tools->b)->x))
@@ -115,8 +120,11 @@ void	merge_b_into_a(t_tools *tools)
 	}
 	size_a = lst_size(tools->a);
 	right_place = find_top_a(tools->a);
-	// if right_place > n / 2 --> get_to_the_place(tools, n - right_place, RR, 'a');
-	get_to_the_place(tools, right_place, 'a'); // R
+	if (right_place <= size_a / 2)
+		go_to(tools, right_place, RX, 'a');
+	else
+		go_to(tools, size_a - right_place, RRX, 'a');
+	// get_to_the_place(tools, right_place, 'a'); // R
 }
 
 void	sort_small_stack(t_tools *tools)

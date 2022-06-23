@@ -42,4 +42,5 @@ void		find_nxt_elem(t_list *lst, int *tr_limits, int tr, t_nxt_step *nxt);
 t_nxt_step	*most_efficient_move(t_tools *tools, t_nxt_step *nxt_r, \
 t_nxt_step *nxt_rr);
 void		perform(t_tools *tools, t_nxt_step *nxt_step);
+void		go_to(t_tools *tools, int moves, int direction, char list);
 #endif
