@@ -1,5 +1,7 @@
 NAME = push_swap
 
+BONUS_NAME = checker
+
 CC = gcc
 
 CCFLAGS = -Wall -Wextra -Werror -g -fsanitize=address	#delete before submitting
@@ -8,38 +10,48 @@ SRC = main.c input_processing.c list_operations.c small_stack.c \
 sorting_small.c sorting_large.c actions.c large_stack.c tranche_limits.c \
 tranche_operations.c
 
+BONUS_SRC = main_bonus.c
+
 OBJDIR = obj
 
 OBJ = $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 
+BONUS_OBJ = $(addprefix $(OBJDIR)/,$(BONUS_SRC:.c=.o))
+
 LIBFT = libft/libft.a
 
+TRANCHES = 	# TO BE REMOVED
 
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(CCFLAGS) $^ -o $(NAME)
+	@$(CC) $(CCFLAGS) $(TRANCHES) $^ -o $(NAME)
 
 $(LIBFT):
-	make -C libft
+	@make -C libft
 
 $(OBJ): | $(OBJDIR)
 
 $(OBJDIR):
-	mkdir $(OBJDIR)
+	@mkdir $(OBJDIR)
 
 $(OBJDIR)/%.o: %.c
-	$(CC) $(CCFLAGS) -c $< -o $@
+	@$(CC) $(CCFLAGS) $(TRANCHES) -c $< -o $@
+
+bonus: $(LIBFT) $(BONUS_OBJ)
+	$(CC) $(CCFLAGS) $^ -o $(BONUS_NAME)
+
+$(BONUS_OBJ): | $(OBJDIR)
 
 clean:
-	rm -Rf $(OBJDIR)
-	make clean -C libft
+	@rm -Rf $(OBJDIR)
+	@make clean -C libft
 
 fclean: clean
-	rm -f $(NAME) $(LIBFT)
+	@rm -f $(NAME) $(LIBFT) $(BONUS_NAME)
 
 re: fclean
-	make
+	@make
 
 .PHONY: clean fclean re all
 
@@ -61,4 +73,3 @@ $(OBJDIR)/sorting_small.o: sorting_small.c list_operations.h actions.h main.h
 $(OBJDIR)/tranche_limits.o: tranche_limits.c list_operations.h main.h
 
 $(OBJDIR)/tranche_operations.o: #tranche_operations.c list_operations.h main.h
-
