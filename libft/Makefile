@@ -18,23 +18,23 @@ CCFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar -rcs $(NAME) $?
+	@ar -rcs $(NAME) $?
 
 $(OBJ): | $(OBJDIR)
 
 $(OBJDIR):
-	mkdir $(OBJDIR)
+	@mkdir $(OBJDIR)
 
 $(OBJDIR)/%.o: %.c
-	$(CC) $(CCFLAGS) -c $< -o $@
+	@$(CC) $(CCFLAGS) -c $< -o $@
 
 $(OBJDIR)/ft_substr.o: ft_substr.c libft.h
 
 clean:
-	rm -Rf $(OBJDIR)
+	@rm -Rf $(OBJDIR)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 

@@ -20,12 +20,13 @@ BONUS_OBJ = $(addprefix $(OBJDIR)/,$(BONUS_SRC:.c=.o))
 
 LIBFT = libft/libft.a
 
-TRANCHES = 	# TO BE REMOVED
+TRANCHE_MODIFICATION = 
+
 
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
-	@$(CC) $(CCFLAGS) $(TRANCHES) $^ -o $(NAME)
+	$(CC) $(CCFLAGS) $(TRANCHE_MODIFICATION) $^ -o $(NAME)
 
 $(LIBFT):
 	@make -C libft
@@ -36,12 +37,13 @@ $(OBJDIR):
 	@mkdir $(OBJDIR)
 
 $(OBJDIR)/%.o: %.c
-	@$(CC) $(CCFLAGS) $(TRANCHES) -c $< -o $@
+	@$(CC) $(CCFLAGS) $(TRANCHE_MODIFICATION) -c $< -o $@
 
 bonus: $(LIBFT) $(BONUS_OBJ)
 	$(CC) $(CCFLAGS) $^ -o $(BONUS_NAME)
 
 $(BONUS_OBJ): | $(OBJDIR)
+	$(CC) $(CCFLAGS) $(TRANCHE_MODIFICATION) -c $< -o $@
 
 clean:
 	@rm -Rf $(OBJDIR)
