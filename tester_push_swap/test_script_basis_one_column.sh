@@ -23,23 +23,23 @@ cd $TESTER_DIR
 
 # testing
 
-PREVIOUS_ID=3006
+PREVIOUS_ID=3016
 ID=1
-REPEAT=10
+REPEAT=20000
 while [ $ID -le $REPEAT ]
 do
 	INPUT=$(sort -R input.txt)
 	TRANCHES=$min
-	#CHECKER=$(MallocNanoZone=0 ./"$NAME_PATH""$NAME"_$TRANCHES $INPUT | ../checker_Mac $INPUT)
-	CHECKER=$(./"$NAME_PATH""$NAME"_$TRANCHES $INPUT | ../checker_Mac $INPUT)
+	CHECKER=$(MallocNanoZone=0 ./"$NAME_PATH""$NAME"_$TRANCHES $INPUT | ../checker_Mac $INPUT)
+	#CHECKER=$(./"$NAME_PATH""$NAME"_$TRANCHES $INPUT | ../checker_Mac $INPUT)
 	while [ $TRANCHES -le $max ]
 	do
 		echo $(($ID + $PREVIOUS_ID)) >> result.txt
 		echo $INPUT >> result.txt
 		echo $CHECKER >> result.txt
 		echo $TRANCHES >> result.txt
-		#echo $(MallocNanoZone=0 ./"$NAME_PATH""$NAME"_$TRANCHES $INPUT | wc -l) >> result.txt
-		echo $(./"$NAME_PATH""$NAME"_$TRANCHES $INPUT | wc -l) >> result.txt
+		echo $(MallocNanoZone=0 ./"$NAME_PATH""$NAME"_$TRANCHES $INPUT | wc -l) >> result.txt
+		#echo $(./"$NAME_PATH""$NAME"_$TRANCHES $INPUT | wc -l) >> result.txt
 		echo "*" >> result.txt
 		TRANCHES=$((TRANCHES + 1))
 	done
