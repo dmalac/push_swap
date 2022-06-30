@@ -6,14 +6,14 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 15:04:01 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/16 14:55:17 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/30 18:56:20 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SORTING_H
 # define SORTING_H
 
-# include "list_operations.h"	// possibly restructure to avoid this ?
+# include "list_manipulation.h"	// possibly restructure to avoid this ?
 
 typedef struct s_nxt_step
 {
@@ -32,11 +32,15 @@ t_list		**get_list(t_tools *tools, char list);
 /* small_stack.c */
 void		get_to_the_place(t_tools *tools, int moves, char list);
 void		offload(t_tools *tools, int n, char dest);
+int			find_top_a(t_list *lst);
 /* large_stack.c */
 int			is_in_tranche(int x, int tr_min, int tr_max);
 int			right_place(t_list *b, int x);
+int			find_top_b(t_list *lst);
 /* sorting_large.c */
 void		move_tranche_to_b(t_tools *tools, int *tr_limits, int tr);
+/* stack_operations.c */
+void		move_to_the_top(t_tools *tools, char list);
 /* tranche_operations.c */
 void		find_nxt_elem(t_list *lst, int *tr_limits, int tr, t_nxt_step *nxt);
 t_nxt_step	*most_efficient_move(t_tools *tools, t_nxt_step *nxt_r, \

@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:37:05 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/19 20:12:12 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/30 16:24:57 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,83 +14,7 @@
 #include "main.h"
 #include "libft/libft.h"
 
-static int	only_digits(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (str[i] == '-')
-		i++;
-	while (str[i])
-	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	doubles(t_list *lst, int n)
-{
-	int		i;
-	int		counter;
-	t_list	*val_1;
-	t_list	*val_2;
-
-	i = 0;
-	while (i < n)
-	{
-	counter = 0;
-	val_1 = lst;
-		while (counter < i)
-		{
-			val_1 = val_1->nxt;
-			counter++;
-		}
-		val_2 = val_1->nxt;
-		while (val_2->prev->is_last != 1)
-		{
-			if (val_1->x == val_2->x)
-				return (1);
-			val_2 = val_2->nxt;
-		}
-	i++;
-	}
-	return (0);
-}
-
-static int	is_int(char *num)
-{
-	long long	number;
-
-	number = ft_atol(num);
-	if (number <= INT_MAX && number >= INT_MIN)
-		return (1);
-	else
-		return (0);
-}
-
-int	is_sorted(t_list *lst)
-{
-	int		sorted;
-	t_list	*current;
-
-	current = lst;
-	if (current->x > current->nxt->x)
-		sorted = -1;
-	else
-		sorted = 1;
-	while (current->is_last != 1)
-	{
-		if ((current->x > current->nxt->x && sorted == 1) || \
-		(current->x < current->nxt->x && sorted == -1))
-			return (0);
-		current = current->nxt;
-	}
-	return (sorted);
-}
-
-void	check_input(char **input, int n)
+static void	check_input(char **input, int n)
 {
 	int	i;
 
@@ -99,11 +23,39 @@ void	check_input(char **input, int n)
 	{
 		if (only_digits(input[i]) == 0)
 			call_error();
-		if (ft_strlen(input[i]) >= 10)
-		{
-			if (is_int(input[i]) == 0)
-				call_error();
-		}
+		if (ft_strlen(input[i]) >= 10 && is_int(input[i]) == 0)
+			call_error();
 		i++;
 	}
+}
+
+static int	count_input(char **array)
+{
+	int	count;
+
+	count = 0;
+	while (array[count])
+		count++;
+	return (count + 1);
+}
+
+void	process_input(char **input, int *num_args, t_list **lst)
+{
+	int		allocated;
+
+	allocated = 0;
+	if (*num_args == 2)
+	{
+		input = ft_split(input[1], ' ');
+		allocated = 1;
+		*num_args = count_input(input);
+	}
+	else
+		input = input + 1;
+	check_input(input, *num_args - 1);
+	create_lnkd_lst(input, *num_args - 1, lst);
+	if (allocated == 1)
+		free(input);
+	if (are_there_doubles(*lst) == 1)
+		call_error();
 }

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   list_operations.h                                  :+:    :+:            */
+/*   list_manipulation.h                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:54:25 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/15 17:24:16 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/30 16:27:10 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIST_OPERATIONS_H
-# define LIST_OPERATIONS_H
+#ifndef LIST_MANIPULATION_H
+# define LIST_MANIPULATION_H
 
 typedef struct s_list
 {
@@ -27,14 +27,18 @@ typedef struct s_tools
 	char	**instruction;
 	t_list	*a;
 	t_list	*b;
+	int		tranches;
 }				t_tools;
 
-/* list_operations.c */
+/* input_processing.c */
+void	process_input(char **input, int *num_args, t_list **lst);
+/* list_creation.c */
 t_list	*lst_new(char *num);
-void	lst_erase(t_list **lst);
 void	lst_add_back(t_list **lst, t_list *new);
 t_list	*lst_add_front(t_list **lst, t_list *new);
 void	create_lnkd_lst(char **input, int n, t_list **a);
+/* list_operations.c */
+void	lst_erase(t_list **lst);
 int		lst_size(t_list *lst);
 int		lst_max(t_list *lst);
 int		lst_min(t_list *lst);
@@ -44,5 +48,5 @@ void	sort_small_stack(t_tools *tools);
 /* large_stack.c */
 void	sort_large_stack(t_tools *tools);
 /* tranche_limits.c */
-int		*get_limits(t_list *lst);
+int		*get_limits(t_list *lst, int tranches);
 #endif

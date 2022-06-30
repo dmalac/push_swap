@@ -6,17 +6,17 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 11:56:55 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/16 14:58:56 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/30 18:55:48 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_operations.h"
+#include "list_manipulation.h"
 #include "main.h"
 #include "sorting.h"
 #include "libft/ft_printf.h"	// delete
 #include "actions.h"
 
-static int	find_top_b(t_list *lst)
+int	find_top_b(t_list *lst)
 {
 	int	count;
 
@@ -79,21 +79,16 @@ void	sort_large_stack(t_tools *tools)
 {
 	int	*tr_limits;
 	int	i;
-	int	moves_to_top;
-	int	size_b;
 
 	i = 0;
-	tr_limits = get_limits(tools->a);	// could be NULL
+	tr_limits = get_limits(tools->a, tools->tranches);	// could be NULL
 	if (!tr_limits)
 		call_error();	// do I need to free malloc'ed stuff?
-	while (i < TRANCHES && tools->a)
+	while (i < tools->tranches && tools->a)
 		move_tranche_to_b(tools, tr_limits, i++);
-	moves_to_top = find_top_b(tools->b);
-	size_b = lst_size(tools->b);
-	if (moves_to_top > size_b)
-		go_to(tools, moves_to_top, RX, 'b');
-	else
-		go_to(tools, size_b - moves_to_top, RRX, 'b');
+	
+	move_to_the_top(tools, 'b');
+	
 	offload(tools, lst_size(tools->b), 'a');
 	free(tr_limits);
 }

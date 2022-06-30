@@ -1,22 +1,7 @@
-tester to do:
-- ADJUST FOR THE FACT THAT TESTER NOW IN A SEPARATE DIRECTORY 
-- check the highest amount of moves (which input)
-- run 100000 tests for 7 tranches
-- repeat for 500 items
-
 
 to-do
 
-- adjust makefiles (add @; add TRANCHES)
-- write bash script (first make x executables, then run them many many times)
-
-OPTIMIZATION
-
-HOW MANY TRANCHES?
---> 100 items: 7 tranches (then 6, then 8)
---> 500 items: 14 tranches
-
-
-TEST WITH (AND WATCH FOR)
-1. [watch for 95 - step 9] 51 127 171 152 123 82 161 11 135 1 14 37 155 134 8 128 108 16 105 40 44 103 146 164 191 88 46 129 185 59 94 133 110 78 69 167 0 63 194 151 58 159 186 50 104 198 43 141 176 57 84 30 27 5 95 107 76 49 187 197 119 17 116 113 156 99 144 60 93 163 2 168 56 19 70 138 130 126 115 53 10 97 174 196 20 122 118 114 175 87 42 139 26 7 75 177 90 65 102 148
-2. [watch for -172 - step 7] -127 -51 -163 196 89 -71 -103 165 -54 -57 106 77 38 -59 23 73 34 115 142 182 -114 -82 -6 162 130 110 70 107 -157 37 50 39 -125 102 -185 -170 47 -119 -184 54 30 -27 -164 -42 85 -146 60 136 -70 69 86 0 -151 -23 -172 -132 139 -68 3 111 125 -73 4 135 -121 113 92 -101 -86 99 -87 26 -133 5 -89 59 -37 200 35 -154 174 199 -5 -14 -91 -88 88 141 -116 161 -38 95 132 150 29 -94 191 19 198 -50
+- check if I'm freeing everything --> 1 leak!
+- refactor the code
+- reorganise h files
+- move_to_the_top to be tested (take item from the test table with input and moves)

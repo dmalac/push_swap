@@ -6,11 +6,11 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/15 17:26:23 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/16 14:54:39 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/30 16:41:23 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "list_operations.h"
+// #include "list_manipulation.h"
 #include "main.h"
 #include "sorting.h"
 #include "libft/ft_printf.h"	// delete
@@ -98,12 +98,6 @@ t_nxt_step	*most_efficient_move(t_tools *tools, t_nxt_step *nxt_r, t_nxt_step *n
 		return (nxt_r);
 	else
 		return (nxt_rr);
-}
-
-void	go_to(t_tools *tools, int moves, int direction, char list)
-{
-	while (moves-- > 0)
-		make_a_move(tools, direction, list);
 }
 
 void	perform(t_tools *tools, t_nxt_step *nxt)

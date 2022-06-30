@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   sorting.c                                          :+:    :+:            */
+/*   sorting_small.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 15:02:19 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/05/25 18:14:52 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/30 16:22:28 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_operations.h"
+#include "list_manipulation.h"
 #include "actions.h"
 #include "main.h"
 #include "libft/ft_printf.h"	// delete

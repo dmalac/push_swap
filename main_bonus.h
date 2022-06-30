@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   actions.h                                          :+:    :+:            */
+/*   main_bonus.h                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/05/11 18:11:01 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/30 16:22:28 by dmalacov      ########   odam.nl         */
+/*   Created: 2022/06/28 15:36:57 by dmalacov      #+#    #+#                 */
+/*   Updated: 2022/06/28 15:37:54 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ACTIONS_H
-# define ACTIONS_H
+#ifndef MAIN_BONUS_H
+# define MAIN_BONUS_H
 
-# include "list_manipulation.h"
+typedef struct s_list
+{
+	int				x;
+	int				is_last;
+	struct s_list	*prev;
+	struct s_list	*nxt;
+}				t_list;
 
-void	swap(t_list **lst);
-void	push(t_list **to, t_list **from);
-void	rotate(t_list **lst);
-void	rev_rotate(t_list **lst);
-void	make_a_move(t_tools *tools, int action_code, char stack);
-/* sorting_small */
-void	get_to_the_place(t_tools *tools, int moves, char list);
+typedef struct s_tools
+{
+	void	(*action[7])(t_list **);
+	char	**instruction;
+	t_list	*a;
+	t_list	*b;
+}				t_tools;
 
 #endif

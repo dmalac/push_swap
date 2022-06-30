@@ -6,11 +6,11 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/08 13:21:51 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/16 14:53:27 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/30 16:22:28 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_operations.h"
+#include "list_manipulation.h"
 #include "main.h"
 #include <stdlib.h>
 // #include "sorting.h"
@@ -70,7 +70,7 @@ int	*clone_list(t_list *lst)
 	return (list);
 }
 
-int	*get_limits(t_list *lst)
+int	*get_limits(t_list *lst, int tranches)
 {
 	int	*tr_limits;
 	int	*list;
@@ -81,22 +81,14 @@ int	*get_limits(t_list *lst)
 	n = lst_size(lst);
 	list = clone_list(lst);	// protected below
 	i = 0;
-	// ft_printf("List array: ");
-	// while (i < n)
-	// 	ft_printf("%d, ", list[i++]);
-	// ft_printf("\n");
-	tr_limits = malloc(sizeof(int) * (TRANCHES + 1));
+	tr_limits = malloc(sizeof(int) * (tranches + 1));
 	if (!tr_limits || !list)
 		return (NULL);
-	tr_size = n / TRANCHES;
+	tr_size = n / tranches;
 	i = -1;
-	while (++i < TRANCHES)
+	while (++i < tranches)
 		tr_limits[i] = list[i * tr_size];
 	tr_limits[i] = list[n - 1];
-	// ft_printf("\tTranche limits are: ");
-	// while (i >= 0)
-	// 	ft_printf("%d | ", tr_limits[TRANCHES - i--]);
-	// ft_printf("\n");
 	free(list);
 	return (tr_limits);
 }

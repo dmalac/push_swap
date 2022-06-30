@@ -6,15 +6,14 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 16:41:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/16 14:29:42 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/06/30 16:24:33 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <unistd.h>
 #include <stdlib.h>
 #include "main.h"
 #include "libft/libft.h"
-#include "list_operations.h"
+#include "list_manipulation.h"
 #include "actions.h" 
 
 void	call_error(void)
@@ -32,42 +31,6 @@ void	prnt_array(char **array)	// TO BE DELETED
 	while (array[i])
 		ft_printf("%s, ", array[i++]);
 	ft_printf("\n");
-}
-
-int	count_input(char **array)
-{
-	int	count;
-
-	count = 0;
-	while (array[count])
-		count++;
-	return (count + 1);
-}
-
-int	process_input(char **input, int *num_args, t_list **lst)
-{
-	int		sorted;
-	int		allocated;
-
-	allocated = 0;
-	if (*num_args == 2)
-	{
-		input = ft_split(input[1], ' ');
-		allocated = 1;
-		*num_args = count_input(input);
-	}
-	else
-		input = input + 1;
-	check_input(input, *num_args - 1);
-	create_lnkd_lst(input, *num_args - 1, lst);
-	if (allocated == 1)
-		free(input);
-	if (doubles(*lst, *num_args - 1) == 1)
-		call_error();
-	sorted = is_sorted(*lst);
-	if (sorted == 1)
-		exit(0);
-	return (sorted);
 }
 
 static void	fill_instructions(t_tools *tools)
@@ -105,16 +68,34 @@ t_tools	*initialize(void)
 	return (tools);
 }
 
+int	how_many_tranches(int num_args)
+{
+	if (num_args < 60)
+		return (3);
+	else if (num_args >= 60 && num_args < 250)
+		return (7);
+	else
+		return (13);
+}
+
+void	check_leaks()		// DELETE
+{
+	system("leaks push_swap");
+}
+
 int	main(int argc, char **argv)
 {
 	t_tools	*tools;
 	int		sorted;
 
+	atexit(check_leaks);	// delete
 	tools = initialize();
 	if (argc < 2)
 		exit(0);
-	sorted = process_input(argv, &argc, &tools->a);
+	process_input(argv, &argc, &tools->a);
 	// lst_print(tools->a, 'A');	// to be removed before submitting
+	tools->tranches = how_many_tranches(argc - 1);
+	sorted = is_sorted(tools->a);
 	if (sorted < 1 && argc <= 7)
 		sort_small_stack(tools);
 	else if (sorted < 1 && argc > 7)
