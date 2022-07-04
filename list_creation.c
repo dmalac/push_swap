@@ -87,7 +87,10 @@ void	create_lnkd_lst(char **input, int n, t_list **a)
 	{
 		new = lst_new(input[i]);
 		if (!new)
+		{
 			lst_erase(a);
+			exit(0);
+		}
 		lst_add_back(a, new);
 		i++;
 	}

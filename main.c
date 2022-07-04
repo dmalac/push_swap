@@ -33,16 +33,52 @@ void	prnt_array(char **array)	// TO BE DELETED
 	ft_printf("\n");
 }
 
+void	erase_tools(t_tools **tools)
+{
+	int	i;
+
+	i = 0;
+	if (*tools)
+	{
+		if ((*tools)->instruction)
+		{
+			while (i <= RRR)
+			{
+				if ((*tools)->instruction[i])
+					free((*tools)->instruction[i++]);
+			}
+			free((*tools)->instruction);
+		}
+		free(*tools);
+	}
+}
+
+int	check_instructions(char **instruction)
+{
+	int	i;
+
+	i = 0;
+	while (i <= RRR)
+	{
+		if (!instruction[i++])
+			return (0);
+	}
+	return (1);
+}
+
 static void	fill_instructions(t_tools *tools)
 {
-	tools->instruction[PX] = "p\0s\0s\0r\0r\0rr\0rr\0";
-	tools->instruction[SX] = tools->instruction[PX] + 2;
-	tools->instruction[SS] = tools->instruction[SX] + 2;
-	tools->instruction[RX] = tools->instruction[SS] + 2;
-	tools->instruction[RR] = tools->instruction[RX] + 2;
-	tools->instruction[RRX] = tools->instruction[RR] + 2;
-	tools->instruction[RRR] = tools->instruction[RRX] + 3;
-	tools->instruction[7] = NULL;
+	if (tools->instruction)
+	{
+		tools->instruction[PX] = ft_strdup("p");
+		tools->instruction[SX] = ft_strdup("s");
+		tools->instruction[SS] = ft_strdup("ss");
+		tools->instruction[RX] = ft_strdup("r");
+		tools->instruction[RR] = ft_strdup("r");
+		tools->instruction[RRX] = ft_strdup("rr");
+		tools->instruction[RRR] = ft_strdup("rr");
+		tools->instruction[7] = NULL;
+	}
 }
 
 t_tools	*initialize(void)
@@ -61,10 +97,12 @@ t_tools	*initialize(void)
 	tools->action[RRX] = rev_rotate;
 	tools->action[RRR] = rev_rotate;
 	tools->instruction = malloc(sizeof(char *) * 8);
-	tools->instruction[PX] = malloc(sizeof(char) * 16);
-	if (!tools->instruction)
-		call_error();
 	fill_instructions(tools);
+	if (!tools->instruction || check_instructions(tools->instruction) == 0)
+	{
+		erase_tools(&tools);
+		call_error();
+	}
 	return (tools);
 }
 
@@ -104,8 +142,6 @@ int	main(int argc, char **argv)
 	// lst_print(tools->b, 'B');	// to be removed before submitting
 	lst_erase(&tools->a);
 	lst_erase(&tools->b);
-	free(tools->instruction[PX]);
-	free(tools->instruction);
-	free(tools);
+	erase_tools(&tools);
 	return (0);
 }

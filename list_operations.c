@@ -22,6 +22,8 @@ void	lst_erase(t_list **lst)
 	current = *lst;
 	if (current)
 	{
+		while (current->prev->is_last != 1)
+			current = current->prev;
 		while (current->is_last == 0)
 		{
 			current = current->nxt;
@@ -29,7 +31,6 @@ void	lst_erase(t_list **lst)
 		}
 		free(current);
 	}
-	exit (0);
 }
 
 int	lst_size(t_list *lst)

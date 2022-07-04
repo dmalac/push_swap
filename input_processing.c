@@ -42,6 +42,7 @@ static int	count_input(char **array)
 void	process_input(char **input, int *num_args, t_list **lst)
 {
 	int		allocated;
+	int		i;
 
 	allocated = 0;
 	if (*num_args == 2)
@@ -55,7 +56,12 @@ void	process_input(char **input, int *num_args, t_list **lst)
 	check_input(input, *num_args - 1);
 	create_lnkd_lst(input, *num_args - 1, lst);
 	if (allocated == 1)
+	{
+		i = 0;
+		while (input[i])
+			free(input[i++]);
 		free(input);
+	}
 	if (are_there_doubles(*lst) == 1)
 		call_error();
 }
