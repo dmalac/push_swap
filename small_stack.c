@@ -29,29 +29,7 @@ int	find_top_a(t_list *lst)
 	return (count);
 }
 
-static int	belongs_to(t_list *a, t_list *b)
-{
-	int	right_place;
-	int	max;
-	int	min;
-
-	right_place = 0;
-	max = lst_max(a);
-	min = lst_min(a);
-	if (b->x > max || b->x < min)
-		return (find_top_a(a));
-	else
-	{
-		while (!(b->x < a->x && b->x > a->prev->x))
-		{
-			a = a->nxt;
-			right_place++;
-		}
-		return (right_place);
-	}
-}
-
-void	merge_b_into_a(t_tools *tools)
+static void	merge_b_into_a(t_tools *tools)
 {
 	int	size_a;
 	int	size_b;
@@ -61,7 +39,7 @@ void	merge_b_into_a(t_tools *tools)
 	while (size_b > 0)
 	{
 		size_a = lst_size(tools->a);
-		right_place = belongs_to(tools->a, tools->b);
+		right_place = belongs_to(tools->a, tools->b->x, 'a');
 		if (right_place <= size_a / 2)
 			go_to(tools, right_place, RX, 'a');
 		else

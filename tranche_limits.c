@@ -24,7 +24,7 @@ int	is_in_tranche(int x, int tr_min, int tr_max)
 		return (0);
 }
 
-void	sort_list(int *list, int size)
+static void	sort_list(int *list, int size)
 {
 	int	i;
 	int	j;
@@ -47,7 +47,7 @@ void	sort_list(int *list, int size)
 	}
 }
 
-int	*clone_list(t_list *lst)
+static int	*clone_list(t_list *lst)
 {
 	int		*list;
 	int		n;
@@ -79,8 +79,8 @@ int	*get_limits(t_list *lst, int tranches)
 	int	tr_size;
 
 	n = lst_size(lst);
-	list = clone_list(lst);	// protected below
 	i = 0;
+	list = clone_list(lst);
 	tr_limits = malloc(sizeof(int) * (tranches + 1));
 	if (!tr_limits || !list)
 		return (NULL);

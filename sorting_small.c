@@ -37,9 +37,6 @@ void	sort_two(t_tools *tools, char list)
 
 static void	reverse_three(t_tools *tools, char list)
 {
-	t_list	**lst;
-
-	lst = get_list(tools, list);
 	make_a_move(tools, SX, list);
 	make_a_move(tools, RRX, list);
 }

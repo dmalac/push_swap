@@ -40,7 +40,7 @@ void	go_to(t_tools *tools, int moves, int direction, char list)
 		make_a_move(tools, direction, list);
 }
 
-void	move_to_the_top(t_tools *tools, char list)	// TO BE TESTED!!
+void	move_to_the_top(t_tools *tools, char list)
 {
 	int		size_lst;
 	int		moves_to_top;
@@ -56,4 +56,32 @@ void	move_to_the_top(t_tools *tools, char list)	// TO BE TESTED!!
 		go_to(tools, moves_to_top, RX, list);
 	else
 		go_to(tools, size_lst - moves_to_top, RRX, list);
+}
+
+int	belongs_to (t_list *lst, int x, char list)
+{
+	int		steps;
+	int		max;
+	int		min;
+
+	if (!lst)
+		return (0);
+	steps = 0;
+	max = lst_max(lst);
+	min = lst_min(lst);
+	if (list == 'a')
+	{
+		if (x > max || x < min)
+			return (find_top_a(lst));
+		while (!(x < lst->x && x > lst->prev->x) && (steps++ >= 0))
+			lst = lst->nxt;
+	}
+	else
+	{
+		if (x > max || x < min)
+			return (find_top_b(lst));
+		while (!(x > lst->x && x < lst->prev->x) && (steps++ >= 0))
+			lst = lst->nxt;
+	}
+	return (steps);
 }

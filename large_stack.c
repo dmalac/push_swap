@@ -29,38 +29,15 @@ int	find_top_b(t_list *lst)
 	return (count);
 }
 
-int	right_place(t_list *b, int x)
-{
-	t_list	*current;
-	int		steps;
-	int		max;
-	int		min;
-
-	if (!b)
-		return (0);
-	current = b;
-	max = lst_max(b);
-	min = lst_min(b);
-	steps = 0;
-	if (x > max || x < min)
-		return (find_top_b(b));
-	while (!(x > current->x && x < current->prev->x))
-	{
-		current = current->nxt;
-		steps++;
-	}
-	return (steps);
-}
-
 void	move_tranche_to_b(t_tools *tools, int *tr_limits, int tr)
 {
-	t_nxt_step	nxt_r;
-	t_nxt_step	nxt_rr;
-	t_nxt_step	*winner;
+	t_nxt_move	nxt_r;
+	t_nxt_move	nxt_rr;
+	t_nxt_move	*winner;
 
 	nxt_r.a_dir = RX;
-	nxt_r.a_steps = 0;
 	nxt_rr.a_dir = RRX;
+	nxt_r.a_steps = 0;
 	while (tools->a && (nxt_r.a_steps >= 0 || nxt_rr.a_steps >= 0))
 	{		
 		find_nxt_elem(tools->a, tr_limits, tr, &nxt_r);
@@ -81,14 +58,15 @@ void	sort_large_stack(t_tools *tools)
 	int	i;
 
 	i = 0;
-	tr_limits = get_limits(tools->a, tools->tranches);	// could be NULL
+	tr_limits = get_limits(tools->a, tools->tranches);
 	if (!tr_limits)
-		call_error();	// do I need to free malloc'ed stuff?
+	{
+		erase_tools(&tools);
+		call_error();
+	}
 	while (i < tools->tranches && tools->a)
 		move_tranche_to_b(tools, tr_limits, i++);
-	
 	move_to_the_top(tools, 'b');
-	
 	offload(tools, lst_size(tools->b), 'a');
 	free(tr_limits);
 }

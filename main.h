@@ -28,6 +28,7 @@
 
 /* main.c */
 void	call_error(void);
+void	erase_tools(t_tools **tools);
 
 /* input_checks.c */
 int		are_there_doubles(t_list *lst);

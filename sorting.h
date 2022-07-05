@@ -15,14 +15,14 @@
 
 # include "list_manipulation.h"	// possibly restructure to avoid this ?
 
-typedef struct s_nxt_step
+typedef struct s_nxt_move
 {
 	int	a_steps;
 	int	a_dir;
 	int	a_value;
 	int	b_steps;
 	int	b_dir;
-}				t_nxt_step;
+}				t_nxt_move;
 
 /* sorting.c */
 void		sort_two(t_tools *tools, char list);
@@ -41,10 +41,11 @@ int			find_top_b(t_list *lst);
 void		move_tranche_to_b(t_tools *tools, int *tr_limits, int tr);
 /* stack_operations.c */
 void		move_to_the_top(t_tools *tools, char list);
+int			belongs_to (t_list *lst, int x, char list);
 /* tranche_operations.c */
-void		find_nxt_elem(t_list *lst, int *tr_limits, int tr, t_nxt_step *nxt);
-t_nxt_step	*most_efficient_move(t_tools *tools, t_nxt_step *nxt_r, \
-t_nxt_step *nxt_rr);
-void		perform(t_tools *tools, t_nxt_step *nxt_step);
+void		find_nxt_elem(t_list *lst, int *tr_limits, int tr, t_nxt_move *nxt);
+t_nxt_move	*most_efficient_move(t_tools *tools, t_nxt_move *nxt_r, \
+t_nxt_move *nxt_rr);
+void		perform(t_tools *tools, t_nxt_move *nxt);
 void		go_to(t_tools *tools, int moves, int direction, char list);
 #endif

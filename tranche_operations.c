@@ -16,7 +16,7 @@
 #include "libft/ft_printf.h"	// delete
 #include "actions.h"
 
-void	find_nxt_elem(t_list *lst, int *tr_limits, int tr, t_nxt_step *nxt)
+void	find_nxt_elem(t_list *lst, int *tr_limits, int tr, t_nxt_move *nxt)
 {
 	t_list	*current;
 	int		steps;
@@ -50,15 +50,12 @@ int	larger_of_two(int a, int b)
 		return (b);
 }
 
-void	add_b_stack_moves(t_tools *tools, t_nxt_step *nxt, int size_b)
+void	add_b_stack_moves(t_tools *tools, t_nxt_move *nxt, int size_b)
 {
 	int	b_steps_r;
 	int	b_steps_rr;
 
-	if (tools->b)
-		b_steps_r = right_place(tools->b, nxt->a_value);
-	else
-		b_steps_r = 0;
+	b_steps_r = belongs_to(tools->b, nxt->a_value, 'b');
 	if (b_steps_r == 0)
 		b_steps_rr = 0;
 	else
@@ -77,7 +74,7 @@ void	add_b_stack_moves(t_tools *tools, t_nxt_step *nxt, int size_b)
 		nxt->b_steps = b_steps_rr;
 }
 
-t_nxt_step	*most_efficient_move(t_tools *tools, t_nxt_step *nxt_r, t_nxt_step *nxt_rr)
+t_nxt_move	*most_efficient_move(t_tools *tools, t_nxt_move *nxt_r, t_nxt_move *nxt_rr)
 {
 	int	total_steps_a_r;
 	int	total_steps_a_rr;
@@ -100,7 +97,7 @@ t_nxt_step	*most_efficient_move(t_tools *tools, t_nxt_step *nxt_r, t_nxt_step *n
 		return (nxt_rr);
 }
 
-void	perform(t_tools *tools, t_nxt_step *nxt)
+void	perform(t_tools *tools, t_nxt_move *nxt)
 {
 	if (nxt->a_dir == nxt->b_dir)
 	{

@@ -49,6 +49,8 @@ void	erase_tools(t_tools **tools)
 			}
 			free((*tools)->instruction);
 		}
+		lst_erase(&(*tools)->a);
+		lst_erase(&(*tools)->b);
 		free(*tools);
 	}
 }
@@ -126,7 +128,7 @@ int	main(int argc, char **argv)
 	t_tools	*tools;
 	int		sorted;
 
-	atexit(check_leaks);	// delete
+	// atexit(check_leaks);	// delete
 	tools = initialize();
 	if (argc < 2)
 		exit(0);
@@ -140,8 +142,6 @@ int	main(int argc, char **argv)
 		sort_large_stack(tools);
 	// lst_print(tools->a, 'A');	// to be removed before submitting
 	// lst_print(tools->b, 'B');	// to be removed before submitting
-	lst_erase(&tools->a);
-	lst_erase(&tools->b);
 	erase_tools(&tools);
 	return (0);
 }
