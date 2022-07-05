@@ -6,15 +6,13 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/08 13:21:51 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/30 16:22:28 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/05 15:50:41 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list_manipulation.h"
 #include "main.h"
 #include <stdlib.h>
-// #include "sorting.h"
-#include "libft/ft_printf.h"	// delete
 
 int	is_in_tranche(int x, int tr_min, int tr_max)
 {

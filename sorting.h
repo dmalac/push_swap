@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 15:04:01 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/30 18:56:20 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/05 16:09:01 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int			find_top_b(t_list *lst);
 void		move_tranche_to_b(t_tools *tools, int *tr_limits, int tr);
 /* stack_operations.c */
 void		move_to_the_top(t_tools *tools, char list);
-int			belongs_to (t_list *lst, int x, char list);
-/* tranche_operations.c */
+int			belongs_to(t_list *lst, int x, char list);
+/* sorting_large.c */
 void		find_nxt_elem(t_list *lst, int *tr_limits, int tr, t_nxt_move *nxt);
 t_nxt_move	*most_efficient_move(t_tools *tools, t_nxt_move *nxt_r, \
 t_nxt_move *nxt_rr);

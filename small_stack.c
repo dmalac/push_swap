@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 14:26:52 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/30 18:55:35 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/05 15:52:28 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "sorting.h"
 #include "actions.h"
 #include "main.h"
-#include "libft/ft_printf.h"	// delete
+#include <stdlib.h>
 
 int	find_top_a(t_list *lst)
 {

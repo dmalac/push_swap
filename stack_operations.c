@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 14:26:52 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/30 18:52:34 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/05 16:01:08 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "sorting.h"
 #include "actions.h"
 #include "main.h"
-#include "libft/ft_printf.h"	// delete
 
 void	offload(t_tools *tools, int n, char dest)
 {
@@ -45,7 +44,7 @@ void	move_to_the_top(t_tools *tools, char list)
 	int		size_lst;
 	int		moves_to_top;
 	t_list	**lst;
-	
+
 	lst = get_list(tools, list);
 	size_lst = lst_size(*lst);
 	if (list == 'a')
@@ -58,7 +57,7 @@ void	move_to_the_top(t_tools *tools, char list)
 		go_to(tools, size_lst - moves_to_top, RRX, list);
 }
 
-int	belongs_to (t_list *lst, int x, char list)
+int	belongs_to(t_list *lst, int x, char list)
 {
 	int		steps;
 	int		max;

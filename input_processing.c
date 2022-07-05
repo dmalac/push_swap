@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:37:05 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/30 16:24:57 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/05 16:42:51 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "main.h"
 #include "libft/libft.h"
 
-static void	check_input(char **input, int n)
+static void	check_input(char **input, int n, t_tools *tools)
 {
 	int	i;
 
@@ -22,9 +22,9 @@ static void	check_input(char **input, int n)
 	while (i < n)
 	{
 		if (only_digits(input[i]) == 0)
-			call_error();
+			call_error(tools);
 		if (ft_strlen(input[i]) >= 10 && is_int(input[i]) == 0)
-			call_error();
+			call_error(tools);
 		i++;
 	}
 }
@@ -39,7 +39,7 @@ static int	count_input(char **array)
 	return (count + 1);
 }
 
-void	process_input(char **input, int *num_args, t_list **lst)
+void	process_input(char **input, int *num_args, t_tools *tools)
 {
 	int		allocated;
 	int		i;
@@ -53,8 +53,8 @@ void	process_input(char **input, int *num_args, t_list **lst)
 	}
 	else
 		input = input + 1;
-	check_input(input, *num_args - 1);
-	create_lnkd_lst(input, *num_args - 1, lst);
+	check_input(input, *num_args - 1, tools);
+	create_lnkd_lst(input, *num_args - 1, tools);
 	if (allocated == 1)
 	{
 		i = 0;
@@ -62,6 +62,4 @@ void	process_input(char **input, int *num_args, t_list **lst)
 			free(input[i++]);
 		free(input);
 	}
-	if (are_there_doubles(*lst) == 1)
-		call_error();
 }

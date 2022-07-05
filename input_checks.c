@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:37:05 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/30 16:03:57 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/05 15:52:53 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,17 @@ int	only_digits(char *str)
 	return (1);
 }
 
-int	are_there_doubles(t_list *lst)
+int	is_unique(t_list *lst, int num)
 {
-	t_list	*val_1;
-	t_list	*val_2;
-
-	val_1 = lst;
-	while (val_1->is_last != 1)
+	while (lst && lst->is_last == 0)
 	{
-		val_2 = val_1->nxt;
-		while (val_2->prev->is_last != 1)
-		{
-			if (val_1->x == val_2->x)
-				return (1);
-			val_2 = val_2->nxt;
-		}
-		val_1 = val_1->nxt;
+		if (lst->x == num)
+			return (0);
+		lst = lst->nxt;
 	}
-	return (0);
+	if (lst && lst->x == num)
+		return (0);
+	return (1);
 }
 
 int	is_int(char *num)

@@ -6,15 +6,15 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 11:56:55 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/30 18:55:48 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/05 16:56:16 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list_manipulation.h"
 #include "main.h"
 #include "sorting.h"
-#include "libft/ft_printf.h"	// delete
 #include "actions.h"
+#include <stdlib.h>
 
 int	find_top_b(t_list *lst)
 {
@@ -60,10 +60,7 @@ void	sort_large_stack(t_tools *tools)
 	i = 0;
 	tr_limits = get_limits(tools->a, tools->tranches);
 	if (!tr_limits)
-	{
-		erase_tools(&tools);
-		call_error();
-	}
+		call_error(tools);
 	while (i < tools->tranches && tools->a)
 		move_tranche_to_b(tools, tr_limits, i++);
 	move_to_the_top(tools, 'b');

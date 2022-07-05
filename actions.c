@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 15:14:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/30 16:22:28 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/05 15:49:15 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,4 @@ void	make_a_move(t_tools *tools, int action_code, char stack)
 		tools->action[action_code](&tools->a);
 		tools->action[action_code](&tools->b);
 	}
-	// lst_print(tools->a, 'A');
-	// lst_print(tools->b, 'B');
 }

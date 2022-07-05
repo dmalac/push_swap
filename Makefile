@@ -8,7 +8,7 @@ CCFLAGS = -Wall -Wextra -Werror -g -fsanitize=address	#delete before submitting
 
 SRC = main.c input_processing.c input_checks.c list_creation.c list_operations.c \
 small_stack.c sorting_small.c sorting_large.c actions.c large_stack.c \
-tranche_limits.c tranche_operations.c stack_operations.c
+tranche_limits.c stack_operations.c initialisations.c 
 
 BONUS_SRC = main_bonus.c
 
@@ -58,6 +58,8 @@ re: fclean
 # individual dependencies:		TO BE CHECKED BEFORE SUBMISSION
 $(OBJDIR)/actions.o: actions.c list_manipulation.h actions.h sorting.h main.h
 
+$(OBJDIR)/initialisations.o: initialisations.c main.h actions.h list_manipulation.h
+
 $(OBJDIR)/input_checks.o: input_checks.c main.h
 
 $(OBJDIR)/input_processing.o: input_processing.c main.h
@@ -72,10 +74,10 @@ $(OBJDIR)/main.o: main.c main.h libft/libft.h actions.h
 
 $(OBJDIR)/small_stack.o: small_stack.c list_manipulation.h sorting.h actions.h main.h
 
-$(OBJDIR)/stack_operations.o: stack_operations.c list_manipulation.h sorting.h actions.h main.h
+$(OBJDIR)/sorting_large.o: sorting_large.c list_manipulation.h main.h
 
 $(OBJDIR)/sorting_small.o: sorting_small.c list_manipulation.h actions.h main.h
 
-$(OBJDIR)/tranche_limits.o: tranche_limits.c list_manipulation.h main.h
+$(OBJDIR)/stack_operations.o: stack_operations.c list_manipulation.h sorting.h actions.h main.h
 
-$(OBJDIR)/tranche_operations.o: #tranche_operations.c list_manipulation.h main.h
+$(OBJDIR)/tranche_limits.o: tranche_limits.c list_manipulation.h main.h

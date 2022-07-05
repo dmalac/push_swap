@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:54:25 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/30 16:27:10 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/05 15:53:17 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,15 @@ typedef struct s_tools
 	int		tranches;
 }				t_tools;
 
+/* input_checks.c */
+int		is_unique(t_list *lst, int num);
 /* input_processing.c */
-void	process_input(char **input, int *num_args, t_list **lst);
+void	process_input(char **input, int *num_args, t_tools *tools);
 /* list_creation.c */
-t_list	*lst_new(char *num);
+t_list	*lst_new(int num);
 void	lst_add_back(t_list **lst, t_list *new);
 t_list	*lst_add_front(t_list **lst, t_list *new);
-void	create_lnkd_lst(char **input, int n, t_list **a);
+void	create_lnkd_lst(char **input, int n, t_tools *tools);
 /* list_operations.c */
 void	lst_erase(t_list **lst);
 int		lst_size(t_list *lst);

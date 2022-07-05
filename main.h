@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:12:12 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/30 16:26:47 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/05 16:37:25 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@
 # define RRR 6
 
 /* main.c */
-void	call_error(void);
+void	call_error(t_tools *tools);
 void	erase_tools(t_tools **tools);
-
+/* initialisations.c */
+t_tools	*initialize(void);
+int		how_many_tranches(int num_args);
 /* input_checks.c */
-int		are_there_doubles(t_list *lst);
 int		is_sorted(t_list *lst);
 int		only_digits(char *str);
 int		is_int(char *num);
