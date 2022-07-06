@@ -6,7 +6,7 @@
 /*   By: dmalacov <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/05 15:12:33 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/16 12:53:10 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/06 13:33:37 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ void			ft_putchar_fd(char c, int fd);
 void			ft_putnbr_fd(int n, int fd);
 void			ft_putstr_fd(char *s, int fd);
 char			*ft_strdup(const char *s1);
+
+char			*get_next_line(int fd);
 
 #endif
