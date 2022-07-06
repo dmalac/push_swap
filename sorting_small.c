@@ -6,30 +6,19 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 15:02:19 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/05 15:50:13 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/06 19:03:58 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list_manipulation.h"
-#include "actions.h"
+#include "sorting.h"
 #include "main.h"
-
-t_list	**get_list(t_tools *tools, char list)
-{
-	t_list	**lst;
-
-	if (list == 'a')
-		lst = &tools->a;
-	else
-		lst = &tools->b;
-	return (lst);
-}
 
 void	sort_two(t_tools *tools, char list)
 {
 	t_list	**lst;
 
-	lst = get_list(tools, list);
+	lst = get_list(&tools->a, &tools->b, list);
 	if ((*lst)->x > (*lst)->nxt->x)
 		make_a_move(tools, SX, list);
 }
@@ -47,7 +36,7 @@ void	sort_three(t_tools *tools, char list)
 	int		sorted;
 	t_list	**lst;
 
-	lst = get_list(tools, list);
+	lst = get_list(&tools->a, &tools->b, list);
 	max = lst_max(*lst);
 	min = lst_min(*lst);
 	sorted = is_sorted(*lst);
@@ -68,7 +57,7 @@ void	rev_sort_three(t_tools *tools, char list)
 	int		sorted;
 	t_list	**lst;
 
-	lst = get_list(tools, list);
+	lst = get_list(&tools->a, &tools->b, list);
 	max = lst_max(*lst);
 	min = lst_min(*lst);
 	sorted = is_sorted(*lst);

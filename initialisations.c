@@ -6,13 +6,13 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/05 15:54:11 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/05 16:42:42 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/06 17:49:51 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list_manipulation.h"
 #include "main.h"
-#include "actions.h"
+// #include "actions.h"
 #include "libft/libft.h"
 #include <stdlib.h>
 
@@ -64,14 +64,4 @@ t_tools	*initialize(void)
 	if (!tools->instruction || check_instructions(tools->instruction) == 0)
 		call_error(tools);
 	return (tools);
-}
-
-int	how_many_tranches(int num_args)
-{
-	if (num_args < 60)
-		return (3);
-	else if (num_args >= 60 && num_args < 250)
-		return (7);
-	else
-		return (13);
 }

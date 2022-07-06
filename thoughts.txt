@@ -1,7 +1,10 @@
 
 to-do
 
-- check if I'm freeing everything --> 1 leak!
-- refactor the code
 - reorganise h files
-- move_to_the_top to be tested (take item from the test table with input and moves)
+
+- include a check whether list is sorted but rotated (like 2 16 0 4 8 after pushing 2 to B)
+
+- refactor the code
+
+- write bonus

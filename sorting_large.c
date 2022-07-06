@@ -6,13 +6,13 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/05 16:57:40 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/05 16:57:45 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/06 17:50:13 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 #include "sorting.h"
-#include "actions.h"
+// #include "actions.h"
 
 void	find_nxt_elem(t_list *lst, int *tr_limits, int tr, t_nxt_move *nxt)
 {

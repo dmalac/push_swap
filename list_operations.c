@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:21:23 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/06/30 16:22:28 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/06 19:04:30 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,17 @@ int	lst_min(t_list *lst)
 	if (lst->x < min)
 		min = lst->x;
 	return (min);
+}
+
+t_list	**get_list(t_list **a, t_list **b, char list)
+{
+	t_list	**lst;
+
+	if (list == 'a')
+		lst = a;
+	else
+		lst = b;
+	return (lst);
 }
 
 /* for testing purposes; to be removed at some point */

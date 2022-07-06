@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:54:25 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/05 15:53:17 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/06 17:47:00 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,9 @@ void	sort_small_stack(t_tools *tools);
 void	sort_large_stack(t_tools *tools);
 /* tranche_limits.c */
 int		*get_limits(t_list *lst, int tranches);
+/* actions.c */
+void	swap(t_list **lst);
+void	push(t_list **to, t_list **from);
+void	rotate(t_list **lst);
+void	rev_rotate(t_list **lst);
 #endif

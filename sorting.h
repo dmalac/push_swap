@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 15:04:01 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/05 16:09:01 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/06 19:02:52 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ typedef struct s_nxt_move
 void		sort_two(t_tools *tools, char list);
 void		sort_three(t_tools *tools, char list);
 void		rev_sort_three(t_tools *tools, char list);
-t_list		**get_list(t_tools *tools, char list);
+t_list		**get_list(t_list **a, t_list **b, char list);
 /* small_stack.c */
-void		get_to_the_place(t_tools *tools, int moves, char list);
 void		offload(t_tools *tools, int n, char dest);
 int			find_top_a(t_list *lst);
 /* large_stack.c */
@@ -42,10 +41,12 @@ void		move_tranche_to_b(t_tools *tools, int *tr_limits, int tr);
 /* stack_operations.c */
 void		move_to_the_top(t_tools *tools, char list);
 int			belongs_to(t_list *lst, int x, char list);
+void		make_a_move(t_tools *tools, int action_code, char stack);
 /* sorting_large.c */
 void		find_nxt_elem(t_list *lst, int *tr_limits, int tr, t_nxt_move *nxt);
 t_nxt_move	*most_efficient_move(t_tools *tools, t_nxt_move *nxt_r, \
 t_nxt_move *nxt_rr);
 void		perform(t_tools *tools, t_nxt_move *nxt);
 void		go_to(t_tools *tools, int moves, int direction, char list);
+
 #endif

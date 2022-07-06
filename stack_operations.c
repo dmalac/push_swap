@@ -6,14 +6,41 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 14:26:52 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/05 16:01:08 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/06 19:03:58 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list_manipulation.h"
 #include "sorting.h"
-#include "actions.h"
+#include "libft/ft_printf.h"
 #include "main.h"
+
+
+void	make_a_move(t_tools *tools, int action_code, char stack)
+{
+	t_list	**lst;
+
+	lst = get_list(&tools->a, &tools->b, stack);
+	if (action_code == PX)
+	{
+		ft_printf("%s%c\n", tools->instruction[action_code], stack);
+		if (stack == 'a')
+			push(&tools->a, &tools->b);
+		else
+			push(&tools->b, &tools->a);
+	}
+	else if (action_code > 0 && action_code % 2 > 0)
+	{
+		ft_printf("%s%c\n", tools->instruction[action_code], stack);
+		tools->action[action_code](lst);
+	}
+	else if (action_code > 0 && action_code % 2 == 0)
+	{
+		ft_printf("%s%c\n", tools->instruction[action_code], stack);
+		tools->action[action_code](&tools->a);
+		tools->action[action_code](&tools->b);
+	}
+}
 
 void	offload(t_tools *tools, int n, char dest)
 {
@@ -45,7 +72,7 @@ void	move_to_the_top(t_tools *tools, char list)
 	int		moves_to_top;
 	t_list	**lst;
 
-	lst = get_list(tools, list);
+	lst = get_list(&tools->a, &tools->b, list);
 	size_lst = lst_size(*lst);
 	if (list == 'a')
 		moves_to_top = find_top_a(*lst);

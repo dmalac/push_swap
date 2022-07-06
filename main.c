@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 16:41:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/05 16:44:27 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/06 14:18:50 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,6 @@
 #include "list_manipulation.h"
 
 void	check_leaks();	// delete
-
-void	call_error(t_tools *tools)
-{
-	erase_tools(&tools);
-	ft_printf("Error\n");
-	exit(0);
-}
 
 void	erase_tools(t_tools **tools)
 {
@@ -46,15 +39,22 @@ void	erase_tools(t_tools **tools)
 	}
 }
 
+void	call_error(t_tools *tools)
+{
+	erase_tools(&tools);
+	ft_printf("Error\n");
+	exit(0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_tools	*tools;
 	int		sorted;
 
 	// atexit(check_leaks);	// delete
-	tools = initialize();
 	if (argc < 2)
 		exit(0);
+	tools = initialize();
 	process_input(argv, &argc, tools);
 	tools->tranches = how_many_tranches(argc - 1);
 	sorted = is_sorted(tools->a);

@@ -6,14 +6,14 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 11:56:55 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/05 16:56:16 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/06 17:49:56 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list_manipulation.h"
 #include "main.h"
 #include "sorting.h"
-#include "actions.h"
+// #include "actions.h"
 #include <stdlib.h>
 
 int	find_top_b(t_list *lst)

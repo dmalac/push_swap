@@ -43,7 +43,7 @@ void	sort_small_stack(t_tools *tools);
 /* sorting_large.c */
 
 /* sorting_small.c */
-t_list	**get_list(t_tools *tools, char list);
+t_list	**get_list(t_list **a, t_list **b, char list);
 void	sort_two(t_tools *tools, char list);
 static void	reverse_three(t_tools *tools, char list);
 void	sort_three(t_tools *tools, char list);

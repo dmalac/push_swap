@@ -6,13 +6,23 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/08 13:21:51 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/05 15:50:41 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/06 14:03:01 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list_manipulation.h"
 #include "main.h"
 #include <stdlib.h>
+
+int	how_many_tranches(int num_args)
+{
+	if (num_args < 60)
+		return (3);
+	else if (num_args >= 60 && num_args < 250)
+		return (7);
+	else
+		return (13);
+}
 
 int	is_in_tranche(int x, int tr_min, int tr_max)
 {
