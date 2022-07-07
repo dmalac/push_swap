@@ -6,12 +6,12 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/08 13:21:51 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/06 14:03:01 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/07 17:46:33 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_manipulation.h"
 #include "main.h"
+#include "prototypes_shared.h"
 #include <stdlib.h>
 
 int	how_many_tranches(int num_args)

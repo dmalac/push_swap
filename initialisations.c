@@ -6,13 +6,12 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/05 15:54:11 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/06 17:49:51 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/07 17:39:14 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_manipulation.h"
 #include "main.h"
-// #include "actions.h"
+#include "prototypes_shared.h"
 #include "libft/libft.h"
 #include <stdlib.h>
 

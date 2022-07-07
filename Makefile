@@ -6,12 +6,12 @@ CC = gcc
 
 CCFLAGS = -Wall -Wextra -Werror -g -fsanitize=address	#delete before submitting
 
-SRC = main.c input_processing.c input_checks.c list_creation.c list_operations.c \
-small_stack.c sorting_small.c sorting_large.c actions.c large_stack.c \
-tranche_limits.c stack_operations.c initialisations.c 
+SRC = main.c initialisations.c input_processing.c input_checks.c list_creation.c \
+list_operations.c small_stack.c sorting_small.c sorting_large.c actions.c large_stack.c \
+tranche_limits.c stack_operations.c 
 
-BONUS_SRC = main_bonus.c initialisations_bonus.c input_processing_bonus.c input_checks.c \
-actions_bonus.c list_creation_bonus.c list_operations.c line_checks_bonus.c line_processing_bonus.c
+BONUS_SRC = main_bonus.c input_processing_bonus.c input_checks.c \
+actions.c list_creation.c list_operations.c line_checks_bonus.c line_processing_bonus.c
 
 OBJDIR = obj
 
@@ -56,28 +56,28 @@ re: fclean
 .PHONY: clean fclean re all
 
 # individual dependencies:		TO BE CHECKED BEFORE SUBMISSION
-$(OBJDIR)/actions.o: actions.c list_manipulation.h sorting.h main.h
+$(OBJDIR)/actions.o: actions.c main.h list_structure.h
 
-$(OBJDIR)/initialisations.o: initialisations.c main.h list_manipulation.h
+$(OBJDIR)/initialisations.o: initialisations.c main.h list_structure.h
 
-$(OBJDIR)/input_checks.o: input_checks.c main.h
+$(OBJDIR)/input_checks.o: input_checks.c main.h list_structure.h
 
-$(OBJDIR)/input_processing.o: input_processing.c main.h
+$(OBJDIR)/input_processing.o: input_processing.c main.h list_structure.h
 
-$(OBJDIR)/list_creation.o: list_creation.c main.h list_manipulation.h libft/libft.h
+$(OBJDIR)/list_creation.o: list_creation.c main.h list_structure.h libft/libft.h
 
-$(OBJDIR)/list_operations.o: list_operations.c main.h list_manipulation.h libft/libft.h
+$(OBJDIR)/list_operations.o: list_operations.c main.h list_structure.h libft/libft.h
 
-$(OBJDIR)/large_stack.o: large_stack.c list_manipulation.h sorting.h main.h
+$(OBJDIR)/large_stack.o: large_stack.c main.h list_structure.h
 
-$(OBJDIR)/main.o: main.c main.h libft/libft.h
+$(OBJDIR)/main.o: main.c main.h list_structure.h libft/libft.h
 
-$(OBJDIR)/small_stack.o: small_stack.c list_manipulation.h sorting.h main.h
+$(OBJDIR)/small_stack.o: small_stack.c main.h list_structure.h
 
-$(OBJDIR)/sorting_large.o: sorting_large.c list_manipulation.h main.h
+$(OBJDIR)/sorting_large.o: sorting_large.c main.h list_structure.h
 
-$(OBJDIR)/sorting_small.o: sorting_small.c list_manipulation.h main.h
+$(OBJDIR)/sorting_small.o: sorting_small.c main.h list_structure.h
 
-$(OBJDIR)/stack_operations.o: stack_operations.c list_manipulation.h sorting.h main.h
+$(OBJDIR)/stack_operations.o: stack_operations.c main.h list_structure.h
 
-$(OBJDIR)/tranche_limits.o: tranche_limits.c list_manipulation.h main.h
+$(OBJDIR)/tranche_limits.o: tranche_limits.c main.h list_structure.h

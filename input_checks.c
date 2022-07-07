@@ -6,12 +6,13 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:37:05 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/05 15:52:53 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/07 17:29:40 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "main.h"
+#include <limits.h>
+#include "list_structure.h"
 #include "libft/libft.h"
 
 int	only_digits(char *str)

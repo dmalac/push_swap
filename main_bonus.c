@@ -6,74 +6,73 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 15:41:12 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/06 19:05:58 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/07 17:38:50 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/ft_printf.h"
 #include "main_bonus.h"
+#include "prototypes_shared.h"
+#include "libft/ft_printf.h"
 #include "libft/get_next_line.h"
 #include "libft/libft.h"
 
-void	erase_tools(t_tools **tools)
+void	erase_tools(t_checker_tools **tools)
 {
 	int	i;
 
 	i = 0;
 	if (*tools)
 	{
-		// if ((*tools)->instruction)
-		// {
-		// 	while (i <= RRR)
-		// 	{
-		// 		if ((*tools)->instruction[i])
-		// 			free((*tools)->instruction[i++]);
-		// 	}
-		// 	free((*tools)->instruction);
-		// }
 		lst_erase(&(*tools)->a);
 		lst_erase(&(*tools)->b);
 		free(*tools);
 	}
 }
 
-void	call_error(t_tools *tools)
+void	call_error(t_checker_tools *tools)
 {
 	erase_tools(&tools);
 	ft_printf("Error\n");
 	exit(0);
 }
 
+t_checker_tools	*initialize(void)
+{
+	t_checker_tools	*tools;
+
+	tools = malloc(sizeof(t_checker_tools));
+	if (!tools)
+		call_error(tools);
+	tools->a = NULL;
+	tools->b = NULL;
+	tools->action[SA] = swap;
+	tools->action[SB] = swap;
+	tools->action[SS] = swap;
+	tools->action[RA] = rotate;
+	tools->action[RB] = rotate;
+	tools->action[RR] = rotate;
+	tools->action[RRA] = rev_rotate;
+	tools->action[RRB] = rev_rotate;
+	tools->action[RRR] = rev_rotate;
+	return (tools);
+}
+
 int	main(int argc, char **argv)
 {
-	t_tools	*tools;
-	// int		sorted;
-	char	*line;
-	int		counter;
+	t_checker_tools	*tools;
+	int				sorted;
+
 
 	if (argc < 2)
 		exit(0);
 	tools = initialize();
 	process_input(argv, &argc, tools);
-	// sorted =  is_sorted(tools->a);
-
-	lst_print(tools->a, 'A');
-
-	line = NULL;
-	counter = 0;
-	while (line || counter++ == 0)
-	{
-		if (line)
-			free(line);
-		line = get_next_line(0);
-		if (line)
-			process_line(line, tools);
-	}
-	free(line);
-	
-	// if (sorted == 1)	// if stack A is sorted
-	// 	ft_printf("OK\n");
-	// else
-	// 	ft_printf("KO\n");
+	read_follow_instructions(tools);
+	sorted =  is_sorted(tools->a);
+	if (sorted == 1 && !tools->b)
+		ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
+	erase_tools(&tools);
 	return (0);
 }

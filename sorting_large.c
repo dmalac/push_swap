@@ -6,13 +6,12 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/05 16:57:40 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/06 17:50:13 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/07 17:46:03 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-#include "sorting.h"
-// #include "actions.h"
+#include "prototypes_shared.h"
 
 void	find_nxt_elem(t_list *lst, int *tr_limits, int tr, t_nxt_move *nxt)
 {
@@ -41,7 +40,7 @@ void	find_nxt_elem(t_list *lst, int *tr_limits, int tr, t_nxt_move *nxt)
 	}
 }
 
-int	larger_of_two(int a, int b)
+static int	larger_of_two(int a, int b)
 {
 	if (a > b)
 		return (a);
@@ -49,7 +48,7 @@ int	larger_of_two(int a, int b)
 		return (b);
 }
 
-void	add_b_stack_moves(t_tools *tools, t_nxt_move *nxt, int size_b)
+static void	add_b_stack_moves(t_tools *tools, t_nxt_move *nxt, int size_b)
 {
 	int	b_steps_r;
 	int	b_steps_rr;

@@ -6,14 +6,12 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 11:56:55 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/06 17:49:56 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/07 17:45:55 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_manipulation.h"
 #include "main.h"
-#include "sorting.h"
-// #include "actions.h"
+#include "prototypes_shared.h"
 #include <stdlib.h>
 
 int	find_top_b(t_list *lst)
@@ -29,7 +27,7 @@ int	find_top_b(t_list *lst)
 	return (count);
 }
 
-void	move_tranche_to_b(t_tools *tools, int *tr_limits, int tr)
+static void	move_tranche_to_b(t_tools *tools, int *tr_limits, int tr)
 {
 	t_nxt_move	nxt_r;
 	t_nxt_move	nxt_rr;

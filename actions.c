@@ -6,16 +6,13 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 15:14:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/06 17:49:40 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/07 17:48:11 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_manipulation.h"
-// #include "actions.h"
-#include "sorting.h"
-#include "main.h"
+#include "list_structure.h"
+#include "prototypes_shared.h"
 #include <stdlib.h>
-#include "libft/ft_printf.h"
 
 void	swap(t_list **lst)
 {

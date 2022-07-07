@@ -6,18 +6,18 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 16:41:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/06 14:18:50 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/07 17:38:10 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "main.h"
+#include "prototypes_shared.h"
 #include "libft/ft_printf.h"
-#include "list_manipulation.h"
 
 void	check_leaks();	// delete
 
-void	erase_tools(t_tools **tools)
+static void	erase_tools(t_tools **tools)
 {
 	int	i;
 

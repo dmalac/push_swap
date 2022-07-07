@@ -6,14 +6,13 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 14:26:52 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/06 19:03:58 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/07 17:46:22 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_manipulation.h"
-#include "sorting.h"
 #include "libft/ft_printf.h"
 #include "main.h"
+#include "prototypes_shared.h"
 
 
 void	make_a_move(t_tools *tools, int action_code, char stack)

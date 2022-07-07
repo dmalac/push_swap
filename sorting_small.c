@@ -6,13 +6,12 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 15:02:19 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/06 19:03:58 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/07 17:47:55 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_manipulation.h"
-#include "sorting.h"
 #include "main.h"
+#include "prototypes_shared.h"
 
 void	sort_two(t_tools *tools, char list)
 {

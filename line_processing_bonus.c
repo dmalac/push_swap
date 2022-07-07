@@ -6,42 +6,31 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/06 15:57:25 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/06 18:58:23 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/07 17:52:13 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main_bonus.h"
-#include "libft/ft_printf.h"	// delete
+#include "prototypes_shared.h"
+#include "libft/libft.h"
+#include <stdlib.h>
 
-static void	perform_action(t_tools *tools, int action_code, char stack)
+static void	perform_action(t_checker_tools *tools, int action_code, char stack)
 {
 	if (action_code == PA)
-	{
-		ft_printf("I push from B to A\n");
 		push(&tools->a, &tools->b);
-	}
 	else if (action_code == PB)
-	{
-		ft_printf("I push from A to B\n");
 		push(&tools->b, &tools->a);
-	}
 	else 
 	{
-		ft_printf("stack is %c\n", stack);
 		if (stack != 'b')
-		{
-			ft_printf("I swap or rotate A\n");
 			tools->action[action_code](&tools->a);
-		}
 		if (stack != 'a')
-		{
-			ft_printf("I swap or rotate B\n");
 			tools->action[action_code](&tools->b);
-		}
 	}
 }
 
-void	process_line(char *line, t_tools *tools)
+static void	process_line(char *line, t_checker_tools *tools)
 {
 	char	stack;
 	int		len;
@@ -58,4 +47,22 @@ void	process_line(char *line, t_tools *tools)
 		call_error(tools);
 	else
 		perform_action(tools, action_code, stack);
+}
+
+void	read_follow_instructions(t_checker_tools *tools)
+{
+	char	*line;
+	int		counter;
+	
+	line = NULL;
+	counter = 0;
+	while (line || counter++ == 0)
+	{
+		line = get_next_line(0);
+		if (line)
+		{
+			process_line(line, tools);
+			free(line);
+		}
+	}
 }

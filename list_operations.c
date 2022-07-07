@@ -6,14 +6,14 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:21:23 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/06 19:04:30 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/07 13:37:29 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_manipulation.h"
 #include "libft/libft.h"
-#include "main.h"
+#include "list_structure.h"
 #include <stdlib.h>
+#include <limits.h>
 
 void	lst_erase(t_list **lst)
 {

@@ -6,16 +6,16 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:21:23 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/06 18:20:41 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/07 17:43:50 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_manipulation.h"
 #include "libft/libft.h"
-#include "main.h"
+#include "list_structure.h"
+#include "prototypes_shared.h"
 #include <stdlib.h>
 
-t_list	*lst_new(int num)
+static t_list	*lst_new(int num)
 {
 	t_list	*new;
 
@@ -30,7 +30,7 @@ t_list	*lst_new(int num)
 	return (new);
 }
 
-void	lst_add_back(t_list **lst, t_list *new)
+static void	lst_add_back(t_list **lst, t_list *new)
 {
 	t_list	*top;
 
@@ -77,7 +77,7 @@ t_list	*lst_add_front(t_list **lst, t_list *new)
 	return (new);
 }
 
-void	create_lnkd_lst(char **input, int n, t_tools *tools)
+int	create_lnkd_lst(char **input, int n, t_list **list)
 {
 	int		i;
 	int		num;
@@ -88,12 +88,13 @@ void	create_lnkd_lst(char **input, int n, t_tools *tools)
 	while (i < n)
 	{
 		num = ft_atoi(input[i]);
-		unique = is_unique(tools->a, num);
+		unique = is_unique(*list, num);
 		if (unique == 1)
 			new = lst_new(num);
 		if (unique == 0 || !new)
-			call_error(tools);
-		lst_add_back(&tools->a, new);
+			return (-1);
+		lst_add_back(list, new);
 		i++;
 	}
+	return (1);
 }
