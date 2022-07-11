@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 15:14:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/07 17:48:11 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/11 14:52:49 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	swap(t_list **lst)
 	int		size;
 
 	size = lst_size(*lst);
-	first = *lst;
-	second = first->nxt;
 	if (size > 1)
 	{
+		first = *lst;
+		second = first->nxt;
 		if (second->is_last == 1)
 		{
 			second->is_last = 0;
@@ -70,14 +70,20 @@ void	push(t_list **to, t_list **from)
 
 void	rotate(t_list **lst)
 {
-	(*lst)->prev->is_last = 0;
-	(*lst)->is_last = 1;
-	*lst = (*lst)->nxt;
+	if (*lst)
+	{	
+		(*lst)->prev->is_last = 0;
+		(*lst)->is_last = 1;
+		*lst = (*lst)->nxt;
+	}
 }
 
 void	rev_rotate(t_list **lst)
 {
-	(*lst)->prev->is_last = 0;
-	(*lst)->prev->prev->is_last = 1;
-	*lst = (*lst)->prev;
+	if (*lst)
+	{
+		(*lst)->prev->is_last = 0;
+		(*lst)->prev->prev->is_last = 1;
+		*lst = (*lst)->prev;
+	}
 }

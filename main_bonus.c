@@ -6,11 +6,12 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 15:41:12 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/07 17:38:50 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/11 15:02:09 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main_bonus.h"
+#include <unistd.h>
 #include "prototypes_shared.h"
 #include "libft/ft_printf.h"
 #include "libft/get_next_line.h"
@@ -32,7 +33,7 @@ void	erase_tools(t_checker_tools **tools)
 void	call_error(t_checker_tools *tools)
 {
 	erase_tools(&tools);
-	ft_printf("Error\n");
+	write(2, "Error\n", 6);
 	exit(0);
 }
 
@@ -57,12 +58,18 @@ t_checker_tools	*initialize(void)
 	return (tools);
 }
 
+void	check_leaks()		// DELETE
+{
+	system("leaks checker");
+}
+
 int	main(int argc, char **argv)
 {
 	t_checker_tools	*tools;
 	int				sorted;
 
 
+	atexit(check_leaks);	// delete
 	if (argc < 2)
 		exit(0);
 	tools = initialize();

@@ -6,16 +6,20 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 16:41:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/07 17:38:10 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/11 15:01:53 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "main.h"
+#include <unistd.h>
 #include "prototypes_shared.h"
 #include "libft/ft_printf.h"
 
-void	check_leaks();	// delete
+void	check_leaks()		// DELETE
+{
+	system("leaks push_swap");
+}
 
 static void	erase_tools(t_tools **tools)
 {
@@ -42,7 +46,7 @@ static void	erase_tools(t_tools **tools)
 void	call_error(t_tools *tools)
 {
 	erase_tools(&tools);
-	ft_printf("Error\n");
+	write(2, "Error\n", 6);
 	exit(0);
 }
 
@@ -51,7 +55,7 @@ int	main(int argc, char **argv)
 	t_tools	*tools;
 	int		sorted;
 
-	// atexit(check_leaks);	// delete
+	atexit(check_leaks);	// delete
 	if (argc < 2)
 		exit(0);
 	tools = initialize();
