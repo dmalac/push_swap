@@ -6,13 +6,14 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 15:14:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/11 14:52:49 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/11 17:56:11 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list_structure.h"
 #include "prototypes_shared.h"
 #include <stdlib.h>
+#include "libft/ft_printf.h"	// delete
 
 void	swap(t_list **lst)
 {
@@ -50,12 +51,14 @@ void	push(t_list **to, t_list **from)
 	t_list	*new_top;
 
 	size = lst_size(*from);
+	ft_printf("size is %d\n", size);
 	if (size > 0)
 	{
 		to_move = *from;
 		new_top = (*from)->nxt;
 		new_top->prev = (*from)->prev;
 		new_top->prev->nxt = new_top;
+		ft_printf("about to call lst_add_front\n");
 		*to = lst_add_front(to, to_move);
 		if (size == 1)
 			*from = (NULL);

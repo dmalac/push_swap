@@ -1,10 +1,12 @@
 
 to-do
 
-- reorganise h files
+- SOLVE SEGFAULT in checker (?) WHEN PUSHING TO AN EMPTY/NULL B (when compiled without fsanitize)
+
+- check whether make bonus relinks
 
 - include a check whether list is sorted but rotated (like 2 16 0 4 8 after pushing 2 to B)
 
 - refactor the code
 
-- write bonus
+- Test bonus

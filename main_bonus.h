@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/28 15:36:57 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/07 17:49:03 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/11 17:48:25 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ int		is_push(char *line);
 int		is_swap(char *line);
 int		is_rotate(char *line);
 /* line_processing_bonus.c */
-void	read_follow_instructions(t_checker_tools *tools);
+void	read_follow_instructions(t_checker_tools **tools);
 
 #endif

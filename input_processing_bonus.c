@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:37:05 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/07 17:43:08 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/11 17:38:33 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,12 @@ void	process_input(char **input, int *num_args, t_checker_tools *tools)
 	int	result;
 
 	allocated = 0;
-	if (*num_args == 2)
+	i = 0;
+	if (*num_args == 2 && only_digits(input[1]) == 0)
 	{
 		input = ft_split(input[1], ' ');
+		if (!input || !input[i])
+			call_error(tools);
 		allocated = 1;
 		*num_args = count_input(input);
 	}
@@ -61,7 +64,6 @@ void	process_input(char **input, int *num_args, t_checker_tools *tools)
 		call_error(tools);
 	if (allocated == 1)
 	{
-		i = 0;
 		while (input[i])
 			free(input[i++]);
 		free(input);
