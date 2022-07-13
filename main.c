@@ -55,7 +55,7 @@ int	main(int argc, char **argv)
 	t_tools	*tools;
 	int		sorted;
 
-	atexit(check_leaks);	// delete
+	// atexit(check_leaks);	// delete
 	if (argc < 2)
 		exit(0);
 	tools = initialize();

@@ -38,12 +38,10 @@ void	lst_print(t_list *top, char list)
 {
 	t_list	*current;
 
-	// ft_putchar_fd('\t', 2);
-	ft_putstr_fd("Stack ", 2);
+	ft_putchar_fd('\t', 2);
 	ft_putchar_fd(list, 2);
 	ft_putchar_fd(':', 2);
-	// ft_putchar_fd(' ', 2);
-	ft_putchar_fd('\n', 2);
+	ft_putchar_fd(' ', 2);
 	if (top)
 	{
 		current = top;
@@ -51,13 +49,9 @@ void	lst_print(t_list *top, char list)
 		{
 			ft_putnbr_fd(current->x, 2);
 			ft_putchar_fd(' ', 2);
-			ft_printf("\tnext value: %d\tprevious value: %d\taddress of next node: %p, \taddress of next->next node: %p\n", \
-			current->nxt->x, current->prev->x, (void *)current->nxt, (void *)current->nxt->nxt);
 			current = current->nxt;
 		}
 		ft_putnbr_fd(current->x, 2);
-		ft_printf("\tnext value: %d\tprevious value: %d\taddress of next node: %p, \taddress of next->next node: %p\n", \
-		current->nxt->x, current->prev->x, (void *)current->nxt, (void *)current->nxt->nxt);
 	}
 	else
 		ft_putstr_fd("<empty>", 2);
@@ -69,16 +63,12 @@ int	lst_size(t_list *lst)
 	int		size;
 	t_list	*current;
 
-	ft_printf("lst_size called\n");
-	// lst_print(lst, 'X');
 	size = 1;
 	if (lst == NULL)
 		return (0);
 	current = lst;
 	while (current->is_last == 0)
 	{
-		ft_printf("value: %d\tis_last: %d\tnxt value: %d\tprev value: %d\tnxt address: %p, \tnxt nxt address: %p\n", \
-		current->x, current->is_last, current->nxt->x, current->prev->x, (void *)current->nxt, (void *)current->nxt->nxt);
 		size++;
 		current = current->nxt;
 	}
@@ -88,7 +78,6 @@ int	lst_size(t_list *lst)
 		size++;
 		current = current->prev;
 	}
-	// ft_printf("about to return size=%d\n", size);
 	return (size);
 }
 

@@ -30,9 +30,9 @@ int	is_swap(char *line)
 	{
 		if (line[0] == 's' && line[1] == 'a')
 			return (SA);
-		else if (line[0] == 's' && line[1] == 'b') // throws segfault
+		else if (line[0] == 's' && line[1] == 'b')
 			return (SB);
-		else if (line[0] == 's' && line[1] == 's') // throws segfault
+		else if (line[0] == 's' && line[1] == 's')
 			return (SS);
 	}
 	return (-1);

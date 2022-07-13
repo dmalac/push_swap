@@ -17,15 +17,10 @@
 
 static void	perform_action(t_checker_tools *tools, int action_code, char stack)
 {
-	// ft_printf("perform_action called\nList check:");	// PB and SA cause segv
-	// lst_print(tools->a, 'A');
 	if (action_code == PA)
 		push(&tools->a, &tools->b);
 	else if (action_code == PB)
-	{
-		// ft_printf("about to call push PB\n");
 		push(&tools->b, &tools->a);
-	}
 	else 
 	{
 		if (stack != 'b')
@@ -50,13 +45,10 @@ static void	process_line(char *line, t_checker_tools **tools)
 		action_code = is_rotate(line);
 	if (action_code < 0)
 		call_error(*tools);
-	// ft_printf("[process_line] line is %s, stack is %c, action code is %d\n",line, stack, action_code);
 	perform_action(*tools, action_code, stack);
-	// lst_print(tools->a, 'A');
-	// lst_print(tools->b, 'B'); // if b is NULL and a has more than 5 items, segfault
 }
 
-int	read_follow_instructions(t_checker_tools **tools)
+void	read_follow_instructions(t_checker_tools **tools)
 {
 	int		counter;
 	char	*line;
@@ -65,16 +57,11 @@ int	read_follow_instructions(t_checker_tools **tools)
 	counter = 0;
 	while (line || counter++ == 0)
 	{
-		ft_printf("Before GNL:\n");
-		lst_print((*tools)->a, 'A');
 		line = get_next_line(0);
-		ft_printf("After GNL:\n");
-		lst_print((*tools)->a, 'A');
 		if (line)
 		{
 			process_line(line, tools);
 			free(line);
 		}
 	}
-	return (counter);
 }

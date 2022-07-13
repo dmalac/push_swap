@@ -19,9 +19,6 @@
 
 void	erase_tools(t_checker_tools **tools)
 {
-	int	i;
-
-	i = 0;
 	if (*tools)
 	{
 		lst_erase(&(*tools)->a);
@@ -67,23 +64,18 @@ int	main(int argc, char **argv)
 {
 	t_checker_tools	*tools;
 	int				sorted;
-	int				counter;
 
 	// atexit(check_leaks);	// delete
 	if (argc < 2)
 		exit(0);
 	tools = initialize();
 	process_input(argv, &argc, tools);
-	// ft_printf("size of tools* is %d, tools is %d, t_list is %d\n", sizeof(tools), sizeof(*tools), sizeof(*tools->a));
-	// lst_print(tools->a, 'A');
-	// lst_print(tools->b, 'B');
-	counter = read_follow_instructions(&tools);
+	read_follow_instructions(&tools);
 	sorted =  is_sorted(tools->a);
 	if (sorted == 1 && !tools->b)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
-	ft_printf("There were %d moves.\n", counter);
 	erase_tools(&tools);
 	return (0);
 }

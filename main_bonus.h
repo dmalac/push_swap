@@ -43,6 +43,6 @@ int		is_push(char *line);
 int		is_swap(char *line);
 int		is_rotate(char *line);
 /* line_processing_bonus.c */
-int	read_follow_instructions(t_checker_tools **tools);
+void	read_follow_instructions(t_checker_tools **tools);
 
 #endif
