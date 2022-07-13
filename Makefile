@@ -4,7 +4,7 @@ BONUS_NAME = checker
 
 CC = gcc
 
-CCFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address	#delete before submitting
+CCFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address	#delete before submitting
 
 SRC = main.c initialisations.c input_processing.c input_checks.c list_creation.c \
 list_operations.c small_stack.c sorting_small.c sorting_large.c actions.c large_stack.c \

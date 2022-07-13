@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/06 15:57:25 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/11 18:00:58 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/13 17:37:14 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@
 
 static void	perform_action(t_checker_tools *tools, int action_code, char stack)
 {
-	ft_printf("perform_action called\n");	// PB and SA cause segv
+	// ft_printf("perform_action called\nList check:");	// PB and SA cause segv
+	// lst_print(tools->a, 'A');
 	if (action_code == PA)
 		push(&tools->a, &tools->b);
 	else if (action_code == PB)
 	{
-		ft_printf("about to call push PB\n");
+		// ft_printf("about to call push PB\n");
 		push(&tools->b, &tools->a);
 	}
 	else 
@@ -55,24 +56,25 @@ static void	process_line(char *line, t_checker_tools **tools)
 	// lst_print(tools->b, 'B'); // if b is NULL and a has more than 5 items, segfault
 }
 
-void	read_follow_instructions(t_checker_tools **tools)
+int	read_follow_instructions(t_checker_tools **tools)
 {
-	char	*line;
 	int		counter;
+	char	*line;
 	
 	line = NULL;
 	counter = 0;
 	while (line || counter++ == 0)
 	{
-		// lst_print(tools->a, 'A');
-		// lst_print(tools->b, 'B');
+		ft_printf("Before GNL:\n");
+		lst_print((*tools)->a, 'A');
 		line = get_next_line(0);
-		// if (!tools->b)
-		// 	ft_printf("there is no tools->b\n");
+		ft_printf("After GNL:\n");
+		lst_print((*tools)->a, 'A');
 		if (line)
 		{
 			process_line(line, tools);
 			free(line);
 		}
 	}
+	return (counter);
 }

@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/28 15:36:57 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/11 17:48:25 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/12 17:48:05 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ typedef struct s_checker_tools
 /* main_bonus.c */
 void	call_error(t_checker_tools *tools);
 /* input_processing_bonus.c */
-void	process_input(char **input, int *num_args, t_checker_tools *tools);
+void	process_input(char **argv, int *num_args, t_checker_tools *tools);
 /* line_checks_bonus.c */
 int		is_push(char *line);
 int		is_swap(char *line);
 int		is_rotate(char *line);
 /* line_processing_bonus.c */
-void	read_follow_instructions(t_checker_tools **tools);
+int	read_follow_instructions(t_checker_tools **tools);
 
 #endif

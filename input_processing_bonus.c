@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:37:05 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/11 17:38:33 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/12 17:49:20 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,26 @@ static int	count_input(char **array)
 	return (count + 1);
 }
 
-void	process_input(char **input, int *num_args, t_checker_tools *tools)
+void	process_input(char **argv, int *num_args, t_checker_tools *tools)
 {
-	int	allocated;
-	int	i;
-	int	result;
+	int		allocated;
+	int		i;
+	int		result;
+	char	**input;
 
 	allocated = 0;
 	i = 0;
-	if (*num_args == 2 && only_digits(input[1]) == 0)
+	input = NULL;
+	if (*num_args == 2 && only_digits(argv[1]) == 0)
 	{
-		input = ft_split(input[1], ' ');
+		input = ft_split(argv[1], ' ');
 		if (!input || !input[i])
 			call_error(tools);
 		allocated = 1;
 		*num_args = count_input(input);
 	}
 	else
-		input = input + 1;
+		input = argv + 1;
 	check_input(input, *num_args - 1, tools);
 	result = create_lnkd_lst(input, *num_args - 1, &tools->a);
 	if (result < 0)

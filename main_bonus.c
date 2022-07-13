@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 15:41:12 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/11 17:46:39 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/13 17:31:08 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,23 @@ int	main(int argc, char **argv)
 {
 	t_checker_tools	*tools;
 	int				sorted;
+	int				counter;
 
 	// atexit(check_leaks);	// delete
 	if (argc < 2)
 		exit(0);
 	tools = initialize();
 	process_input(argv, &argc, tools);
-	ft_printf("input processed \n");
-	lst_print(tools->a, 'A');
-	lst_print(tools->b, 'B');
-	read_follow_instructions(&tools);
+	// ft_printf("size of tools* is %d, tools is %d, t_list is %d\n", sizeof(tools), sizeof(*tools), sizeof(*tools->a));
+	// lst_print(tools->a, 'A');
+	// lst_print(tools->b, 'B');
+	counter = read_follow_instructions(&tools);
 	sorted =  is_sorted(tools->a);
 	if (sorted == 1 && !tools->b)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
+	ft_printf("There were %d moves.\n", counter);
 	erase_tools(&tools);
 	return (0);
 }
