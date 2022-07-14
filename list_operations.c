@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:21:23 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/13 17:32:16 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/14 16:42:52 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ void	lst_print(t_list *top, char list)
 	ft_putchar_fd('\n', 2);
 }
 
-int	lst_size(t_list *lst)
+size_t	lst_size(t_list *lst)
 {
-	int		size;
+	size_t	size;
 	t_list	*current;
 
-	size = 1;
 	if (lst == NULL)
 		return (0);
+	size = 1;
 	current = lst;
 	while (current->is_last == 0)
 	{
@@ -123,4 +123,3 @@ t_list	**get_list(t_list **a, t_list **b, char list)
 		lst = b;
 	return (lst);
 }
-

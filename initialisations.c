@@ -6,18 +6,17 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/05 15:54:11 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/07 17:39:14 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/14 16:00:29 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 #include "prototypes_shared.h"
 #include "libft/libft.h"
-#include <stdlib.h>
 
 static int	check_instructions(char **instruction)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i <= RRR)

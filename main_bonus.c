@@ -6,14 +6,13 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 15:41:12 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/13 17:31:08 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/14 16:41:14 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main_bonus.h"
 #include <unistd.h>
 #include "prototypes_shared.h"
-#include "libft/ft_printf.h"
 #include "libft/get_next_line.h"
 #include "libft/libft.h"
 
@@ -71,7 +70,7 @@ int	main(int argc, char **argv)
 	tools = initialize();
 	process_input(argv, &argc, tools);
 	read_follow_instructions(&tools);
-	sorted =  is_sorted(tools->a);
+	sorted = is_sorted(tools->a);
 	if (sorted == 1 && !tools->b)
 		ft_printf("OK\n");
 	else

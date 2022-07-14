@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/08 13:21:51 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/07 17:46:33 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/14 16:29:51 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,13 @@ static int	*clone_list(t_list *lst)
 	return (list);
 }
 
-int	*get_limits(t_list *lst, int tranches)
+int	*get_limits(t_list *lst, size_t tranches)
 {
-	int	*tr_limits;
-	int	*list;
-	int	i;
-	int	n;
-	int	tr_size;
+	int		*tr_limits;
+	int		*list;
+	size_t	i;
+	size_t	n;
+	size_t	tr_size;
 
 	n = lst_size(lst);
 	i = 0;
@@ -93,9 +93,12 @@ int	*get_limits(t_list *lst, int tranches)
 	if (!tr_limits || !list)
 		return (NULL);
 	tr_size = n / tranches;
-	i = -1;
-	while (++i < tranches)
+	i = 0;
+	while (i < tranches)
+	{
 		tr_limits[i] = list[i * tr_size];
+		i++;
+	}
 	tr_limits[i] = list[n - 1];
 	free(list);
 	return (tr_limits);

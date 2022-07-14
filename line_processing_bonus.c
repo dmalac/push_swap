@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/06 15:57:25 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/13 17:37:14 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/14 16:38:32 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	perform_action(t_checker_tools *tools, int action_code, char stack)
 		push(&tools->a, &tools->b);
 	else if (action_code == PB)
 		push(&tools->b, &tools->a);
-	else 
+	else
 	{
 		if (stack != 'b')
 			tools->action[action_code](&tools->a);
@@ -33,9 +33,9 @@ static void	perform_action(t_checker_tools *tools, int action_code, char stack)
 static void	process_line(char *line, t_checker_tools **tools)
 {
 	char	stack;
-	int		len;
+	size_t	len;
 	int		action_code;
-	
+
 	len = ft_strlen(line);
 	stack = line[len - 2];
 	action_code = is_push(line);
@@ -50,9 +50,9 @@ static void	process_line(char *line, t_checker_tools **tools)
 
 void	read_follow_instructions(t_checker_tools **tools)
 {
-	int		counter;
+	size_t	counter;
 	char	*line;
-	
+
 	line = NULL;
 	counter = 0;
 	while (line || counter++ == 0)

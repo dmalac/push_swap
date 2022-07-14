@@ -6,14 +6,13 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/20 11:36:41 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/04/11 16:53:03 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/14 16:16:36 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft.h"
 # include <stdarg.h>
 
 /*--- ft_printf.c ---*/

@@ -13,7 +13,7 @@ OBJ = $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 
 CC = gcc
 
-CCFLAGS = -Wall -Wextra -Werror
+CCFLAGS = -Wall -Wextra -Werror -g -fsanitize=address	#delete
 
 
 all: $(NAME)
@@ -41,14 +41,20 @@ re: fclean all
 
 .PHONY: clean fclean re all
 
-# individual dependencies:
 
+# Individual dependencies:
 $(OBJDIR)/ft_printf_converters.o: ft_printf_converters.c ft_printf.h libft.h
-
-$(OBJDIR)/ft_printf.o: ft_printf.c ft_printf.h libft.h
 
 $(OBJDIR)/ft_printf_flags.o: ft_printf_flags.c ft_printf.h libft.h
 
 $(OBJDIR)/ft_printf_printers.o: ft_printf_printers.c ft_printf.h libft.h
 
+$(OBJDIR)/ft_printf.o: ft_printf.c ft_printf.h libft.h
+
 $(OBJDIR)/ft_strdup.o: ft_strdup.c libft.h
+
+$(OBJDIR)/ft_strjoin.o: ft_strjoin.c libft.h
+
+$(OBJDIR)/ft_substr.o: ft_substr.c libft.h
+
+$(OBJDIR)/get_next_line.o: get_next_line.c get_next_line.h

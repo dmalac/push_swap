@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 16:41:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/11 15:01:53 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/14 16:11:00 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "main.h"
 #include <unistd.h>
 #include "prototypes_shared.h"
-#include "libft/ft_printf.h"
 
 void	check_leaks()		// DELETE
 {
@@ -23,7 +22,7 @@ void	check_leaks()		// DELETE
 
 static void	erase_tools(t_tools **tools)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	if (*tools)

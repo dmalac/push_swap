@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 11:56:55 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/07 17:45:55 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/14 15:42:44 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "prototypes_shared.h"
 #include <stdlib.h>
 
-int	find_top_b(t_list *lst)
+size_t	find_top_b(t_list *lst)
 {
-	int	count;
+	size_t	count;
 
 	count = 0;
 	while (lst && lst->prev->x > lst->x)
@@ -52,8 +52,8 @@ static void	move_tranche_to_b(t_tools *tools, int *tr_limits, int tr)
 
 void	sort_large_stack(t_tools *tools)
 {
-	int	*tr_limits;
-	int	i;
+	int		*tr_limits;
+	size_t	i;
 
 	i = 0;
 	tr_limits = get_limits(tools->a, tools->tranches);

@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf_support.c                                :+:    :+:            */
+/*   ft_printf_converters.c                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/20 12:03:40 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/04/11 16:50:03 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/14 16:17:24 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 char	*ultohex(unsigned long a, char c)
 {

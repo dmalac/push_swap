@@ -6,12 +6,11 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:21:23 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/07 17:43:50 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/14 16:07:29 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include "list_structure.h"
 #include "prototypes_shared.h"
 #include <stdlib.h>
 
@@ -79,13 +78,13 @@ t_list	*lst_add_front(t_list **lst, t_list *new)
 
 int	create_lnkd_lst(char **input, int n, t_list **list)
 {
-	int		i;
+	size_t	i;
 	int		num;
 	int		unique;
 	t_list	*new;
 
 	i = 0;
-	while (i < n)
+	while (i < (size_t)n)
 	{
 		num = ft_atoi(input[i]);
 		unique = is_unique(*list, num);

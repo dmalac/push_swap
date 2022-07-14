@@ -6,14 +6,13 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 14:26:52 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/07 17:46:22 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/14 17:44:49 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/ft_printf.h"
 #include "main.h"
 #include "prototypes_shared.h"
-
 
 void	make_a_move(t_tools *tools, int action_code, char stack)
 {
@@ -59,16 +58,19 @@ void	offload(t_tools *tools, int n, char dest)
 	}
 }
 
-void	go_to(t_tools *tools, int moves, int direction, char list)
+void	go_to(t_tools *tools, size_t moves, int direction, char list)
 {
-	while (moves-- > 0)
+	size_t	i;
+
+	i = 0;
+	while (i++ < moves)
 		make_a_move(tools, direction, list);
 }
 
 void	move_to_the_top(t_tools *tools, char list)
 {
-	int		size_lst;
-	int		moves_to_top;
+	size_t	size_lst;
+	size_t	moves_to_top;
 	t_list	**lst;
 
 	lst = get_list(&tools->a, &tools->b, list);
@@ -83,9 +85,9 @@ void	move_to_the_top(t_tools *tools, char list)
 		go_to(tools, size_lst - moves_to_top, RRX, list);
 }
 
-int	belongs_to(t_list *lst, int x, char list)
+size_t	belongs_to(t_list *lst, int x, char list)
 {
-	int		steps;
+	size_t	steps;
 	int		max;
 	int		min;
 

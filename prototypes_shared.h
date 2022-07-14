@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/07 17:29:58 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/07 17:37:22 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/14 15:50:22 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PROTOTYPES_SHARED_H
 
 # include "list_structure.h"
+# include <stdlib.h>
 
 /* input_checks.c */
 int		is_sorted(t_list *lst);
@@ -24,7 +25,7 @@ int		is_unique(t_list *lst, int num);
 int		create_lnkd_lst(char **input, int n, t_list **list);
 t_list	*lst_add_front(t_list **lst, t_list *new);
 /* list_operations.c */
-int		lst_size(t_list *lst);
+size_t	lst_size(t_list *lst);
 void	lst_erase(t_list **lst);
 void	lst_print(t_list *top, char list);	// delete
 /* actions.c */

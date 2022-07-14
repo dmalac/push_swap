@@ -6,19 +6,17 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 15:14:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/12 17:20:10 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/14 16:00:42 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_structure.h"
 #include "prototypes_shared.h"
-#include <stdlib.h>
 
 void	swap(t_list **lst)
 {
 	t_list	*first;
 	t_list	*second;
-	int		size;
+	size_t	size;
 
 	size = lst_size(*lst);
 	if (size > 1)
@@ -45,7 +43,7 @@ void	swap(t_list **lst)
 
 void	push(t_list **to, t_list **from)
 {
-	int		size;
+	size_t	size;
 	t_list	*to_move;
 	t_list	*new_top;
 

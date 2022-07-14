@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 14:26:52 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/07 17:44:50 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/14 15:44:17 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "prototypes_shared.h"
 #include <stdlib.h>
 
-int	find_top_a(t_list *lst)
+size_t	find_top_a(t_list *lst)
 {
-	int	count;
+	size_t	count;
 
 	count = 0;
 	while (lst->prev->x < lst->x)
@@ -29,9 +29,9 @@ int	find_top_a(t_list *lst)
 
 static void	merge_b_into_a(t_tools *tools)
 {
-	int	size_a;
-	int	size_b;
-	int	right_place;
+	size_t	size_a;
+	size_t	size_b;
+	size_t	right_place;
 
 	size_b = lst_size(tools->b);
 	while (size_b > 0)

@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:37:05 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/12 17:49:20 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/14 16:44:21 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 
 static void	check_input(char **input, int n, t_checker_tools *tools)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (i < n)
+	while (i < (size_t)n)
 	{
 		if (only_digits(input[i]) == 0)
 			call_error(tools);
@@ -40,10 +40,23 @@ static int	count_input(char **array)
 	return (count + 1);
 }
 
+static void	free_array(char **array)
+{
+	size_t	i;
+
+	i = 0;
+	if (array)
+	{
+		while (array[i])
+			free(array[i++]);
+		free(array);
+	}
+}
+
 void	process_input(char **argv, int *num_args, t_checker_tools *tools)
 {
 	int		allocated;
-	int		i;
+	size_t	i;
 	int		result;
 	char	**input;
 
@@ -65,9 +78,5 @@ void	process_input(char **argv, int *num_args, t_checker_tools *tools)
 	if (result < 0)
 		call_error(tools);
 	if (allocated == 1)
-	{
-		while (input[i])
-			free(input[i++]);
-		free(input);
-	}
+		free_array(input);
 }
