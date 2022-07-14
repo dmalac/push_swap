@@ -4,7 +4,7 @@ BONUS_NAME = checker
 
 CC = gcc
 
-CCFLAGS = -Wall -Wextra -Werror -g -fsanitize=address	#delete before submitting
+CCFLAGS = -Wall -Wextra -Werror
 
 SRC = main.c initialisations.c input_processing.c input_checks.c list_creation.c \
 list_operations.c small_stack.c sorting_small.c sorting_large.c actions.c \
@@ -25,35 +25,35 @@ LIBFT = libft/libft.a
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(CCFLAGS) $^ -o $(NAME)
+	@$(CC) $(CCFLAGS) $^ -o $(NAME)
 
 $(LIBFT):
-	make -C libft
+	@make -C libft
 
 $(OBJ): | $(OBJDIR)
 
 $(OBJDIR):
-	mkdir $(OBJDIR)
+	@mkdir $(OBJDIR)
 
 $(OBJDIR)/%.o: %.c
-	$(CC) $(CCFLAGS) -c $< -o $@
+	@$(CC) $(CCFLAGS) -c $< -o $@
 
 bonus: $(BONUS_NAME)
 
 $(BONUS_NAME): $(LIBFT) $(BONUS_OBJ)
-	$(CC) $(CCFLAGS) $^ -o $(BONUS_NAME)
+	@$(CC) $(CCFLAGS) $^ -o $(BONUS_NAME)
 
 $(BONUS_OBJ): | $(OBJDIR)
 
 clean:
-	rm -Rf $(OBJDIR)
-	make clean -C libft
+	@rm -Rf $(OBJDIR)
+	@make clean -C libft
 
 fclean: clean
-	rm -f $(NAME) $(LIBFT) $(BONUS_NAME)
+	@rm -f $(NAME) $(LIBFT) $(BONUS_NAME)
 
 re: fclean
-	make
+	@make
 
 .PHONY: clean fclean re all
 

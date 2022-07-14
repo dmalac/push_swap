@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 16:41:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/14 16:11:00 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/14 19:35:37 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 #include "main.h"
 #include <unistd.h>
 #include "prototypes_shared.h"
-
-void	check_leaks()		// DELETE
-{
-	system("leaks push_swap");
-}
 
 static void	erase_tools(t_tools **tools)
 {
@@ -54,7 +49,6 @@ int	main(int argc, char **argv)
 	t_tools	*tools;
 	int		sorted;
 
-	// atexit(check_leaks);	// delete
 	if (argc < 2)
 		exit(0);
 	tools = initialize();

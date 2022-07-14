@@ -13,7 +13,7 @@ OBJ = $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 
 CC = gcc
 
-CCFLAGS = -Wall -Wextra -Werror -g -fsanitize=address	#delete
+CCFLAGS = -Wall -Wextra -Werror
 
 
 all: $(NAME)
@@ -28,8 +28,6 @@ $(OBJDIR):
 
 $(OBJDIR)/%.o: %.c
 	@$(CC) $(CCFLAGS) -c $< -o $@
-
-$(OBJDIR)/ft_substr.o: ft_substr.c libft.h
 
 clean:
 	@rm -Rf $(OBJDIR)

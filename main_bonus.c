@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 15:41:12 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/14 16:41:14 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/14 19:35:49 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,11 @@ t_checker_tools	*initialize(void)
 	return (tools);
 }
 
-void	check_leaks()		// DELETE
-{
-	system("leaks checker");
-}
-
 int	main(int argc, char **argv)
 {
 	t_checker_tools	*tools;
 	int				sorted;
 
-	// atexit(check_leaks);	// delete
 	if (argc < 2)
 		exit(0);
 	tools = initialize();
