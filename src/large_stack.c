@@ -6,12 +6,12 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 11:56:55 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/14 15:42:44 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/19 11:39:14 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
-#include "prototypes_shared.h"
+#include "../include/main.h"
+#include "../include/prototypes_shared.h"
 #include <stdlib.h>
 
 size_t	find_top_b(t_list *lst)

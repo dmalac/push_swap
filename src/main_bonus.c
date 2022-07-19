@@ -6,14 +6,14 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 15:41:12 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/19 11:15:04 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/19 11:41:35 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main_bonus.h"
+#include "../include/main_bonus.h"
 #include <unistd.h>
-#include "prototypes_shared.h"
-#include "libft/libft.h"
+#include "../include/prototypes_shared.h"
+#include "../libft/libft.h"
 
 void	erase_tools(t_checker_tools **tools)
 {

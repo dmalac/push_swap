@@ -6,11 +6,11 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/06 16:53:50 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/11 14:49:14 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/19 11:39:17 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main_bonus.h"
+#include "../include/main_bonus.h"
 
 int	is_push(char *line)
 {

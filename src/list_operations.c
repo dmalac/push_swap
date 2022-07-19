@@ -6,11 +6,11 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:21:23 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/19 10:36:32 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/19 11:39:29 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_structure.h"
+#include "../include/list_structure.h"
 #include <stdlib.h>
 #include <limits.h>
 

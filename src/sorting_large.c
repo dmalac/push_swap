@@ -6,12 +6,12 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/05 16:57:40 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/14 17:44:29 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/19 11:40:16 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
-#include "prototypes_shared.h"
+#include "../include/main.h"
+#include "../include/prototypes_shared.h"
 #include <stdlib.h>
 
 void	find_nxt_elem(t_list *lst, int *tr_limits, int tr, t_nxt_move *nxt)

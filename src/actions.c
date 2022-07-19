@@ -6,11 +6,11 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 15:14:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/14 16:00:42 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/19 11:38:37 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prototypes_shared.h"
+#include "../include/prototypes_shared.h"
 
 void	swap(t_list **lst)
 {

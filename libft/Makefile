@@ -3,9 +3,8 @@ NAME = libft.a
 SRC = ft_printf.c ft_printf_converters.c ft_printf_flags.c \
 ft_printf_printers.c ft_power.c ft_itoa.c ft_putchar_int.c \
 ft_putstr_int.c ft_substr.c ft_uitoa.c ft_strlen.c ft_atoi.c \
-ft_bzero.c ft_strncmp.c ft_atol.c ft_split.c ft_putnbr_fd.c \
-ft_putchar_fd.c ft_putstr_fd.c ft_strdup.c ft_strjoin.c \
-get_next_line.c
+ft_bzero.c ft_strncmp.c ft_atol.c ft_split.c ft_strdup.c \
+ft_strjoin.c get_next_line.c
 
 OBJDIR = obj
 

@@ -6,12 +6,12 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/08 13:21:51 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/14 16:29:51 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/19 11:40:30 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
-#include "prototypes_shared.h"
+#include "../include/main.h"
+#include "../include/prototypes_shared.h"
 #include <stdlib.h>
 
 int	how_many_tranches(int num_args)

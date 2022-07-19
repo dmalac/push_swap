@@ -6,12 +6,12 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:21:23 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/14 16:07:29 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/19 11:41:29 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "prototypes_shared.h"
+#include "../libft/libft.h"
+#include "../include/prototypes_shared.h"
 #include <stdlib.h>
 
 static t_list	*lst_new(int num)

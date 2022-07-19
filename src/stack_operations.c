@@ -6,13 +6,13 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/11 14:26:52 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/14 17:44:49 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/19 11:41:46 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/ft_printf.h"
-#include "main.h"
-#include "prototypes_shared.h"
+#include "../libft/ft_printf.h"
+#include "../include/main.h"
+#include "../include/prototypes_shared.h"
 
 void	make_a_move(t_tools *tools, int action_code, char stack)
 {

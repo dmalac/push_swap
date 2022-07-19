@@ -6,14 +6,14 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 17:37:05 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/14 19:22:27 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/19 11:41:03 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <limits.h>
-#include "list_structure.h"
-#include "libft/libft.h"
+#include "../include/list_structure.h"
+#include "../libft/libft.h"
 
 int	only_digits(char *str)
 {

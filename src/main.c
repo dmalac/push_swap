@@ -6,14 +6,14 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/03 16:41:39 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/14 19:35:37 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/19 11:40:05 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "main.h"
+#include "../include/main.h"
 #include <unistd.h>
-#include "prototypes_shared.h"
+#include "../include/prototypes_shared.h"
 
 static void	erase_tools(t_tools **tools)
 {

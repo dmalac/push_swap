@@ -6,13 +6,13 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/06 15:57:25 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/14 16:38:32 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/19 11:41:25 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main_bonus.h"
-#include "prototypes_shared.h"
-#include "libft/libft.h"
+#include "../include/main_bonus.h"
+#include "../include/prototypes_shared.h"
+#include "../libft/libft.h"
 #include <stdlib.h>
 
 static void	perform_action(t_checker_tools *tools, int action_code, char stack)
