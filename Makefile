@@ -63,7 +63,7 @@ fclean: clean
 re: fclean
 	@make
 
-.PHONY: clean fclean re all
+.PHONY: clean fclean re all bonus
 
 
 # Individual dependencies:

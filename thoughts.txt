@@ -1,6 +1,0 @@
-
-to-do
-
-- include a check whether list is sorted but rotated (like 2 16 0 4 8 after pushing 2 to B)
-
-- Test bonus
