@@ -6,11 +6,10 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/04 11:21:23 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/14 16:42:52 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/19 10:36:32 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "list_structure.h"
 #include <stdlib.h>
 #include <limits.h>
@@ -31,31 +30,6 @@ void	lst_erase(t_list **lst)
 		}
 		free(current);
 	}
-}
-
-/* for testing purposes; to be removed at some point */
-void	lst_print(t_list *top, char list)
-{
-	t_list	*current;
-
-	ft_putchar_fd('\t', 2);
-	ft_putchar_fd(list, 2);
-	ft_putchar_fd(':', 2);
-	ft_putchar_fd(' ', 2);
-	if (top)
-	{
-		current = top;
-		while (current->is_last != 1)
-		{
-			ft_putnbr_fd(current->x, 2);
-			ft_putchar_fd(' ', 2);
-			current = current->nxt;
-		}
-		ft_putnbr_fd(current->x, 2);
-	}
-	else
-		ft_putstr_fd("<empty>", 2);
-	ft_putchar_fd('\n', 2);
 }
 
 size_t	lst_size(t_list *lst)

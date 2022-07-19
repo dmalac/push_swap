@@ -6,7 +6,7 @@
 /*   By: dmalacov <dmalacov@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/07 17:29:58 by dmalacov      #+#    #+#                 */
-/*   Updated: 2022/07/14 15:50:22 by dmalacov      ########   odam.nl         */
+/*   Updated: 2022/07/19 10:50:37 by dmalacov      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_list	*lst_add_front(t_list **lst, t_list *new);
 /* list_operations.c */
 size_t	lst_size(t_list *lst);
 void	lst_erase(t_list **lst);
-void	lst_print(t_list *top, char list);	// delete
 /* actions.c */
 void	swap(t_list **lst);
 void	push(t_list **to, t_list **from);
